@@ -25,7 +25,7 @@ public class verificationController {
             Stage main = (Stage) OKbtn.getScene().getWindow();
             
             main.close();
-            createScene("/scenes/HomePage.fxml");
+            createScene("/org/example/hiredrive/Scenes/entranceScene.fxml");
             
         }
 
