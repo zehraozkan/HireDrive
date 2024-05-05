@@ -13,8 +13,8 @@ public class App extends Application{
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
 
+    public void start(Stage stage) throws Exception {
         Parent root;
 
         try {
@@ -27,7 +27,5 @@ public class App extends Application{
         } catch (Exception e) {
             System.out.println(e);
         }
-
-
     }
 }
