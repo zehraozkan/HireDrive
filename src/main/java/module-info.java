@@ -7,4 +7,6 @@ module org.example.hiredrive {
 
     opens org.example.hiredrive to javafx.fxml;
     exports org.example.hiredrive;
+    exports org.example.hiredrive.Connection;
+    opens org.example.hiredrive.Connection to javafx.fxml;
 }

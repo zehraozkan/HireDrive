@@ -1,7 +1,5 @@
 package org.example.hiredrive;
 
-import java.util.Calendar;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,9 +7,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.example.hiredrive.Connection.UserConnection;
+
 import java.sql.Date;
 import java.time.LocalDate;
 
@@ -55,7 +54,7 @@ public class SignUpController {
             userType = "driver";
         }
 
-        DatabaseCheck.addUser(nameField.getText(), surnameField.getText(), mailField1.getText(),passwordField.getText(), userType, Date.valueOf(LocalDate.now()));
+        UserConnection.addUser(nameField.getText(), surnameField.getText(), mailField1.getText(),passwordField.getText(), userType, Date.valueOf(LocalDate.now()));
     }
 
     //helper

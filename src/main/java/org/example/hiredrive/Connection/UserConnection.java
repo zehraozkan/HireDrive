@@ -1,11 +1,8 @@
-package org.example.hiredrive;
+package org.example.hiredrive.Connection;
 
 import java.sql.*;
 
-public class DatabaseCheck {
-
-
-    //bu bölüm sizlerde farklı olacak
+public class UserConnection {
     private static final String url = "jdbc:mysql://localhost:3306/HireDrive";
     private static final String username = "root";
     private static final String password = "student_sifre";
@@ -14,13 +11,11 @@ public class DatabaseCheck {
     private static PreparedStatement statement;
     private static ResultSet resultSet;
 
-
-
     public static void addUser(String userName, String userSurname, String userMail,String password, String userType, Date dateCreated) {
         String sql = "INSERT INTO users (user_name, user_surname, user_mail,user_password, user_type, date_created) VALUES (?, ?, ?, ?, ? , ?)";
 
-        try (Connection conn = DriverManager.getConnection(url, username, DatabaseCheck.password);
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DriverManager.getConnection(url, username, password);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, userName);
             pstmt.setString(2, userSurname);
             pstmt.setString(3, userMail);
@@ -109,46 +104,18 @@ public class DatabaseCheck {
         }
     }
 
-    public static void sendMessage(int sender_id,int userId, String messageContent) {
-        // SQL statement to insert a message into the messages table
-        String insertMessageSQL = "INSERT INTO messages (date_sent, sender_id, receiver_id, message_content) VALUES (NOW(), ?, ?, ?)";
-
-        try (
-                // Connect to the database
-                Connection connection = DriverManager.getConnection(url, username, password);
-
-                // Create a PreparedStatement object to execute the SQL statement
-                PreparedStatement preparedStatement = connection.prepareStatement(insertMessageSQL);
-        ) {
-            // Set values for the parameters in the SQL statement
-            preparedStatement.setInt(1, sender_id); // Your sender_id
-            preparedStatement.setInt(2, userId); // Receiver's user_id
-            preparedStatement.setString(3, messageContent);
-
-            // Execute the SQL statement
-            int rowsAffected = preparedStatement.executeUpdate();
-
-            if (rowsAffected > 0) {
-                System.out.println("Message sent successfully to user with user_id: " + userId);
-            } else {
-                System.out.println("Failed to send message.");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     public static boolean checkPassword(String email, String password){
 
         String sql = "SELECT user_password from users WHERE user_mail = ?";
 
-        try (Connection conn = DriverManager.getConnection(url, username, DatabaseCheck.password);
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DriverManager.getConnection(url, username, UserConnection.password);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, email);
             ResultSet rs = pstmt.executeQuery();
-           // String a = rs.getString("user_password");
-                // Check if ResultSet has any rows
+            // String a = rs.getString("user_password");
+            // Check if ResultSet has any rows
             if (rs.next()) {
                 String storedPassword = rs.getString("user_password");
                 return storedPassword.equals(password);
@@ -163,31 +130,33 @@ public class DatabaseCheck {
         }
     }
     public static void printAllUsers() {
-        try (
-                // Connect to the database
-                Connection connection = DriverManager.getConnection(url, username, password);
+        String sql = "SELECT * FROM users";
 
-                // Create a Statement object to execute SQL queries
-                Statement statement = connection.createStatement();
+        try (Connection conn = DriverManager.getConnection(url, username, password);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            ResultSet rs = pstmt.executeQuery();
 
-                // Execute the SQL query and get the result set
-                ResultSet resultSet = statement.executeQuery("SELECT * FROM users");
-        ) {
-            // Print the header
-            System.out.println("User ID | User Name | User Surname");
-            System.out.println("----------------------------------");
+            // Print header
+            System.out.println("User ID | User Name | User Surname | Date Created | User Mail | User Type | Rating | Available");
+            System.out.println("---------------------------------------------------------------");
 
-            // Iterate through the result set and print each user
-            while (resultSet.next()) {
-                int userId = resultSet.getInt("user_id");
-                String userName = resultSet.getString("user_name");
-                String userSurname = resultSet.getString("user_surname");
+            // Iterate through the result set and print each user's information
+            while (rs.next()) {
+                int userId = rs.getInt("user_id");
+                String userName = rs.getString("user_name");
+                String userSurname = rs.getString("user_surname");
+                String dateCreated = rs.getString("date_created");
+                String userMail = rs.getString("user_mail");
+                String userType = rs.getString("user_type");
+                double rating = rs.getDouble("rating");
+                String available = rs.getString("available");
 
-                // Print the user information
-                System.out.printf("%7d | %-20s | %-20s%n", userId, userName, userSurname);
+                // Print user information
+                System.out.printf("%-10d | %-17s | %-12s | %-12s | %-20s | %-9s | %-6.1f | %-9s%n",
+                        userId, userName, userSurname, dateCreated, userMail, userType, rating, available);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error: " + e.getMessage());
         }
     }
     public static void getUsers() {
@@ -223,54 +192,32 @@ public class DatabaseCheck {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
-    }
-    public static void getMessagesForUser(int userId) {
-        try {
-            // Establish connection to MySQL database
-            connection = DriverManager.getConnection(url, username, password);
+        }    }
 
-            // SQL query to retrieve messages for a user
-            String query = "SELECT date_sent, sender_id, message_content FROM messages WHERE receiver_id = ? ORDER BY date_sent DESC";
-            statement = connection.prepareStatement(query);
-            statement.setInt(1, userId);
+    public static void main(String[] args) {
 
-            // Execute the query
-            resultSet = statement.executeQuery();
+        //4gggg44// rs();
+        //dehhhhhjjjjj// // j;
 
-            // Print out the results formatted nicely
-            System.out.println("Messages sent to user with ID " + userId + ":");
-            while (resultSet.next()) {
-                Timestamp dateSent = resultSet.getTimestamp("date_sent");
-                int senderId = resultSet.getInt("sender_id");
-                String messageContent = resultSet.getString("message_content");
+       // p00rlhhhhhhhhhjjjjjgggggg
+        //
+        //
+        //
 
-                System.out.println("Date Sent: " + dateSent);
-                System.out.println("Sender ID: " + senderId);
-                System.out.println("Message Content: " + messageContent);
-                System.out.println("------------------------------------------");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            // Close the connection, statement, and result set
-            try {
-                if (resultSet != null) resultSet.close();
-                if (statement != null) statement.close();
-                if (connection != null) connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-     public static void main(String[] args) {
 
-       // getUsers();
-       printAllUsers();
-        // sendMessage(1,2,"you are beautiful");
-        // getMessagesForUser(2);
+
+        //
+        //
+        //
+        //
+        //
+        //
+        // jjjjjj// jjjjhhhhhhhhhhhhhhhhhhhhhjjjjjjjjjjhhhhhhhhhhhhhhhhhhhhhces?"// );
+       MessageConnection.getMessagesForUser(5);
+      //1222222222222228888888888.addAdvertisement();
 
     }
 }
+
 
 

@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.example.hiredrive.Connection.UserConnection;
 
 public class SignInController {
 
@@ -29,7 +30,7 @@ public class SignInController {
     @FXML
     void signInClicked(ActionEvent event) {
 
-        if(DatabaseCheck.checkPassword(mailField.getText() , passwordField.getText())) {
+        if(UserConnection.checkPassword(mailField.getText() , passwordField.getText())) {
 
             System.out.println("completed");
             Stage main = (Stage) signIn.getScene().getWindow();
