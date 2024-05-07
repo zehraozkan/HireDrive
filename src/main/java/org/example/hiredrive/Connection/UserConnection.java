@@ -26,7 +26,7 @@ public class UserConnection {
     private static PreparedStatement statement;
     private static ResultSet resultSet;
 
-    public static void addUser(String userName, String userSurname, String userMail,String password, String userType, Date dateCreated) {
+    public static void addUser(String userName, String userSurname, String userMail,String aPassword, String userType, Date dateCreated) {
         String sql = "INSERT INTO users (user_name, user_surname, user_mail,user_password, user_type, date_created) VALUES (?, ?, ?, ?, ? , ?)";
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
@@ -34,7 +34,7 @@ public class UserConnection {
             pstmt.setString(1, userName);
             pstmt.setString(2, userSurname);
             pstmt.setString(3, userMail);
-            pstmt.setString(4, password);
+            pstmt.setString(4, aPassword);
             pstmt.setString(5, userType);
             pstmt.setDate(6, dateCreated);
             pstmt.executeUpdate();
@@ -255,7 +255,7 @@ public class UserConnection {
     public static void main(String[] args) {
 
         //make the advertisemetn title unique
-//        printAllUsers();
+        getUsers();
 //        AdvertisementConnection.addAdvertisement(9, "New Beauty Model ", "Makeup", "fds", Date.valueOf(LocalDate.of(2029, 05, 07)));
 //        AdvertisementConnection.listAdvertisementsByOwner(9);
         //AdvertisementConnection.sendJobRequestToAdd(8,9);
