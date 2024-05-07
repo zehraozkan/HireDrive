@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.Properties;
 
 public class UserConnection {
+
     private static final Properties properties;
 
     static {
@@ -88,17 +89,23 @@ public class UserConnection {
             return false; // Update failed
         }
     }
-    public static void retrieveUserData(String userType) {
-        String sql = "SELECT * FROM users WHERE user_type LIKE ?";
+
+    /**
+     *
+     * @param userId
+     * @return returns the information of the user whose id is given
+     */
+    public static String retrieveUserData(int userId) {
+        String sql = "SELECT * FROM users WHERE user_id = ?";
+        StringBuilder resultString = new StringBuilder();
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, "%" + userType + "%");
+            pstmt.setInt(1, userId);
             ResultSet rs = pstmt.executeQuery();
 
-            // Print retrieved data
-            while (rs.next()) {
-                int userId = rs.getInt("user_id");
+            // Check if there is a result
+            if (rs.next()) {
                 String userName = rs.getString("user_name");
                 String userSurname = rs.getString("user_surname");
                 String userMail = rs.getString("user_mail");
@@ -107,16 +114,20 @@ public class UserConnection {
                 double rating = rs.getDouble("rating");
                 String available = rs.getString("available");
 
-                // Print formatted output
-                System.out.printf("User ID: %-5d | Name: %-20s | Surname: %-20s | Email: %-30s | Created: %-20s | Type: %-10s | Rating: %-4.1f | Available: %-3s\n",
-                        userId, userName, userSurname, userMail, dateCreated, type, rating, available);
-
-                // Append to output string
+                // Append user information to the result string
+                resultString.append(String.format("User ID: %-5d | Name: %-20s | Surname: %-20s | Email: %-30s | Created: %-20s | Type: %-10s | Rating: %-4.1f | Available: %-3s\n",
+                        userId, userName, userSurname, userMail, dateCreated, type, rating, available));
+            } else {
+                resultString.append("User not found.");
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
+
+        // Return the result string
+        return resultString.toString();
     }
+
 
 
     public static boolean checkPassword(String email, String password){
@@ -143,18 +154,20 @@ public class UserConnection {
             return false;
         }
     }
-    public static void printAllUsers() {
-        String sql = "SELECT * FROM users";
+    public static String getAllUsers(String usertype) {
+        StringBuilder resultString = new StringBuilder();
+        String sql = "SELECT * FROM users WHERE user_type = ?";
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, usertype);
             ResultSet rs = pstmt.executeQuery();
 
-            // Print header
-            System.out.println("User ID | User Name | User Surname | Date Created | User Mail | User Type | Rating | Available");
-            System.out.println("---------------------------------------------------------------");
+            // Append header to the result string
+            resultString.append("User ID| User Name | User Surname | Date Created | User Mail | User Type | Rating | Available\n");
+            resultString.append("---------------------------------------------------------------\n");
 
-            // Iterate through the result set and print each user's information
+            // Iterate through the result set and append each user's information to the result string
             while (rs.next()) {
                 int userId = rs.getInt("user_id");
                 String userName = rs.getString("user_name");
@@ -165,15 +178,22 @@ public class UserConnection {
                 double rating = rs.getDouble("rating");
                 String available = rs.getString("available");
 
-                // Print user information
-                System.out.printf("%-10d | %-17s | %-12s | %-12s | %-20s | %-9s | %-6.1f | %-9s%n",
-                        userId, userName, userSurname, dateCreated, userMail, userType, rating, available);
+                // Append user information to the result string
+                resultString.append(String.format("%-6d | %-17s | %-12s | %-12s | %-20s | %-9s | %-6.1f | %-9s%n",
+                        userId, userName, userSurname, dateCreated, userMail, userType, rating, available));
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
+
+        // Return the result string
+        return resultString.toString();
     }
-    public static void getUsers() {
+
+    /**
+     * for debugging
+     */
+    private static void getUsers() {
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;
@@ -206,7 +226,31 @@ public class UserConnection {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }    }
+        }
+    }
+    public static String getUserType(int user_id){
+        String userType = null;
+        String sql = "SELECT user_type FROM users WHERE user_id = ?";
+
+        try (Connection conn = DriverManager.getConnection(url, username, password);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, user_id);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            // Check if a user with the given ID exists
+            if (rs.next()) {
+                userType = rs.getString("user_type");
+            } else {
+                System.out.println("No user found with ID " + user_id);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        return userType;
+    }
+
 
     public static void main(String[] args) {
 
@@ -214,7 +258,8 @@ public class UserConnection {
 //        printAllUsers();
 //        AdvertisementConnection.addAdvertisement(9, "New Beauty Model ", "Makeup", "fds", Date.valueOf(LocalDate.of(2029, 05, 07)));
 //        AdvertisementConnection.listAdvertisementsByOwner(9);
-        AdvertisementConnection.sendJobRequest(1,1);
+        //AdvertisementConnection.sendJobRequestToAdd(8,9);
+       System.out.println(getAllUsers("driver"));
     }
 }
 

@@ -9,4 +9,6 @@ module org.example.hiredrive {
     exports org.example.hiredrive;
     exports org.example.hiredrive.Connection;
     opens org.example.hiredrive.Connection to javafx.fxml;
+    exports org.example.hiredrive.SceneControllers;
+    opens org.example.hiredrive.SceneControllers to javafx.fxml;
 }

@@ -1,4 +1,4 @@
-package org.example.hiredrive;
+package org.example.hiredrive.SceneControllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

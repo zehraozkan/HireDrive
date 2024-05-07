@@ -92,6 +92,7 @@ public class MessageConnection {
             }
         }
     }
+    //TODO getting messeages between 2 users
 
 
 
