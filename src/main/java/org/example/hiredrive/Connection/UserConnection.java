@@ -1,11 +1,25 @@
 package org.example.hiredrive.Connection;
 
+import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDate;
+import java.util.Properties;
 
 public class UserConnection {
-    private static final String url = "jdbc:mysql://localhost:3306/HireDrive";
-    private static final String username = "root";
-    private static final String password = "student_sifre";
+    private static final Properties properties;
+
+    static {
+        try {
+            properties = DatabaseConfig.loadProperties();
+        } catch (IOException e) {
+            throw new RuntimeException("Error loading database properties", e);
+        }
+    }
+
+    private static final String url = properties.getProperty("db.url");
+    private static final String username = properties.getProperty("db.username");
+    private static final String password = properties.getProperty("db.password");
+
 
     private static Connection connection;
     private static PreparedStatement statement;
@@ -196,26 +210,11 @@ public class UserConnection {
 
     public static void main(String[] args) {
 
-        //4gggg44// rs();
-        //dehhhhhjjjjj// // j;
-
-       // p00rlhhhhhhhhhjjjjjgggggg
-        //
-        //
-        //
-
-
-
-        //
-        //
-        //
-        //
-        //
-        //
-        // jjjjjj// jjjjhhhhhhhhhhhhhhhhhhhhhjjjjjjjjjjhhhhhhhhhhhhhhhhhhhhhces?"// );
-       MessageConnection.getMessagesForUser(5);
-      //1222222222222228888888888.addAdvertisement();
-
+        //make the advertisemetn title unique
+//        printAllUsers();
+//        AdvertisementConnection.addAdvertisement(9, "New Beauty Model ", "Makeup", "fds", Date.valueOf(LocalDate.of(2029, 05, 07)));
+//        AdvertisementConnection.listAdvertisementsByOwner(9);
+        AdvertisementConnection.sendJobRequest(1,1);
     }
 }
 

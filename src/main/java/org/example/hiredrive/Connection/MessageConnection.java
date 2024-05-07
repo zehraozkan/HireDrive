@@ -1,13 +1,26 @@
 package org.example.hiredrive.Connection;
 
+import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
 
 public class MessageConnection {
     //bu bölüm sizlerde farklı olacak
 
-    private static final String url = "jdbc:mysql://localhost:3306/HireDrive";
-    private static final String username = "root";
-    private static final String password = "student_sifre";
+    private static final Properties properties;
+
+    static {
+        try {
+            properties = DatabaseConfig.loadProperties();
+        } catch (IOException e) {
+            throw new RuntimeException("Error loading database properties", e);
+        }
+    }
+
+    private static final String url = properties.getProperty("db.url");
+    private static final String username = properties.getProperty("db.username");
+    private static final String password = properties.getProperty("db.password");
+
 
     private static Connection connection;
     private static PreparedStatement statement;

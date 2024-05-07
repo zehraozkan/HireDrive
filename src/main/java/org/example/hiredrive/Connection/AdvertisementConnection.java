@@ -1,15 +1,25 @@
 package org.example.hiredrive.Connection;
 
+import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
 
 public class AdvertisementConnection {
-    private static final String url = "jdbc:mysql://localhost:3306/HireDrive";
-    private static final String username = "root";
-    private static final String password = "student_sifre";
+    private static final Properties properties;
 
-    private static Connection connection;
-    private static PreparedStatement statement;
-    private static ResultSet resultSet;
+    static {
+        try {
+            properties = DatabaseConfig.loadProperties();
+        } catch (IOException e) {
+            throw new RuntimeException("Error loading database properties", e);
+        }
+    }
+
+    private static final String url = properties.getProperty("db.url");
+    private static final String username = properties.getProperty("db.username");
+    private static final String password = properties.getProperty("db.password");
+
+
 
     public static void addAdvertisement(int ownerId, String addTitle, String cargoType, String addContent, Date dueDate) {
         String sql = "INSERT INTO advertisement (owner_id, add_title, cargo_type, add_content, due_date) VALUES (?, ?, ?, ?, ?)";
@@ -76,8 +86,10 @@ public class AdvertisementConnection {
             System.out.println("Error: " + e.getMessage());
         }
     }
+
+    //TODO increment the request in the advertisement
     public static void sendJobRequest(int driver_id, int add_id){
-        String sql = "INSERT INTO job_request (driver_id, add_id) VALUES (?, ?)";
+        String sql = "INSERT INTO jobRequests (driver_id, add_id) VALUES (?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url, username, AdvertisementConnection.password);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
