@@ -6,7 +6,6 @@ import java.util.Properties;
 
 public class MessageConnection {
 
-    //TODO message read
 
     private static final Properties properties;
 
