@@ -5,7 +5,6 @@ import java.sql.*;
 import java.util.Properties;
 
 public class MessageConnection {
-    //bu bölüm sizlerde farklı olacak
 
     private static final Properties properties;
 
