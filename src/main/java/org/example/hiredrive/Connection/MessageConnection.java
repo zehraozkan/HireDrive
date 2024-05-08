@@ -92,6 +92,29 @@ public class MessageConnection {
             }
         }
     }
+    public static int getMessageID(String email){
+        int user_id = 0;
+        String sql = "SELECT user_id FROM users WHERE user_mail = ?";
+
+        try (Connection conn = DriverManager.getConnection(url, username, password);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, email);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            // Check if a user with the given ID exists
+            if (rs.next()) {
+                user_id = rs.getInt("user_id");
+            } else {
+                System.out.println("No user found with email " + email);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        return user_id;
+    }
+
     //TODO getting messeages between 2 users
 
 
