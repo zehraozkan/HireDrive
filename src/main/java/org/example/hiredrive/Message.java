@@ -1,5 +1,6 @@
 package org.example.hiredrive;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class Message {
@@ -8,15 +9,15 @@ public class Message {
     private User sender;
     private User receiver;
     private String content;
-    private Date timeStamp;
+    private LocalDateTime timeStamp;
     
-    public Message( boolean isRead, User sender, User receiver, String content, Date timeStamp) {
+    public Message( User sender, User receiver, String content) {
 
-        this.isRead = isRead;
+        this.isRead = false;
         this.sender = sender;
         this.receiver = receiver;
         this.content = content;
-        this.timeStamp = timeStamp;   
+        this.timeStamp = LocalDateTime.now();   
     }
 
     public User getSender(){
