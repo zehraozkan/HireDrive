@@ -278,7 +278,7 @@ public class UserConnection {
     public static void main(String[] args) {
 
         //make the advertisemetn title unique
-        getAllUsers("driver");
+        System.out.println(getUserID("mail"));
        // System.out.println(getUserID("mail"));
 //        AdvertisementConnection.addAdvertisement(9, "New Beauty Model ", "Makeup", "fds", Date.valueOf(LocalDate.of(2029, 05, 07)));
 //        AdvertisementConnection.listAdvertisementsByOwner(9);
