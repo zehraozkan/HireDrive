@@ -2,8 +2,6 @@ package org.example.hiredrive;
 
 import java.util.*;
 
-import org.example.hiredrive.Connection.MessageConnection;
-
 public class Message {
     private int messageID;
     private boolean isRead;
@@ -18,9 +16,8 @@ public class Message {
         this.sender = sender;
         this.receiver = receiver;
         this.content = content;
-        this.timeStamp = timeStamp;
-        
+        this.timeStamp = timeStamp;   
     }
 
-    
+
 }
