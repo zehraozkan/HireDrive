@@ -7,6 +7,7 @@ import java.util.Properties;
 
 public class UserConnection {
 
+    //TODO add workswith
     private static final Properties properties;
 
     static {
@@ -259,7 +260,7 @@ public class UserConnection {
 //        AdvertisementConnection.addAdvertisement(9, "New Beauty Model ", "Makeup", "fds", Date.valueOf(LocalDate.of(2029, 05, 07)));
 //        AdvertisementConnection.listAdvertisementsByOwner(9);
         //AdvertisementConnection.sendJobRequestToAdd(8,9);
-       System.out.println(getAllUsers("driver"));
+    //   System.out.println(getAllUsers("driver"));
     }
 }
 

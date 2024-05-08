@@ -5,7 +5,8 @@ import java.sql.*;
 import java.util.Properties;
 
 public class MessageConnection {
-    //bu bölüm sizlerde farklı olacak
+
+    //TODO message read
 
     private static final Properties properties;
 
