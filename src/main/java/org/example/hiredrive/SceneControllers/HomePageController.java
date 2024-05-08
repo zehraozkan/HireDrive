@@ -46,6 +46,6 @@ public class HomePageController implements Initializable {
     @FXML
     void buttonClicked(ActionEvent event) {
 
-        resultLabel.setText(UserConnection.getAllUsers("driver"));
+       // resultLabel.setText(UserConnection.getAllUsers("driver"));
     }
 }

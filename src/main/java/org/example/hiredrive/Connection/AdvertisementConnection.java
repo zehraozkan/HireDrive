@@ -1,5 +1,7 @@
 package org.example.hiredrive.Connection;
 
+import org.example.hiredrive.Advertisement;
+
 import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
@@ -21,13 +23,14 @@ public class AdvertisementConnection {
 
 
     /**
-     *
-     * @param ownerId
-     * @param addTitle
-     * @param cargoType
-     * @param addContent
-     * @param dueDate
+     *adds an advertisement wiht the given info
+     * @param ownerId int
+     * @param addTitle String
+     * @param cargoType String
+     * @param addContent String
+     * @param dueDate Date
      * creates a new advertisement
+     * only companies can add advertisement
      */
     public static void addAdvertisement(int ownerId, String addTitle, String cargoType, String addContent, Date dueDate) {
         String sql = "INSERT INTO advertisement (owner_id, add_title, cargo_type, add_content, due_date) VALUES (?, ?, ?, ?, ?)";
@@ -49,6 +52,10 @@ public class AdvertisementConnection {
     }
 
 
+    /**
+     * deletes the advertisement wiht the given id
+     * @param advertisementId int
+     */
     public static void deleteAdvertisement(int advertisementId) {
         String sql = "DELETE FROM advertisement WHERE advert_id = ?";
 
@@ -100,21 +107,55 @@ public class AdvertisementConnection {
         return resultString.toString();
     }
 
-    //TODO increment the request in the advertisement
     public static void sendJobRequestToAdd(int driver_id, int add_id){
         String sql = "INSERT INTO jobRequests (driver_id, add_id) VALUES (?, ?)";
+        String sql1 = "UPDATE TABLE advertisement SET request = request + 1 WHERE advert_id = ?";
 
         try (Connection conn = DriverManager.getConnection(url, username, AdvertisementConnection.password);
-             PreparedStatement pstmt = conn.prepareStatement(sql)){
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             PreparedStatement pstmt1 = conn.prepareStatement(sql)){
 
             pstmt.setInt(1, driver_id);
             pstmt.setInt(2, add_id);
+            pstmt1.setInt(1, add_id);
 
             pstmt.executeUpdate();
+            pstmt1.executeUpdate();
 
             System.out.println("Request sent successfully.");
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
+    }
+    public static Advertisement getAdvertisementById(int add_id) {
+        Advertisement advertisement = null;
+
+        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+            String query = "SELECT owner_id, add_title, cargo_type, add_content, due_date, requests FROM advertisement WHERE advert_id = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setInt(1, add_id);
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        int owner_id = resultSet.getInt("owner_id");
+                        String add_title = resultSet.getString("add_title");
+                        String cargo_type = resultSet.getString("cargo_type");
+                        String add_content = resultSet.getString("add_content");
+                        Date due_date = resultSet.getDate("due_date");
+                        int requests = resultSet.getInt("requests");
+
+                        advertisement = new Advertisement(); //TODO
+                        //advertisement = new Advertisement(add_id, owner_id, add_title, cargo_type, add_content, due_date, requests);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return advertisement;
+    }
+
+    public static void main(String[] args) {
+        //addAdvertisement(5, );
     }
 }

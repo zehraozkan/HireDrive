@@ -16,5 +16,10 @@ public class Driver extends User{
         userId = UserConnection.getUserID(email);
 
     }
+    public Driver(String username, String userSurname, String password, String email, int userId) {
+        super(username, userSurname, password, email);
+        super.userId = userId;
+    }
+
 
 }

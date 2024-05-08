@@ -1,13 +1,17 @@
 package org.example.hiredrive.Connection;
 
+import org.example.hiredrive.Driver;
+import org.example.hiredrive.User;
+
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Properties;
 
 public class UserConnection {
 
-    //TODO add workswith
+
     private static final Properties properties;
 
     static {
@@ -93,12 +97,13 @@ public class UserConnection {
 
     /**
      *
-     * @param userId
+     * @param userId int
      * @return returns the information of the user whose id is given
      */
-    public static String retrieveUserData(int userId) {
+    public static User retrieveUserData(int userId) {
         String sql = "SELECT * FROM users WHERE user_id = ?";
-        StringBuilder resultString = new StringBuilder();
+        org.example.hiredrive.Driver driver = null;
+        //StringBuilder resultString = new StringBuilder();
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -109,28 +114,32 @@ public class UserConnection {
             if (rs.next()) {
                 String userName = rs.getString("user_name");
                 String userSurname = rs.getString("user_surname");
+                String userPassword = rs.getString("user_password");
                 String userMail = rs.getString("user_mail");
                 String dateCreated = rs.getString("date_created");
                 String type = rs.getString("user_type");
                 double rating = rs.getDouble("rating");
                 String available = rs.getString("available");
 
-                // Append user information to the result string
-                resultString.append(String.format("User ID: %-5d | Name: %-20s | Surname: %-20s | Email: %-30s | Created: %-20s | Type: %-10s | Rating: %-4.1f | Available: %-3s\n",
-                        userId, userName, userSurname, userMail, dateCreated, type, rating, available));
+                driver = new org.example.hiredrive.Driver(userName, userSurname, userPassword, userMail, userId);
+
             } else {
-                resultString.append("User not found.");
+            //    resultString.append("User not found.");
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
-
         // Return the result string
-        return resultString.toString();
+        return driver;
     }
 
-
-
+    /**
+     *
+     * @param email String
+     * @param password String
+     * @return
+     * checks whether the email mathces the password
+     */
     public static boolean checkPassword(String email, String password){
 
         String sql = "SELECT user_password from users WHERE user_mail = ?";
@@ -155,23 +164,35 @@ public class UserConnection {
             return false;
         }
     }
-    public static String getAllUsers(String usertype) {
-        StringBuilder resultString = new StringBuilder();
-        String sql = "SELECT * FROM users WHERE user_type = ?";
+    /**
+     * return all the users in the user table
+     */
+    public static ArrayList<User> getAllUsers(){
+            // Call getAllUsers(String usertype) with a wildcard parameter
+            return getAllUsers("%");
+    }
+
+    /**
+     *
+     * @param usertype String
+     * @return returns all the users in the usertype type
+     */
+    public static ArrayList<User> getAllUsers(String usertype) {
+
+        ArrayList<User> users = new ArrayList<>();
+
+        String sql = "SELECT * FROM users WHERE user_type LIKE ?";
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, usertype);
             ResultSet rs = pstmt.executeQuery();
 
-            // Append header to the result string
-            resultString.append("User ID| User Name | User Surname | Date Created | User Mail | User Type | Rating | Available\n");
-            resultString.append("---------------------------------------------------------------\n");
 
-            // Iterate through the result set and append each user's information to the result string
             while (rs.next()) {
                 int userId = rs.getInt("user_id");
                 String userName = rs.getString("user_name");
+                String userPassword = rs.getString("user_password");
                 String userSurname = rs.getString("user_surname");
                 String dateCreated = rs.getString("date_created");
                 String userMail = rs.getString("user_mail");
@@ -179,16 +200,21 @@ public class UserConnection {
                 double rating = rs.getDouble("rating");
                 String available = rs.getString("available");
 
+                if(usertype.equals("driver")){
+                    users.add(new org.example.hiredrive.Driver(userName, userSurname, userPassword, userMail, userId));
+                }
+                else if(usertype.equals("company")){
+
+                }
+
                 // Append user information to the result string
-                resultString.append(String.format("%-6d | %-17s | %-12s | %-12s | %-20s | %-9s | %-6.1f | %-9s%n",
-                        userId, userName, userSurname, dateCreated, userMail, userType, rating, available));
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
 
         // Return the result string
-        return resultString.toString();
+        return users;
     }
 
     /**
@@ -273,18 +299,43 @@ public class UserConnection {
 
         return user_id;
     }
+    //TODO add workswith
+    public static ArrayList<org.example.hiredrive.Driver> getAssociatedDrivers(int company_id){
+
+        ArrayList<Driver> drivers = new ArrayList<>();
+        String sql = "SELECT * FROM drivers WHERE company_id = ?";
+
+        try (Connection conn = DriverManager.getConnection(url, username, password);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, company_id);
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                int userId = rs.getInt("user_id");
+                String userName = rs.getString("user_name");
+                String userPassword = rs.getString("user_password");
+                String userSurname = rs.getString("user_surname");
+                String dateCreated = rs.getString("date_created");
+                String userMail = rs.getString("user_mail");
+                String userType = rs.getString("user_type");
+                double rating = rs.getDouble("rating");
+                String available = rs.getString("available");
+
+                drivers.add(new org.example.hiredrive.Driver(userName, userSurname, userPassword, userMail, userId));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+            return null;
+        }
+        return  drivers;
+    }
 
 
     public static void main(String[] args) {
 
-        getAllUsers("company");
-        //make the advertisemetn title unique
-       // System.out.println(getUserID("mail"));
-       // System.out.println(getUserID("mail"));
-//        AdvertisementConnection.addAdvertisement(9, "New Beauty Model ", "Makeup", "fds", Date.valueOf(LocalDate.of(2029, 05, 07)));
-//        AdvertisementConnection.listAdvertisementsByOwner(9);
-        //AdvertisementConnection.sendJobRequestToAdd(8,9);
-    //   System.out.println(getAllUsers("driver"));
+        System.out.println(getAllUsers());
+
     }
 }
 

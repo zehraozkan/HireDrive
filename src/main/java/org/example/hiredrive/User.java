@@ -22,6 +22,9 @@ public class User {
     public void sendMessage(Message message) {
         MessageConnection.sendMessage(this.userId, message.getReceiver().userId, message.getContent());
     }
+    public String getMail(){
+        return this.email;
+    }
 
 
 }

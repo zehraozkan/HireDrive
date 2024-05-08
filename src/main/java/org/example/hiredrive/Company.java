@@ -15,4 +15,11 @@ public class Company extends User{
         userId = UserConnection.getUserID(email);
         worksWith = new ArrayList<Driver>();
     }
+
+    //for the database
+    public Company(String username, String usersurname, String password, String email, int user_id){
+        super(username, usersurname, password, email);
+        userId = user_id;
+        worksWith = UserConnection.getAssociatedDrivers(user_id);
+    }
 }
