@@ -51,7 +51,7 @@ public class MessageConnection {
                 System.out.println("Failed to send message.");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            
         }
     }
     public static void getMessagesForUser(int userId) {
