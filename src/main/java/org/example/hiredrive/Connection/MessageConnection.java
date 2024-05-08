@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
 
+import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
+
+
 public class MessageConnection {
 
 
@@ -117,6 +120,8 @@ public class MessageConnection {
 
     //TODO getting messeages between 2 users
 
-
+    public static void main(String[] args) {
+        getMessagesForUser(3);
+    }
 
 }

@@ -12,6 +12,7 @@ public class Company extends User{
     public Company(String username, String usersurname, String password, String email){
         super(username, usersurname, password, email);
         UserConnection.addUser(username, surname, email, password, "company", Date.valueOf(LocalDate.now()));
+        userId = UserConnection.getUserID(email);
         worksWith = new ArrayList<Driver>();
     }
 }
