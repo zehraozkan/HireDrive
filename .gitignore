@@ -43,8 +43,5 @@ build/
 
 ## database check ahs different suers
 
-DatabaseCheck
-/database.properties
-
 ## Database ##
-/database.properties
+database.properties
