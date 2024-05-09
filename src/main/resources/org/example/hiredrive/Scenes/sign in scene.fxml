@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#2c3e50" height="400.0" layoutX="-358.0" layoutY="408.0" rotate="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="878.0" />
+      <Label alignment="CENTER" layoutX="33.0" layoutY="689.0" prefHeight="67.0" prefWidth="293.0" style="-fx-background-color: red; -fx-background-radius: 10;" text="HIREDRIVE" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#2c3e50" height="400.0" layoutX="783.0" layoutY="-162.0" rotate="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="878.0" />
+      <TilePane layoutX="465.0" layoutY="192.0" AnchorPane.leftAnchor="465.0" AnchorPane.rightAnchor="465.0">
+         <children>
+            <Pane prefHeight="406.0" prefWidth="350.0" style="-fx-background-color: #F0F0F0; -fx-background-radius: 15;">
+               <children>
+                  <Button alignment="CENTER" layoutX="10.0" layoutY="334.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="330.0" style="-fx-background-color: #2C3E50; -fx-border-radius: 5; -fx-border-insets: 5; -fx-border-style: solid inside; -fx-border-width: 1; -fx-border-color: white; -fx-background-radius: 10;" text="Sign in" textFill="WHITE">
+                     <font>
+                        <Font name="Arial" size="17.0" />
+                     </font>
+                  </Button>
+                  <PasswordField layoutX="15.0" layoutY="260.0" prefHeight="30.0" prefWidth="320.0" promptText="     **************" style="-fx-background-color: #FFFFFF; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;" />
+                  <TextField layoutX="15.0" layoutY="175.0" prefHeight="30.0" prefWidth="320.0" promptText="     Enter Your Mail" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+                     <opaqueInsets>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </opaqueInsets>
+                  </TextField>
+                  <Label layoutX="15.0" layoutY="225.0" prefHeight="21.0" prefWidth="74.0" text="Password">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="15.0" layoutY="140.0" prefHeight="21.0" prefWidth="74.0" text="Email">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_CENTER" layoutX="53.0" layoutY="32.0" prefHeight="30.0" prefWidth="245.0" text="WELCOME BACK">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_CENTER" layoutX="53.0" layoutY="64.0" prefHeight="30.0" prefWidth="245.0" text="Please enter your details." textFill="#0000008b">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_CENTER" graphicTextGap="5.0" layoutX="35.0" layoutY="386.0" prefHeight="15.0" prefWidth="175.0" text="Don’t have an account? ">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_CENTER" graphicTextGap="5.0" layoutX="42.0" layoutY="308.0" prefHeight="19.0" prefWidth="114.0" text="Remember me" />
+                  <Hyperlink layoutX="207.0" layoutY="305.0" prefHeight="19.0" prefWidth="114.0" text="Forgot password" />
+                  <CheckBox alignment="TOP_CENTER" contentDisplay="TOP" layoutX="37.0" layoutY="307.0" lineSpacing="4.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="19.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 1; -fx-border-color: #2C3E50;" textOverrun="WORD_ELLIPSIS">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </CheckBox>
+                  <Hyperlink layoutX="181.0" layoutY="383.0" prefHeight="19.0" prefWidth="114.0" text=" Sign up fo free!">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Hyperlink>
+               </children>
+            </Pane>
+         </children>
+      </TilePane>
+   </children>
+</AnchorPane>

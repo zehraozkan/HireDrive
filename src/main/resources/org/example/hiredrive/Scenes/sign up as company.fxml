@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#2c3e50" height="316.0" layoutX="869.0" layoutY="-158.0" rotate="165.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="366.0" />
+      <Label alignment="CENTER" layoutX="915.0" layoutY="40.0" prefHeight="67.0" prefWidth="293.0" style="-fx-background-color: red; -fx-background-radius: 10;" text="HIREDRIVE" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Button alignment="CENTER" layoutX="1066.0" layoutY="748.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: #2C3E50; -fx-border-radius: 5; -fx-border-insets: 3; -fx-border-style: solid inside; -fx-border-width: 1; -fx-border-color: white; -fx-background-radius: 10;" text="Next" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
+         <font>
+            <Font name="Arial" size="19.0" />
+         </font>
+      </Button>
+      <Pane layoutX="43.0" layoutY="42.0" prefHeight="712.0" prefWidth="602.0" style="-fx-background-color: #F0F0F0; -fx-background-radius: 15;" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <PasswordField layoutX="20.0" layoutY="435.0" prefHeight="30.0" prefWidth="565.0" promptText="     **************" style="-fx-background-color: #FFFFFF; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;" />
+            <Label layoutX="30.0" layoutY="410.0" prefHeight="21.0" prefWidth="74.0" text="Password">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_CENTER" layoutX="94.0" layoutY="14.0" prefHeight="39.0" prefWidth="401.0" text="WELCOME TO HIREDRIVE">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <PasswordField layoutX="20.0" layoutY="500.0" prefHeight="30.0" prefWidth="565.0" promptText="     **************" style="-fx-background-color: #FFFFFF; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;" />
+            <Label layoutX="30.0" layoutY="475.0" prefHeight="21.0" prefWidth="172.0" text="Password for correction">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField layoutX="20.0" layoutY="110.0" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Company Name" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+               <opaqueInsets>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </opaqueInsets>
+            </TextField>
+            <Label layoutX="30.0" layoutY="85.0" prefHeight="21.0" prefWidth="130.0" text="Company Name">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField layoutX="20.0" layoutY="240.0" prefHeight="30.0" prefWidth="565.0" promptText="     Enter a Mail" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+               <opaqueInsets>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </opaqueInsets>
+            </TextField>
+            <Label layoutX="30.0" layoutY="215.0" prefHeight="21.0" prefWidth="74.0" text="Email">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField layoutX="20.0" layoutY="305.0" prefHeight="30.0" prefWidth="565.0" promptText="     Enter a Phone Number" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+               <opaqueInsets>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </opaqueInsets>
+            </TextField>
+            <Label layoutX="30.0" layoutY="280.0" prefHeight="21.0" prefWidth="112.0" text="Phone Number">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField layoutX="20.0" layoutY="370.0" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Company Adress" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+               <opaqueInsets>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </opaqueInsets>
+            </TextField>
+            <Label layoutX="30.0" layoutY="345.0" prefHeight="21.0" prefWidth="74.0" text="Adress">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="150.0" prefHeight="21.0" prefWidth="100.0" text="Industry">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="46.0" prefHeight="39.0" prefWidth="329.0" text="Register as Company">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Label>
+            <TextField layoutX="20.0" layoutY="175.0" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Industry" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+               <opaqueInsets>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </opaqueInsets>
+            </TextField>
+         </children>
+      </Pane>
+      <Button alignment="CENTER" layoutX="852.0" layoutY="8.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: #808080; -fx-border-radius: 5; -fx-border-insets: 3; -fx-border-style: solid inside; -fx-border-width: 1; -fx-border-color: white; -fx-background-radius: 10;" text="Back" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="225.0">
+         <font>
+            <Font name="Arial" size="19.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="266.0" fitWidth="303.0" layoutX="795.0" layoutY="273.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@company.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
