@@ -122,6 +122,7 @@ public class UserConnection {
                 double rating = rs.getDouble("rating");
                 String available = rs.getString("available");
 
+
                 driver = new org.example.hiredrive.Driver(userName, userSurname, userPassword, userMail, userId);
 
             } else {
