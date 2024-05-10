@@ -374,6 +374,10 @@ public class UserConnection {
             e.printStackTrace();
         }
     }
+    public static User retrieveUser(int reviewerID) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'retrieveUser'");
+    }
 }
 
 

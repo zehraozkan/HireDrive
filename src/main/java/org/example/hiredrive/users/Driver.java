@@ -12,6 +12,7 @@ public class Driver extends User {
 
     public Driver(String username, String usersurname, String password, String email){
         super(username, usersurname, password, email);
+        
         UserConnection.addUser(username, surname, email, password, "driver", Date.valueOf(LocalDate.now()));
         userId = UserConnection.getUserID(email);
 
