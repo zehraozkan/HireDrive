@@ -49,7 +49,7 @@
                   </Label>
                   <Label alignment="TOP_CENTER" layoutX="53.0" layoutY="32.0" prefHeight="30.0" prefWidth="245.0" text="WELCOME BACK">
                      <font>
-                        <Font size="22.0" />
+                        <Font name="System Bold" size="22.0" />
                      </font>
                   </Label>
                   <Label alignment="TOP_CENTER" layoutX="53.0" layoutY="64.0" prefHeight="30.0" prefWidth="245.0" text="Please enter your details." textFill="#0000008b">

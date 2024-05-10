@@ -1,60 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.TilePane?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#2c3e50" height="400.0" layoutX="-358.0" layoutY="408.0" rotate="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="878.0" />
-      <Label alignment="CENTER" layoutX="33.0" layoutY="689.0" prefHeight="67.0" prefWidth="293.0" style="-fx-background-color: red; -fx-background-radius: 10;" text="HIREDRIVE" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="30.0" />
-         </font>
-      </Label>
-      <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#2c3e50" height="400.0" layoutX="783.0" layoutY="-162.0" rotate="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="878.0" />
-      <TilePane layoutX="465.0" layoutY="192.0" AnchorPane.leftAnchor="465.0" AnchorPane.rightAnchor="465.0" />
-      <Button alignment="CENTER" layoutX="1086.0" layoutY="768.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: #2C3E50; -fx-border-radius: 5; -fx-border-insets: 3; -fx-border-style: solid inside; -fx-border-width: 1; -fx-border-color: white; -fx-background-radius: 10;" text="Back" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
-         <font>
-            <Font name="Arial" size="19.0" />
-         </font>
-      </Button>
-      <Pane layoutX="358.0" layoutY="64.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #66b6d2; -fx-background-radius: 15;" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="200.0">
+      <Pane layoutX="241.0" layoutY="4.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2c3e50;" AnchorPane.bottomAnchor="720.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField alignment="CENTER" layoutX="203.0" layoutY="169.0" prefHeight="75.0" prefWidth="474.0" promptText="Enter 6 Digit Code" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
-               <opaqueInsets>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </opaqueInsets>
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </TextField>
-            <Button alignment="CENTER" layoutX="203.0" layoutY="251.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="474.0" style="-fx-background-color: #EEEEEE; -fx-border-radius: 10; -fx-border-insets: 0; -fx-border-width: 1; -fx-border-color: black; -fx-background-radius: 10;" text="Verify">
+            <Button alignment="CENTER" layoutX="1028.0" layoutY="25.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="143.0" style="-fx-background-color: #538abd; -fx-background-radius: 10;" text="My Profile" textFill="WHITE">
                <font>
                   <Font name="Arial" size="17.0" />
                </font>
             </Button>
-            <Pane layoutX="107.0" layoutY="95.0" prefHeight="34.0" prefWidth="667.0">
-               <children>
-                  <Label alignment="TOP_LEFT" layoutX="355.0" layoutY="4.0" prefHeight="32.0" prefWidth="662.0" text="abcsadsdsadasd@gmail.com">
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="TOP_LEFT" layoutY="4.0" prefHeight="32.0" prefWidth="474.0" text="Please enter the 6 digit code sent to">
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
+            <TextField layoutX="418.0" layoutY="10.0" prefHeight="60.0" prefWidth="304.0" promptText="Search" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+               <opaqueInsets>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </opaqueInsets>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Label alignment="CENTER" layoutX="159.0" layoutY="10.0" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: red; -fx-background-radius: 10;" text="HIREDRIVE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <Button alignment="CENTER" layoutX="727.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="83.0" style="-fx-background-color: black; -fx-border-radius: 10; -fx-border-insets: 0; -fx-border-width: 1; -fx-border-color: black; -fx-background-radius: 10;" text="Search" textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="17.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" layoutX="1175.0" layoutY="25.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: black; -fx-border-radius: 10; -fx-border-insets: 0; -fx-border-width: 1; -fx-border-color: black; -fx-background-radius: 10;" text="Log Out" textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="17.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
+      <SplitPane dividerPositions="0.5" layoutX="342.0" layoutY="280.0" prefHeight="449.0" prefWidth="807.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="720.0" prefWidth="400.0">
+               <children>
+                  <SplitPane dividerPositions="0.2" prefHeight="720.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="720.0" prefWidth="179.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <Accordion layoutX="86.0" layoutY="109.0" prefHeight="287.0" prefWidth="480.0" AnchorPane.bottomAnchor="433.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <panes>
+                                    <TitledPane animated="false" graphicTextGap="15.0" lineSpacing="15.0" style="-fx-background-color: #D8f5f8; -fx-background-radius: 20;" text="   Distance">
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <TextField layoutX="45.0" layoutY="39.0" prefHeight="34.0" prefWidth="135.0" promptText="Search" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+                                                   <opaqueInsets>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </opaqueInsets>
+                                                   <font>
+                                                      <Font size="15.0" />
+                                                   </font>
+                                                </TextField>
+                                                <Spinner editable="true" layoutX="215.0" layoutY="39.0" prefHeight="34.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: black;" />
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                       <font>
+                                          <Font size="23.0" />
+                                       </font>
+                                       <opaqueInsets>
+                                          <Insets top="15.0" />
+                                       </opaqueInsets>
+                                    </TitledPane>
+                                    <TitledPane animated="false" graphicTextGap="15.0" lineSpacing="15.0" style="-fx-background-color: #D8f5f8; -fx-background-radius: 20;" text="   Licenses">
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                       </content>
+                                       <font>
+                                          <Font size="23.0" />
+                                       </font>
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </TitledPane>
+                                    <TitledPane animated="false" graphicTextGap="15.0" lineSpacing="15.0" style="-fx-background-color: #D8f5f8; -fx-background-radius: 20;" text="   Vehicle Type">
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                       </content>
+                                       <font>
+                                          <Font size="23.0" />
+                                       </font>
+                                       <opaqueInsets>
+                                          <Insets bottom="15.0" top="15.0" />
+                                       </opaqueInsets>
+                                    </TitledPane>
+                                    <TitledPane animated="false" graphicTextGap="15.0" lineSpacing="15.0" style="-fx-background-color: #D8f5f8; -fx-background-radius: 20;" text="   Experience Level">
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                       </content>
+                                       <font>
+                                          <Font size="23.0" />
+                                       </font>
+                                       <opaqueInsets>
+                                          <Insets top="15.0" />
+                                       </opaqueInsets>
+                                    </TitledPane>
+                                    <TitledPane animated="false" graphicTextGap="15.0" lineSpacing="15.0" style="-fx-background-color: #D8f5f8; -fx-background-radius: 20;" text="   Due Date">
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                       </content>
+                                       <font>
+                                          <Font size="23.0" />
+                                       </font>
+                                       <opaqueInsets>
+                                          <Insets top="15.0" />
+                                       </opaqueInsets>
+                                    </TitledPane>
+                                </panes>
+                                 <opaqueInsets>
+                                    <Insets bottom="15.0" />
+                                 </opaqueInsets>
+                              </Accordion>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="631.0" prefWidth="724.0">
+               <children>
+                  <Button alignment="CENTER" layoutX="237.0" layoutY="345.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #2C3E50; -fx-background-radius: 10;" text="Search" textFill="WHITE">
+                     <font>
+                        <Font name="Arial" size="17.0" />
+                     </font>
+                  </Button>
+                  <Label alignment="TOP_CENTER" layoutX="92.0" layoutY="219.0" prefHeight="32.0" prefWidth="474.0" text="Filter your Search for Drivers">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_LEFT" layoutX="116.0" layoutY="264.0" prefHeight="79.0" prefWidth="418.0" text="You can easily filter your search with by selecting many features." textAlignment="CENTER" textFill="#000000e3" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
    </children>
 </AnchorPane>
