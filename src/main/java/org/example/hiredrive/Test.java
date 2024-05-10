@@ -12,7 +12,7 @@ public class Test {
         Message message = new Message( driver, company, "asd");
         driver.sendMessage(message);
 
-        UserConnection.retrieveUserData(17).sendMessage(message);
+        UserConnection.retrieveUser(17).sendMessage(message);
         //System.out.println(UserConnection.getUserID(company.getMail()));
 
         User user = driver;

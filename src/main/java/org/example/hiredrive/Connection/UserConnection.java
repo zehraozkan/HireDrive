@@ -1,5 +1,6 @@
 package org.example.hiredrive.Connection;
 
+import org.example.hiredrive.Company;
 import org.example.hiredrive.Driver;
 import org.example.hiredrive.User;
 
@@ -100,7 +101,7 @@ public class UserConnection {
      * @param userId int
      * @return returns the information of the user whose id is given
      */
-    public static User retrieveUserData(int userId) {
+    public static User retrieveUser(int userId) {
         String sql = "SELECT * FROM users WHERE user_id = ?";
         org.example.hiredrive.Driver driver = null;
         //StringBuilder resultString = new StringBuilder();
@@ -196,15 +197,15 @@ public class UserConnection {
                 String userSurname = rs.getString("user_surname");
                 String dateCreated = rs.getString("date_created");
                 String userMail = rs.getString("user_mail");
-                String userType = rs.getString("user_type");
+                String user_type = rs.getString("user_type");
                 double rating = rs.getDouble("rating");
                 String available = rs.getString("available");
 
-                if(usertype.equals("driver")){
+                if(user_type.equals("driver")){
                     users.add(new org.example.hiredrive.Driver(userName, userSurname, userPassword, userMail, userId));
                 }
-                else if(usertype.equals("company")){
-
+                else if(user_type.equals("company")){
+                    users.add(new Company(userName, userSurname, userPassword, userMail,userId));
                 }
 
                 // Append user information to the result string
@@ -226,17 +227,13 @@ public class UserConnection {
         ResultSet resultSet = null;
 
         try {
-            // Establish connection
             connection = DriverManager.getConnection(url, username, password);
 
-            // Create statement
             statement = connection.createStatement();
 
-            // Execute query to fetch users
             String query = "SELECT user, host FROM mysql.user";
             resultSet = statement.executeQuery(query);
 
-            // Process results
             while (resultSet.next()) {
                 String user = resultSet.getString("user");
                 String host = resultSet.getString("host");
@@ -245,7 +242,6 @@ public class UserConnection {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            // Close resources
             try {
                 if (resultSet != null) resultSet.close();
                 if (statement != null) statement.close();
@@ -299,11 +295,11 @@ public class UserConnection {
 
         return user_id;
     }
-    //TODO add workswith
+
     public static ArrayList<org.example.hiredrive.Driver> getAssociatedDrivers(int company_id){
 
         ArrayList<Driver> drivers = new ArrayList<>();
-        String sql = "SELECT * FROM drivers WHERE company_id = ?";
+        String sql = "SELECT * FROM users WHERE user_id = ?";
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -334,7 +330,8 @@ public class UserConnection {
 
     public static void main(String[] args) {
 
-        System.out.println(getAllUsers());
+        AdvertisementConnection.deleteAdvertisement(2);
+        System.out.println(AdvertisementConnection.getAdvertisementCount());
 
     }
 }

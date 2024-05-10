@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 public class App extends Application{
     public static void main(String[] args) throws Exception {
         launch(args);
-
     }
 
     @Override
@@ -29,21 +28,5 @@ public class App extends Application{
         }
     }
 
-    public static class User {
-        /**
-         * CREATE TABLE users (
-         *     user_id INT AUTO_INCREMENT PRIMARY KEY,
-         *     user_name VARCHAR(40),
-         *     user_surname VARCHAR(40),
-         *     date_created DATE,
-         *     user_mail VARCHAR(40) UNIQUE,
-         *     user_password VARCHAR(20),
-         *     user_type VARCHAR(10),
-         *     rating DECIMAL(3,1) DEFAULT 0.0,
-         *     available VARCHAR(3) DEFAULT 'yes'
-         * );
-         */
 
-
-    }
 }

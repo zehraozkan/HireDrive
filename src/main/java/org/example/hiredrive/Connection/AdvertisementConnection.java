@@ -23,7 +23,7 @@ public class AdvertisementConnection {
 
 
     /**
-     *adds an advertisement wiht the given info
+     *adds an advertisement with the given info
      * @param ownerId int
      * @param addTitle String
      * @param cargoType String
@@ -32,25 +32,35 @@ public class AdvertisementConnection {
      * creates a new advertisement
      * only companies can add advertisement
      */
-    public static void addAdvertisement(int ownerId, String addTitle, String cargoType, String addContent, Date dueDate) {
+    public static int addAdvertisement(int ownerId, String addTitle, String cargoType, String addContent, Date dueDate) {
         String sql = "INSERT INTO advertisement (owner_id, add_title, cargo_type, add_content, due_date) VALUES (?, ?, ?, ?, ?)";
+        int advertisementId = -1; // Initialize advertisement ID to -1 (invalid value)
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             pstmt.setInt(1, ownerId);
             pstmt.setString(2, addTitle);
             pstmt.setString(3, cargoType);
             pstmt.setString(4, addContent);
             pstmt.setDate(5, new java.sql.Date(dueDate.getTime()));
 
-            pstmt.executeUpdate();
+            int rowsInserted = pstmt.executeUpdate();
 
-            System.out.println("Advertisement added successfully.");
+            if (rowsInserted > 0) {
+                // Retrieve the generated keys (advertisement ID)
+                try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        advertisementId = generatedKeys.getInt(1); // Retrieve the first generated key
+                        System.out.println("Advertisement added successfully. Advertisement ID: " + advertisementId);
+                    }
+                }
+            }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
-    }
 
+        return advertisementId; // Return the generated advertisement ID
+    }
 
     /**
      * deletes the advertisement wiht the given id
@@ -107,26 +117,7 @@ public class AdvertisementConnection {
         return resultString.toString();
     }
 
-    public static void sendJobRequestToAdd(int driver_id, int add_id){
-        String sql = "INSERT INTO jobRequests (driver_id, add_id) VALUES (?, ?)";
-        String sql1 = "UPDATE TABLE advertisement SET request = request + 1 WHERE advert_id = ?";
 
-        try (Connection conn = DriverManager.getConnection(url, username, AdvertisementConnection.password);
-             PreparedStatement pstmt = conn.prepareStatement(sql);
-             PreparedStatement pstmt1 = conn.prepareStatement(sql)){
-
-            pstmt.setInt(1, driver_id);
-            pstmt.setInt(2, add_id);
-            pstmt1.setInt(1, add_id);
-
-            pstmt.executeUpdate();
-            pstmt1.executeUpdate();
-
-            System.out.println("Request sent successfully.");
-        } catch (SQLException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
     public static Advertisement getAdvertisementById(int add_id) {
         Advertisement advertisement = null;
 
@@ -154,8 +145,24 @@ public class AdvertisementConnection {
 
         return advertisement;
     }
+    public static int getAdvertisementCount() {
+        int count = 0;
+        try (Connection connection = DriverManager.getConnection(url, username, password);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) AS count FROM advertisement")) {
+
+            if (resultSet.next()) {
+                count = resultSet.getInt("count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle any SQL exceptions
+        }
+        return count;
+    }
+
 
     public static void main(String[] args) {
-        //addAdvertisement(5, );
+        System.out.println(getAdvertisementCount());
     }
 }

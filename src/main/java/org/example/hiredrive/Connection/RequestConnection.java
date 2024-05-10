@@ -25,9 +25,27 @@ public class RequestConnection {
     private static final String password = properties.getProperty("db.password");
 
 
-    public static void addRequest(int driver_id, int add_id){
+    public static void sendJobRequestToAdd(int driver_id, int add_id){
+        String sql = "INSERT INTO jobRequests (driver_id, add_id) VALUES (?, ?)";
+        String sql1 = "UPDATE TABLE advertisement SET request = request + 1 WHERE advert_id = ?";
 
+        try (Connection conn = DriverManager.getConnection(url, username, password);
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             PreparedStatement pstmt1 = conn.prepareStatement(sql)){
+
+            pstmt.setInt(1, driver_id);
+            pstmt.setInt(2, add_id);
+            pstmt1.setInt(1, add_id);
+
+            pstmt.executeUpdate();
+            pstmt1.executeUpdate();
+
+            System.out.println("Request sent successfully.");
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
     }
+
     public static void replyRequest(int driver_id, int add_id, boolean accepted) {
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
             String query = "UPDATE jobRequests SET status = ? WHERE driver_id = ? AND add_id = ?";
@@ -35,6 +53,7 @@ public class RequestConnection {
                 preparedStatement.setString(1, accepted ? "ACCEPTED" : "REJECTED");
                 preparedStatement.setInt(2, driver_id);
                 preparedStatement.setInt(3, add_id);
+
                 int rowsAffected = preparedStatement.executeUpdate();
                 if (rowsAffected > 0) {
                     System.out.println("Request status updated successfully.");
@@ -71,13 +90,13 @@ public class RequestConnection {
                 }
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {
+
                         int add_id = resultSet.getInt("add_id");
                         String requestStatus = resultSet.getString("status");
 
-                        Advertisement advertisement = AdvertisementConnection.getAdvertisementById(add_id); // Assuming this method exists
 
                         // Create a new Request object and add it to the list
-                        Request request = new Request();//TODO
+                        Request request = new Request(requestStatus, driver_id, add_id);
                         //Request request = new Request(driver_id, advertisement, requestStatus);
                         requests.add(request);
                     }
