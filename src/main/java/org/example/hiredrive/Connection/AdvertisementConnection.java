@@ -1,9 +1,11 @@
 package org.example.hiredrive.Connection;
 
-import org.example.hiredrive.Advertisement;
+import org.example.hiredrive.advertisement.Advertisement;
+import org.example.hiredrive.advertisement.Request;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Properties;
 
 public class AdvertisementConnection {
@@ -84,9 +86,15 @@ public class AdvertisementConnection {
             System.out.println("Error: " + e.getMessage());
         }
     }
-    public static String listAdvertisementsByOwner(int ownerId) {
-        StringBuilder resultString = new StringBuilder();
+
+    /**
+     *
+     * @param ownerId
+     * @return an arraylist of advertisements containing all the advertisements
+     */
+    public static ArrayList<Advertisement> listAdvertisementsByOwner(int ownerId) {
         String sql = "SELECT * FROM advertisement WHERE owner_id = ?";
+        ArrayList<Advertisement> advertisements = new ArrayList<>();
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -94,8 +102,6 @@ public class AdvertisementConnection {
             ResultSet rs = pstmt.executeQuery();
 
             // Append header to the result string
-            resultString.append("Advertisement ID | Owner ID | Title | Cargo Type | Content | Due Date\n");
-            resultString.append("-----------------------------------------\n");
 
             // Iterate through the result set and append each advertisement to the result string
             while (rs.next()) {
@@ -103,20 +109,16 @@ public class AdvertisementConnection {
                 String addTitle = rs.getString("add_title");
                 String cargoType = rs.getString("cargo_type");
                 String addContent = rs.getString("add_content");
-                String dueDate = rs.getString("due_date");
+                Date dueDate = rs.getDate("due_date");
+                //int AdvertisementID, int company_id, String addTitle, String cargoType, Date dueDate
+                advertisements.add(new Advertisement(advertId, ownerId, addTitle, addContent, cargoType, dueDate, getAllRequestsForAdvertisement(advertId)));
 
-                // Append advertisement details to the result string
-                resultString.append(String.format("%-16d | %-9d | %-5s | %-10s | %-7s | %-10s%n",
-                        advertId, ownerId, addTitle, cargoType, addContent, dueDate));
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
-
-        // Return the result string
-        return resultString.toString();
+        return advertisements;
     }
-
 
     public static Advertisement getAdvertisementById(int add_id) {
         Advertisement advertisement = null;
@@ -135,8 +137,9 @@ public class AdvertisementConnection {
                         int requests = resultSet.getInt("requests");
 
                         //public Advertisement(Company owner, String addTitle,String addContent, String cargoType, Date dueDate)
-                        advertisement = new Advertisement(); //TODO
-                        //advertisement = new Advertisement(add_id, owner_id, add_title, cargo_type, add_content, due_date, requests);
+                        //advertisement = new Advertisement(); //TODO
+                        //int AdvertisementID, int company_id, String addTitle,String content, String cargoType, Date dueDate
+                        advertisement = new Advertisement(add_id, owner_id, add_title, add_content, cargo_type, due_date, getAllRequestsForAdvertisement(add_id));
                     }
                 }
             }
@@ -161,7 +164,32 @@ public class AdvertisementConnection {
         }
         return count;
     }
+    public static ArrayList<Request> getAllRequestsForAdvertisement(int advertisementId) {
+        ArrayList<Request> requests = new ArrayList<>();
+        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+            // Prepare SQL statement
+            String sql = "SELECT * FROM jobRequests WHERE add_id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, advertisementId);
 
+            // Execute query
+            ResultSet resultSet = statement.executeQuery();
+
+            // Process the result set
+            while (resultSet.next()) {
+                int driverId = resultSet.getInt("driver_id");
+                int addId = resultSet.getInt("add_id");
+                String status = resultSet.getString("status");
+
+                // Create JobRequest object
+                Request request = new Request(status, driverId, addId);
+                requests.add(request);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return requests;
+    }
 
     public static void main(String[] args) {
         System.out.println(getAdvertisementCount());

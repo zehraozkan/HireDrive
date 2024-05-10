@@ -1,9 +1,13 @@
-package org.example.hiredrive;
+package org.example.hiredrive.users;
 
 import org.example.hiredrive.Connection.MessageConnection;
-import org.example.hiredrive.Connection.UserConnection;
+import org.example.hiredrive.message.Message;
 
 public class User {
+    public String getUsername() {
+        return username;
+    }
+
     protected int userId;
     protected String surname;
     protected String username;
@@ -22,8 +26,13 @@ public class User {
     public void sendMessage(Message message) {
         MessageConnection.sendMessage(this.userId, message.getReceiver().userId, message.getContent());
     }
+
     public String getMail(){
         return this.email;
+    }public int getUserId(){
+        return this.userId;
+    }public int getRating(){
+        return this.rating;
     }
 
 

@@ -13,7 +13,6 @@ public class DatabaseConfig {
             properties.load(fis);
         }
         return properties;
-        //TODO add requestConnectionclass
 
     }
 }

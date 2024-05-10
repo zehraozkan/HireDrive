@@ -1,4 +1,4 @@
-package org.example.hiredrive;
+package org.example.hiredrive.advertisement;
 
 import java.sql.Date;
 

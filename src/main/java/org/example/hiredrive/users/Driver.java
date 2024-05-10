@@ -1,4 +1,4 @@
-package org.example.hiredrive;
+package org.example.hiredrive.users;
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import org.example.hiredrive.Connection.UserConnection;
 
-public class Driver extends User{
+public class Driver extends User {
     private boolean available;
     private ArrayList<String> lisenses;
 

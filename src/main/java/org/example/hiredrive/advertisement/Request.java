@@ -1,7 +1,8 @@
-package org.example.hiredrive;
+package org.example.hiredrive.advertisement;
 
 import org.example.hiredrive.Connection.AdvertisementConnection;
 import org.example.hiredrive.Connection.UserConnection;
+import org.example.hiredrive.users.User;
 
 public class Request {
 

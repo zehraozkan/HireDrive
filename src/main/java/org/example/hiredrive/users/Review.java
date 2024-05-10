@@ -1,4 +1,4 @@
-package org.example.hiredrive;
+package org.example.hiredrive.users;
 
 import org.example.hiredrive.Connection.UserConnection;
 

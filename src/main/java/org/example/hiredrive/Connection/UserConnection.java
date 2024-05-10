@@ -1,12 +1,11 @@
 package org.example.hiredrive.Connection;
 
-import org.example.hiredrive.Company;
-import org.example.hiredrive.Driver;
-import org.example.hiredrive.User;
+import org.example.hiredrive.users.Company;
+import org.example.hiredrive.users.Driver;
+import org.example.hiredrive.users.User;
 
 import java.io.IOException;
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -101,9 +100,9 @@ public class UserConnection {
      * @param userId int
      * @return returns the information of the user whose id is given
      */
-    public static User retrieveUser(int userId) {
+    public static User getUser(int userId) {
         String sql = "SELECT * FROM users WHERE user_id = ?";
-        org.example.hiredrive.Driver driver = null;
+        Driver driver = null;
         //StringBuilder resultString = new StringBuilder();
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
@@ -123,7 +122,7 @@ public class UserConnection {
                 String available = rs.getString("available");
 
 
-                driver = new org.example.hiredrive.Driver(userName, userSurname, userPassword, userMail, userId);
+                driver = new Driver(userName, userSurname, userPassword, userMail, userId);
 
             } else {
             //    resultString.append("User not found.");
@@ -203,7 +202,7 @@ public class UserConnection {
                 String available = rs.getString("available");
 
                 if(user_type.equals("driver")){
-                    users.add(new org.example.hiredrive.Driver(userName, userSurname, userPassword, userMail, userId));
+                    users.add(new Driver(userName, userSurname, userPassword, userMail, userId));
                 }
                 else if(user_type.equals("company")){
                     users.add(new Company(userName, userSurname, userPassword, userMail,userId));
@@ -297,7 +296,7 @@ public class UserConnection {
         return user_id;
     }
 
-    public static ArrayList<org.example.hiredrive.Driver> getAssociatedDrivers(int company_id){
+    public static ArrayList<Driver> getAssociatedDrivers(int company_id){
 
         ArrayList<Driver> drivers = new ArrayList<>();
         String sql = "SELECT * FROM users WHERE user_id = ?";
@@ -318,7 +317,7 @@ public class UserConnection {
                 double rating = rs.getDouble("rating");
                 String available = rs.getString("available");
 
-                drivers.add(new org.example.hiredrive.Driver(userName, userSurname, userPassword, userMail, userId));
+                drivers.add(new Driver(userName, userSurname, userPassword, userMail, userId));
             }
 
         } catch (SQLException e) {
@@ -334,6 +333,46 @@ public class UserConnection {
         AdvertisementConnection.deleteAdvertisement(2);
         System.out.println(AdvertisementConnection.getAdvertisementCount());
 
+    }
+
+    public static void addWorksWith(int driverId, int companyId, Date startDate) {
+        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+            // Prepare SQL statement
+            String sql = "INSERT INTO works_with (driver_id, company_id, start_date) VALUES (?, ?, ?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, driverId);
+            statement.setInt(2, companyId);
+            statement.setDate(3, new java.sql.Date(startDate.getTime()));
+
+            // Execute the update
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Works with relation added successfully.");
+            } else {
+                System.out.println("Failed to add works with relation.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void deleteWorksWithRelation(int driverId, int companyId) {
+        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+            // Prepare SQL statement
+            String sql = "DELETE FROM works_with WHERE driver_id = ? AND company_id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, driverId);
+            statement.setInt(2, companyId);
+
+            // Execute the update
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Works with relation deleted successfully.");
+            } else {
+                System.out.println("No works with relation found for deletion.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
 

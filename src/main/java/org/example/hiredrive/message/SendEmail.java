@@ -1,4 +1,4 @@
-package org.example.hiredrive;
+package org.example.hiredrive.message;
 
 import java.util.Properties;
 
@@ -6,8 +6,8 @@ import javax.mail.*;
 import javax.mail.Message;
 import javax.mail.internet.*;
 
-
 public class SendEmail {
+
     public static int sendMail(String mailTo) {
         // Sender's email
         String from = "hiredrivecs@gmail.com";

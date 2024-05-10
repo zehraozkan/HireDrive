@@ -2,9 +2,10 @@ package org.example.hiredrive.Connection;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Properties;
 
-import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
+import org.example.hiredrive.message.Message;
 
 
 public class MessageConnection {
@@ -30,22 +31,17 @@ public class MessageConnection {
     private static ResultSet resultSet;
 
     public static void sendMessage(int sender_id,int userId, String messageContent) {
-        // SQL statement to insert a message into the messages table
         String insertMessageSQL = "INSERT INTO messages (date_sent, sender_id, receiver_id, message_content) VALUES (NOW(), ?, ?, ?)";
 
         try (
-                // Connect to the database
                 Connection connection = DriverManager.getConnection(url, username, password);
 
-                // Create a PreparedStatement object to execute the SQL statement
                 PreparedStatement preparedStatement = connection.prepareStatement(insertMessageSQL);
         ) {
-            // Set values for the parameters in the SQL statement
             preparedStatement.setInt(1, sender_id); // Your sender_id
             preparedStatement.setInt(2, userId); // Receiver's user_id
             preparedStatement.setString(3, messageContent);
 
-            // Execute the SQL statement
             int rowsAffected = preparedStatement.executeUpdate();
 
             if (rowsAffected > 0) {
@@ -54,33 +50,30 @@ public class MessageConnection {
                 System.out.println("Failed to send message.");
             }
         } catch (SQLException e) {
-            
+            System.out.println(e);
         }
     }
-    public static void getMessagesForUser(int userId) {
+    public static ArrayList<Message> getMessagesForUser(int recieverID) {
+        ArrayList<Message> messages = new ArrayList<>();
+
         try {
-            // Establish connection to MySQL database
             connection = DriverManager.getConnection(url, username, password);
 
-            // SQL query to retrieve messages for a user
             String query = "SELECT date_sent, sender_id, message_content FROM messages WHERE receiver_id = ? ORDER BY date_sent DESC";
             statement = connection.prepareStatement(query);
-            statement.setInt(1, userId);
+            statement.setInt(1, recieverID);
 
-            // Execute the query
             resultSet = statement.executeQuery();
 
-            // Print out the results formatted nicely
-            System.out.println("Messages sent to user with ID " + userId + ":");
             while (resultSet.next()) {
                 Timestamp dateSent = resultSet.getTimestamp("date_sent");
                 int senderId = resultSet.getInt("sender_id");
                 String messageContent = resultSet.getString("message_content");
+                Date messageDate = resultSet.getDate("date_sent");
+                boolean isRead = resultSet.getBoolean("is_read");
 
-                System.out.println("Date Sent: " + dateSent);
-                System.out.println("Sender ID: " + senderId);
-                System.out.println("Message Content: " + messageContent);
-                System.out.println("------------------------------------------");
+                
+                //public Message(User sender, User receiver, String content, Date date, boolean isRead)
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -94,31 +87,38 @@ public class MessageConnection {
                 e.printStackTrace();
             }
         }
+        return messages;
     }
-    public static int getMessageID(String email){
-        int user_id = 0;
-        String sql = "SELECT user_id FROM users WHERE user_mail = ?";
+    public static ArrayList<Message> retrieveMessagesBetweenUsers(int senderId, int receiverId) {
 
-        try (Connection conn = DriverManager.getConnection(url, username, password);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, email);
+        ArrayList<Message> messages = new ArrayList<Message>();
 
-            ResultSet rs = pstmt.executeQuery();
+        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+            String sql = "SELECT * FROM messages WHERE (sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?) ORDER BY date_sent";
 
-            // Check if a user with the given ID exists
-            if (rs.next()) {
-                user_id = rs.getInt("user_id");
-            } else {
-                System.out.println("No user found with email " + email);
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, senderId);
+            statement.setInt(2, receiverId);
+            statement.setInt(3, receiverId);
+            statement.setInt(4, senderId);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Date dateSent = resultSet.getDate("date_sent");
+                int sender = resultSet.getInt("sender_id");
+                int receiver = resultSet.getInt("receiver_id");
+                String messageContent = resultSet.getString("message_content");
+                boolean isRead = resultSet.getBoolean("is_read");
+
+                messages.add(new Message(UserConnection.getUser(sender), UserConnection.getUser(receiver), messageContent, dateSent, isRead));
             }
         } catch (SQLException e) {
-            System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
         }
-
-        return user_id;
+        return  messages;
     }
 
-    //TODO getting messeages between 2 users
 
     public static void main(String[] args) {
         getMessagesForUser(3);

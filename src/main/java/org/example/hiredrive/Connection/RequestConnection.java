@@ -1,7 +1,6 @@
 package org.example.hiredrive.Connection;
 
-import org.example.hiredrive.Advertisement;
-import org.example.hiredrive.Request;
+import org.example.hiredrive.advertisement.Request;
 
 import java.io.IOException;
 import java.sql.*;
