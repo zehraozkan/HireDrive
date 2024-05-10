@@ -8,13 +8,13 @@ import javax.mail.internet.*;
 
 
 public class SendEmail {
-    public static void main(String[] args) {
+    public static int sendMail(String mailTo) {
         // Sender's email
         String from = "hiredrivecs@gmail.com";
         // Sender's password
         String password = "gvvv dvuq ogzn uyjn";
         // Recipient's email
-        String to = "tayyibe395@gmail.com";
+        String to = mailTo;
 
         // SMTP server configuration
         String host = "smtp.gmail.com";
@@ -35,6 +35,7 @@ public class SendEmail {
             }
         });
 
+        int code = 0;
         try {
             // MimeMessage object
             javax.mail.Message message = new MimeMessage(session);
@@ -45,7 +46,7 @@ public class SendEmail {
             // Set email subject
             message.setSubject("HireDrive Authentication Code");
             // Creating the authentication code (6-digits)
-            int code = (int) (Math.random() * 900000) + 100000;
+            code = (int) (Math.random() * 900000) + 100000;
             // Set email content
             message.setText("The authentication code to login is: " + code + "");
 
@@ -55,5 +56,6 @@ public class SendEmail {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+        return code;
     }
 }
