@@ -4,6 +4,7 @@ module org.example.hiredrive {
 
     requires org.controlsfx.controls;
     requires java.sql;
+    requires java.mail;
 
     opens org.example.hiredrive to javafx.fxml;
     exports org.example.hiredrive;

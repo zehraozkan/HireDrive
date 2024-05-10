@@ -134,6 +134,7 @@ public class AdvertisementConnection {
                         Date due_date = resultSet.getDate("due_date");
                         int requests = resultSet.getInt("requests");
 
+                        //public Advertisement(Company owner, String addTitle,String addContent, String cargoType, Date dueDate)
                         advertisement = new Advertisement(); //TODO
                         //advertisement = new Advertisement(add_id, owner_id, add_title, cargo_type, add_content, due_date, requests);
                     }

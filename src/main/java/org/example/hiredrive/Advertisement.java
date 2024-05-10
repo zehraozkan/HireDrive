@@ -1,6 +1,7 @@
 package org.example.hiredrive;
 
 import org.example.hiredrive.Connection.AdvertisementConnection;
+import org.example.hiredrive.Connection.UserConnection;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -14,9 +15,10 @@ public class Advertisement {
     private Date dueDate;
     private ArrayList<Request> requests;
 
-    public Advertisement(int AdvertisementID, Company owner, String addTitle, String cargoType, Date dueDate){
+
+    public Advertisement(int AdvertisementID, int company_id, String addTitle, String cargoType, Date dueDate){
         this.advertisementID = AdvertisementID;
-        this.owner = owner;
+        this.owner = (Company) UserConnection.retrieveUser(company_id);
         this.addTitle = addTitle;
         this.cargoType = cargoType;
         this.dueDate = dueDate;
