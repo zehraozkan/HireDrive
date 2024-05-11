@@ -117,7 +117,7 @@
       </Button>
       <ImageView fitHeight="266.0" fitWidth="303.0" layoutX="795.0" layoutY="273.0" pickOnBounds="true" preserveRatio="true">
          <image>
-<!--            <Image url="@/org/example/hiredrive/pngs/steering-wheel-14-512.png" />-->
+            <Image url="@/org/example/hiredrive/pngs/steering-wheel-14-512.png" />-->
          </image>
       </ImageView>
    </children>
