@@ -26,13 +26,13 @@
          <children>
             <Pane prefHeight="406.0" prefWidth="350.0" style="-fx-background-color: #F0F0F0; -fx-background-radius: 15;">
                <children>
-                  <Button alignment="CENTER" layoutX="10.0" layoutY="334.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="330.0" style="-fx-background-color: #2C3E50; -fx-border-radius: 5; -fx-border-insets: 5; -fx-border-style: solid inside; -fx-border-width: 1; -fx-border-color: white; -fx-background-radius: 10;" text="Sign in" textFill="WHITE">
+                  <Button alignment="CENTER" layoutX="10.0" layoutY="334.0" mnemonicParsing="false" onAction="#signInScene" prefHeight="50.0" prefWidth="330.0" style="-fx-background-color: #2C3E50; -fx-border-radius: 5; -fx-border-insets: 5; -fx-border-style: solid inside; -fx-border-width: 1; -fx-border-color: white; -fx-background-radius: 10;" text="Sign in" textFill="WHITE">
                      <font>
                         <Font name="Arial" size="17.0" />
                      </font>
                   </Button>
-                  <PasswordField layoutX="15.0" layoutY="260.0" prefHeight="30.0" prefWidth="320.0" promptText="     **************" style="-fx-background-color: #FFFFFF; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;" />
-                  <TextField layoutX="15.0" layoutY="175.0" prefHeight="30.0" prefWidth="320.0" promptText="     Enter Your Mail" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+                  <PasswordField layoutX="15.0" layoutY="260.0" onAction="#getPasswordForSignIn" prefHeight="30.0" prefWidth="320.0" promptText="     **************" style="-fx-background-color: #FFFFFF; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;" />
+                  <TextField layoutX="15.0" layoutY="175.0" onAction="#getMailForSignIn" prefHeight="30.0" prefWidth="320.0" promptText="     Enter Your Mail" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
                      <opaqueInsets>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </opaqueInsets>
@@ -63,13 +63,13 @@
                      </font>
                   </Label>
                   <Label alignment="TOP_CENTER" graphicTextGap="5.0" layoutX="42.0" layoutY="308.0" prefHeight="19.0" prefWidth="114.0" text="Remember me" />
-                  <Hyperlink layoutX="207.0" layoutY="305.0" prefHeight="19.0" prefWidth="114.0" text="Forgot password" />
-                  <CheckBox alignment="TOP_CENTER" contentDisplay="TOP" layoutX="37.0" layoutY="307.0" lineSpacing="4.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="19.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 1; -fx-border-color: #2C3E50;" textOverrun="WORD_ELLIPSIS">
+                  <Hyperlink layoutX="207.0" layoutY="305.0" onAction="#forgotPasswordScene" prefHeight="19.0" prefWidth="114.0" text="Forgot password" />
+                  <CheckBox alignment="TOP_CENTER" contentDisplay="TOP" layoutX="37.0" layoutY="307.0" lineSpacing="4.0" mnemonicParsing="false" onAction="#RememberMe" prefHeight="19.0" prefWidth="19.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-width: 1; -fx-border-color: #2C3E50;" textOverrun="WORD_ELLIPSIS">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                   </CheckBox>
-                  <Hyperlink layoutX="181.0" layoutY="383.0" prefHeight="19.0" prefWidth="114.0" text=" Sign up fo free!">
+                  <Hyperlink layoutX="181.0" layoutY="383.0" onAction="#goSignUpScene" prefHeight="19.0" prefWidth="114.0" text=" Sign up fo free!">
                      <font>
                         <Font size="11.0" />
                      </font>
