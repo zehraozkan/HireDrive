@@ -29,7 +29,6 @@ public class Advertisement {
         this.content = content;
 
     }
-
     //user view
     public Advertisement(Company owner, String addTitle,String addContent, String cargoType, Date dueDate){
         this.advertisementID = AdvertisementConnection.addAdvertisement(owner.getUserId(), addTitle, cargoType, addContent, dueDate);
@@ -44,6 +43,11 @@ public class Advertisement {
     public void deleteAdvertisement(){
         AdvertisementConnection.deleteAdvertisement(advertisementID);
     }
+
+    //TODO addRequest
+    //TODO getter/setter
+    //TODO getAllRequests
+
 
 
 }

@@ -20,7 +20,7 @@ public class Request {
     //for database
     public Request(String status, int sender_id, int add_id) {
         this.status = status;
-        this.sender = UserConnection.retrieveUser(sender_id);
+        this.sender = UserConnection.getUser(sender_id);
         this.add = AdvertisementConnection.getAdvertisementById(add_id);
     }
 

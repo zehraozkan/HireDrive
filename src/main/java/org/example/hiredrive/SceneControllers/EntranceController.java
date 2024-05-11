@@ -17,13 +17,16 @@ public class EntranceController {
     private Button btn_signUp;
 
     @FXML
+    private Button goBackScene;
+
+    @FXML
     void buttonClicked(ActionEvent event) {
         if(event.getSource() == btn_signIn) {
 
             Stage main = (Stage) btn_signIn.getScene().getWindow();
             
             main.close();
-            createScene("/org/example/hiredrive/Scenes/SignInScene.fxml");
+            createScene("/org/example/hiredrive/Scenes/sign in scene.fxml");
 
         }
         else if(event.getSource() == btn_signUp) {
@@ -31,8 +34,16 @@ public class EntranceController {
             Stage main = (Stage) btn_signUp.getScene().getWindow();
             
             main.close();
-            createScene("/org/example/hiredrive/Scenes/SignUpScene.fxml");
+            createScene("/org/example/hiredrive/Scenes/sign up scene.fxml");
         
+        }
+        else if(event.getSource() == goBackScene) {
+
+            Stage main = (Stage) btn_signUp.getScene().getWindow();
+
+            main.close();
+            createScene("/org/example/hiredrive/Scenes/sign up scene.fxml");
+
         }
 
     }

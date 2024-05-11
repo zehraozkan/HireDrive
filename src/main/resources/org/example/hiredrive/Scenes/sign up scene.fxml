@@ -6,16 +6,16 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.hiredrive.SceneControllers.SignUpController">
    <children>
       <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#2c3e50" height="345.0" layoutX="856.0" layoutY="-158.0" rotate="165.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="533.0" />
       <Label layoutX="465.0" layoutY="200.0" prefHeight="400.0" prefWidth="350.0" style="-fx-background-color: #D9D9D9; -fx-background-radius: 10;" />
-      <Button fx:id="signUpDriverScene" alignment="CENTER" layoutX="540.0" layoutY="253.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #2C3E50; -fx-border-radius: 5; -fx-border-insets: 5; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-color: white; -fx-background-radius: 10;" text="Sign up as Driver" textFill="WHITE" AnchorPane.topAnchor="300.0">
+      <Button fx:id="signUpDriver" alignment="CENTER" layoutX="540.0" layoutY="253.0" mnemonicParsing="false" onAction="#btnClicked" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #2C3E50; -fx-border-radius: 5; -fx-border-insets: 5; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-color: white; -fx-background-radius: 10;" text="Sign up as Driver" textFill="WHITE" AnchorPane.topAnchor="300.0">
          <font>
             <Font name="Arial" size="17.0" />
          </font>
       </Button>
-      <Button fx:id="signUpCompanyScene" alignment="CENTER" layoutX="540.0" layoutY="443.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #2C3E50; -fx-border-radius: 5; -fx-border-insets: 5; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-color: white; -fx-background-radius: 10;" text="Sign up as Company" textFill="WHITE" AnchorPane.bottomAnchor="300.0">
+      <Button fx:id="signUpCompany" alignment="CENTER" layoutX="540.0" layoutY="443.0" mnemonicParsing="false" onAction="#btnClicked" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: #2C3E50; -fx-border-radius: 5; -fx-border-insets: 5; -fx-border-style: solid inside; -fx-border-width: 2; -fx-border-color: white; -fx-background-radius: 10;" text="Sign up as Company" textFill="WHITE" AnchorPane.bottomAnchor="300.0">
          <font>
             <Font name="Arial" size="17.0" />
          </font>
@@ -25,7 +25,7 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Button alignment="CENTER" layoutX="1066.0" layoutY="748.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: #2C3E50; -fx-border-radius: 5; -fx-border-insets: 3; -fx-border-style: solid inside; -fx-border-width: 1; -fx-border-color: white; -fx-background-radius: 10;" text="Back" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
+      <Button fx:id="btnBack" alignment="CENTER" layoutX="1066.0" layoutY="748.0" mnemonicParsing="false" onAction="#btnClicked" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: #2C3E50; -fx-border-radius: 5; -fx-border-insets: 3; -fx-border-style: solid inside; -fx-border-width: 1; -fx-border-color: white; -fx-background-radius: 10;" text="Back" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
          <font>
             <Font name="Arial" size="19.0" />
          </font>

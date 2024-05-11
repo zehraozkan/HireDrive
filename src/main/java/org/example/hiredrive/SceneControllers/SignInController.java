@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -18,17 +20,25 @@ public class SignInController {
     private TextField mailField;
 
     @FXML
-    private TextField passwordField;
+    private PasswordField passwordField;
 
     @FXML
     private Button signIn;
 
     @FXML
-    private Text wrongPrompt;
-
+    private Hyperlink signUpLink;
 
     @FXML
-    void signInClicked(ActionEvent event) {
+    private Text wrongPrompt;
+
+    @FXML
+    void LinkClicked(ActionEvent event) {
+        createScene("/org/example/hiredrive/Scenes/HomePage.fxml");
+
+    }
+
+    @FXML
+    void signInBtnClicked(ActionEvent event) {
 
         if(UserConnection.checkPassword(mailField.getText() , passwordField.getText())) {
 
@@ -39,16 +49,14 @@ public class SignInController {
             createScene("/org/example/hiredrive/Scenes/HomePage.fxml");
             
             wrongPrompt.setVisible(false);
-
         }
         else {
-            
             wrongPrompt.setVisible(true);
         }
 
     }
     //helper
-    private void createScene(String path) {
+    public void createScene(String path) {
         Stage stage = new Stage();
         Parent root;
 

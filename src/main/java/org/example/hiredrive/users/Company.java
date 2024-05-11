@@ -30,4 +30,9 @@ public class Company extends User {
     public ArrayList<Driver> getWorksWith() {
         return worksWith;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Company{" + "worksWith=" + worksWith + '}';
+    }
 }

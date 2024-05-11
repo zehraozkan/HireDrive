@@ -9,7 +9,8 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-
+<!--tanıştırayım siyah ekran peki bu siyah ekrandan ne çıkıyor??????????? bağlamadığım kısım-->
+<!--sadece mavilerin bazısı bağlı-->
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="authenticationscene">
    <children>
       <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#2c3e50" height="400.0" layoutX="-358.0" layoutY="408.0" rotate="50.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="878.0" />

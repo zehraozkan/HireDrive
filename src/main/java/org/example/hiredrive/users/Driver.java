@@ -22,5 +22,9 @@ public class Driver extends User {
         super.userId = userId;
     }
 
+    public String toString(){
+        return super.toString() + "driver " + available + "\nLisenses: " + lisenses;
+    }
+
 
 }

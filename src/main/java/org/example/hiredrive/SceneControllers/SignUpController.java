@@ -6,59 +6,30 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.example.hiredrive.Connection.UserConnection;
-
-import java.sql.Date;
-import java.time.LocalDate;
 
 public class SignUpController {
 
     @FXML
-    private Button codeButton;
+    private Button btnBack;
 
     @FXML
-    private TextField mailField1;
+    private Button signUpCompany;
 
     @FXML
-    private TextField nameField;
+    private Button signUpDriver;
 
     @FXML
-    private TextField surnameField;
+    void btnClicked(ActionEvent event) {
+        if(event.getSource() == signUpCompany){
 
-    @FXML
-    private TextField passwordField;
-
-    @FXML
-    private CheckBox companyChc;
-
-    @FXML
-    void codeClicked(ActionEvent event) {
-        
-        //check the variables
-        Stage main = (Stage) codeButton.getScene().getWindow();
-            
-        main.close();
-
-        createScene("/org/example/hiredrive/Scenes/VerificationScene.fxml");
-
-        //TODO somehow it checked the verification code and found that it maches
-
-        String userType;
-        if(companyChc.isSelected()){
-            userType = "company";
-        }
-        else {
-            userType = "driver";
+        } else if (event.getSource() == signUpDriver) {
+            createScene("/org/example/hiredrive/Scenes/sign up as driver.fxml");
         }
 
-        UserConnection.addUser(nameField.getText(), surnameField.getText(), mailField1.getText(),passwordField.getText(), userType, Date.valueOf(LocalDate.now()));
     }
 
-    //helper
-    private void createScene(String path) {
+    public void createScene(String path) {
         Stage stage = new Stage();
         Parent root;
 
@@ -72,5 +43,7 @@ public class SignUpController {
         } catch (Exception e) {
             System.out.println(e);
         }
+
     }
+
 }

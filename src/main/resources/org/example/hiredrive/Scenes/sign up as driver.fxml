@@ -13,7 +13,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<!--TODO date of born yok-->
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.hiredrive.SceneControllers.DriverSignUpController">
    <children>
       <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#2c3e50" height="316.0" layoutX="869.0" layoutY="-158.0" rotate="165.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="366.0" />
       <Label alignment="CENTER" layoutX="915.0" layoutY="40.0" prefHeight="67.0" prefWidth="293.0" style="-fx-background-color: red; -fx-background-radius: 10;" text="HIREDRIVE" textFill="WHITE">
@@ -21,15 +23,15 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Button alignment="CENTER" layoutX="1066.0" layoutY="748.0" mnemonicParsing="false" onAction="#goNextScene" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: #2C3E50; -fx-border-radius: 5; -fx-border-insets: 3; -fx-border-style: solid inside; -fx-border-width: 1; -fx-border-color: white; -fx-background-radius: 10;" text="Next" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
+      <Button fx:id="nextBtn" alignment="CENTER" layoutX="1066.0" layoutY="748.0" mnemonicParsing="false" onAction="#btnClicked" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: #2C3E50; -fx-border-radius: 5; -fx-border-insets: 3; -fx-border-style: solid inside; -fx-border-width: 1; -fx-border-color: white; -fx-background-radius: 10;" text="Next" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
          <font>
             <Font name="Arial" size="19.0" />
          </font>
       </Button>
       <Pane layoutX="43.0" layoutY="42.0" prefHeight="712.0" prefWidth="602.0" style="-fx-background-color: #F0F0F0; -fx-background-radius: 15;" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
-            <PasswordField layoutX="20.0" layoutY="500.0" onAction="#getDriverPassword" prefHeight="30.0" prefWidth="565.0" promptText="     **************" style="-fx-background-color: #FFFFFF; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;" />
-            <TextField fx:id="getDriverSurname" layoutX="20.0" layoutY="175.0" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Surname" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+            <PasswordField fx:id="password1" layoutX="20.0" layoutY="500.0" prefHeight="30.0" prefWidth="565.0" promptText="     **************" style="-fx-background-color: #FFFFFF; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;" />
+            <TextField fx:id="surnameField" layoutX="20.0" layoutY="175.0" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Surname" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
                <opaqueInsets>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </opaqueInsets>
@@ -49,13 +51,13 @@
                   <Font size="26.0" />
                </font>
             </Label>
-            <PasswordField layoutX="20.0" layoutY="565.0" onAction="#getDriverPasswordVerify" prefHeight="30.0" prefWidth="565.0" promptText="     **************" style="-fx-background-color: #FFFFFF; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;" />
+            <PasswordField fx:id="password2" layoutX="20.0" layoutY="565.0" prefHeight="30.0" prefWidth="565.0" promptText="     **************" style="-fx-background-color: #FFFFFF; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;" />
             <Label layoutX="30.0" layoutY="540.0" prefHeight="21.0" prefWidth="172.0" text="Password for correction">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="getDriverName" layoutX="20.0" layoutY="110.0" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Name" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+            <TextField fx:id="nameField" layoutX="20.0" layoutY="110.0" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Name" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
                <opaqueInsets>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </opaqueInsets>
@@ -65,7 +67,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="20.0" layoutY="305.0" onAction="#getDriverMail" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Email " style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+            <TextField fx:id="mailField" layoutX="20.0" layoutY="305.0" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Email " style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
                <opaqueInsets>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </opaqueInsets>
@@ -108,14 +110,14 @@
             </Label>
          </children>
       </Pane>
-      <Button alignment="CENTER" layoutX="852.0" layoutY="747.0" mnemonicParsing="false" onAction="#goBackScene" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: #808080; -fx-border-radius: 5; -fx-border-insets: 3; -fx-border-style: solid inside; -fx-border-width: 1; -fx-border-color: white; -fx-background-radius: 10;" text="Back" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="225.0">
+      <Button fx:id="backBtn" alignment="CENTER" layoutX="852.0" layoutY="747.0" mnemonicParsing="false" onAction="#btnClicked" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: #808080; -fx-border-radius: 5; -fx-border-insets: 3; -fx-border-style: solid inside; -fx-border-width: 1; -fx-border-color: white; -fx-background-radius: 10;" text="Back" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="225.0">
          <font>
             <Font name="Arial" size="19.0" />
          </font>
       </Button>
       <ImageView fitHeight="266.0" fitWidth="303.0" layoutX="795.0" layoutY="273.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@steering-wheel-14-512.png" />
+<!--            <Image url="@/org/example/hiredrive/pngs/steering-wheel-14-512.png" />-->
          </image>
       </ImageView>
    </children>

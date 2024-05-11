@@ -327,14 +327,6 @@ public class UserConnection {
         return  drivers;
     }
 
-
-    public static void main(String[] args) {
-
-        AdvertisementConnection.deleteAdvertisement(2);
-        System.out.println(AdvertisementConnection.getAdvertisementCount());
-
-    }
-
     public static void addWorksWith(int driverId, int companyId, Date startDate) {
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
             // Prepare SQL statement
@@ -377,6 +369,130 @@ public class UserConnection {
     public static User retrieveUser(int reviewerID) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'retrieveUser'");
+    }
+
+    public static double getRating(int user_id){
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        double rating =0;
+
+        try {
+            // Establish database connection
+            conn = DriverManager.getConnection(url, username, password);
+
+            // Retrieve current total rating and total number of ratings for the user
+            String query = "SELECT rating FROM users WHERE user_id = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setInt(1, user_id);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                rating = rs.getDouble("rating");
+
+            } else {
+                System.out.println("User not found.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Close all resources
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return rating;
+    }
+    public static void rateUser(double rate, int user_id){
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DriverManager.getConnection(url, username, password);
+
+            String query = "SELECT rating, total_rated FROM users WHERE user_id = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setDouble(1, user_id);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                double currentRating = rs.getDouble("rating");
+                int totalRated = rs.getInt("total_rated");
+
+                int newTotalRated = totalRated + 1;
+                double newTotalRating = ((currentRating * totalRated) + rate) / newTotalRated;
+
+                String updateQuery = "UPDATE users SET rating = ?, total_rated = ?, available = ? WHERE user_id = ?";
+                stmt = conn.prepareStatement(updateQuery);
+                stmt.setDouble(1, newTotalRating);
+                stmt.setInt(2, newTotalRated);
+                stmt.setInt(4, user_id);
+                stmt.setString(3, "yes");
+                stmt.executeUpdate();
+
+                System.out.println("User rating updated successfully!");
+            } else {
+                System.out.println("User not found.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Close all resources
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static boolean worksWith(int userId1, int userId2) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            // Establish database connection
+            conn = DriverManager.getConnection(url, username, password);
+
+            // Check if the two users work together
+            String query = "SELECT * FROM works_with WHERE (driver_id = ? AND company_id = ?) OR (driver_id = ? AND company_id = ?)";
+            stmt = conn.prepareStatement(query);
+            stmt.setInt(1, userId1);
+            stmt.setInt(2, userId2);
+            stmt.setInt(3, userId2);
+            stmt.setInt(4, userId1);
+            rs = stmt.executeQuery();
+
+            return rs.next(); // Return true if there is a matching record
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            // Close all resources
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+
+        rateUser(0, 3);
+        for(User user : getAllUsers()){
+            System.out.println(user.getUserId() + " |" + user.getUsername() + " rating:" +  user.getRating());
+        }
     }
 }
 
