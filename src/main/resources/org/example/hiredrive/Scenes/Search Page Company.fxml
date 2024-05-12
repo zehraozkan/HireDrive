@@ -7,176 +7,242 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Spinner?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Pane layoutX="241.0" layoutY="4.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2c3e50;" AnchorPane.bottomAnchor="720.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox prefHeight="80.0" prefWidth="1280.0" style="-fx-background-color: #2c3e50;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="myProfileButton" alignment="CENTER" layoutX="1028.0" layoutY="25.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="143.0" style="-fx-background-color: #538abd; -fx-background-radius: 10;" text="My Profile" textFill="WHITE">
-               <font>
-                  <Font name="Arial" size="17.0" />
-               </font>
-            </Button>
-            <TextField fx:id="searchByNameTextArea" layoutX="418.0" layoutY="10.0" prefHeight="60.0" prefWidth="304.0" promptText="Search" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+            <HBox alignment="CENTER" prefHeight="80.0" prefWidth="433.0">
+               <children>
+                  <Button fx:id="goMainPageScene" mnemonicParsing="false" prefHeight="60.0" prefWidth="238.0" style="-fx-background-color: red; -fx-background-radius: 10;" text="HIREDRIVE" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="80.0" prefWidth="422.0">
+               <children>
+                  <TextField fx:id="searchByNameTextArea" prefHeight="60.0" prefWidth="304.0" promptText="Search" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+                     <opaqueInsets>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </opaqueInsets>
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <Button fx:id="searchByNameButton" alignment="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="83.0" style="-fx-background-color: black; -fx-border-radius: 10; -fx-border-insets: 0; -fx-border-width: 1; -fx-border-color: black; -fx-background-radius: 10;" text="Search" textFill="WHITE">
+                     <font>
+                        <Font name="Arial" size="17.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox prefHeight="80.0" prefWidth="165.0" />
+            <HBox alignment="CENTER" prefHeight="80.0" prefWidth="247.0">
+               <children>
+                  <Button fx:id="myProfileButton" alignment="CENTER" mnemonicParsing="false" prefHeight="34.0" prefWidth="143.0" style="-fx-background-color: #538abd; -fx-background-radius: 10;" text="My Profile" textFill="WHITE">
+                     <font>
+                        <Font name="Arial" size="17.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="logOutButton" alignment="CENTER" mnemonicParsing="false" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: black; -fx-border-radius: 10; -fx-border-insets: 0; -fx-border-width: 1; -fx-border-color: black; -fx-background-radius: 10;" text="Log Out" textFill="WHITE">
+                     <font>
+                        <Font name="Arial" size="17.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Accordion prefHeight="514.0" prefWidth="586.0" style="-fx-padding: 15;" AnchorPane.leftAnchor="100.0">
+               <panes>
+                  <TitledPane graphicTextGap="15.0" lineSpacing="15.0" prefHeight="125.0" prefWidth="512.0" text="   Distance">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #D8f5f8;">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="102.4" prefWidth="553.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label alignment="TOP_CENTER" prefHeight="23.0" prefWidth="64.0" text="Min:">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                    </Label>
+                                    <Spinner fx:id="minDistanceFilter" editable="true" prefHeight="34.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #2c3e50; -fx-border-width: 2;">
+                                       <HBox.margin>
+                                          <Insets right="50.0" />
+                                       </HBox.margin>
+                                    </Spinner>
+                                    <Label alignment="TOP_CENTER" prefHeight="34.0" prefWidth="64.0" text="Max:">
+                                       <font>
+                                          <Font size="22.0" />
+                                       </font>
+                                    </Label>
+                                    <Spinner fx:id="maxDistanceFilter" editable="true" prefHeight="34.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #2c3e50; -fx-border-width: 2;" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets top="15.0" />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="15.0" />
+                     </padding>
+                  </TitledPane>
+                  <TitledPane graphicTextGap="15.0" lineSpacing="15.0" prefHeight="125.0" prefWidth="512.0" text="   Licenses">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #D8f5f8;" />
+                     </content>
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets top="15.0" />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="15.0" />
+                     </padding>
+                  </TitledPane>
+                  <TitledPane graphicTextGap="15.0" lineSpacing="15.0" style="-fx-background-color: #D8f5f8;" text="   Vehicle Type">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #D8f5f8;" />
+                     </content>
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets bottom="15.0" top="15.0" />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="15.0" />
+                     </padding>
+                  </TitledPane>
+                  <TitledPane fx:id="experienceLevelFilter" graphicTextGap="15.0" lineSpacing="15.0" prefHeight="125.0" prefWidth="512.0" text="   Experience Level">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #D8f5f8;">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="170.4" prefWidth="554.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Slider fx:id="ageSelector" blockIncrement="1.0" max="25.0" min="1.0" minorTickCount="8" prefHeight="7.0" prefWidth="322.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-color: white; -fx-background-radius: 8;" value="13.0">
+                                       <HBox.margin>
+                                          <Insets right="50.0" />
+                                       </HBox.margin>
+                                    </Slider>
+                                    <TextField fx:id="searchByNameTextArea1" disable="true" editable="false" prefHeight="39.0" prefWidth="81.0" promptText="Values" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+                                       <opaqueInsets>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </opaqueInsets>
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                           </children></AnchorPane>
+                     </content>
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets top="15.0" />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="15.0" />
+                     </padding>
+                  </TitledPane>
+                  <TitledPane graphicTextGap="15.0" lineSpacing="15.0" prefHeight="198.0" prefWidth="482.0" text="   Due Date">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #D8f5f8;">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="170.4" prefWidth="554.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="108.0" prefWidth="518.0">
+                                       <children>
+                                          <Label alignment="TOP_LEFT" prefHeight="31.0" prefWidth="120.0" text="Start Date  :">
+                                             <font>
+                                                <Font size="19.0" />
+                                             </font>
+                                          </Label>
+                                          <DatePicker fx:id="startDateFilter" prefHeight="31.0" prefWidth="336.0" promptText="     Enter Start Date" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 2; -fx-border-color: #2C3E50;" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="108.0" prefWidth="518.0">
+                                       <children>
+                                          <Label alignment="TOP_LEFT" prefHeight="31.0" prefWidth="120.0" text="End Date    :">
+                                             <font>
+                                                <Font size="19.0" />
+                                             </font>
+                                          </Label>
+                                          <DatePicker fx:id="endDateFilter" prefHeight="31.0" prefWidth="336.0" promptText="     Enter End Date" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 2; -fx-border-color: #2C3E50;" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets top="15.0" />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="15.0" />
+                     </padding>
+                  </TitledPane>
+               </panes>
                <opaqueInsets>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                  <Insets bottom="15.0" />
                </opaqueInsets>
+            </Accordion>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <VBox alignment="CENTER" prefHeight="720.0" prefWidth="594.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="TOP_CENTER" prefHeight="33.0" prefWidth="474.0" text="Filter your Search for Drivers">
                <font>
-                  <Font size="15.0" />
-               </font>
-            </TextField>
-            <Label alignment="CENTER" layoutX="159.0" layoutY="10.0" prefHeight="60.0" prefWidth="250.0" style="-fx-background-color: red; -fx-background-radius: 10;" text="HIREDRIVE" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="30.0" />
+                  <Font name="System Bold" size="22.0" />
                </font>
             </Label>
-            <Button fx:id="searchByNameButton" alignment="CENTER" layoutX="727.0" layoutY="10.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="83.0" style="-fx-background-color: black; -fx-border-radius: 10; -fx-border-insets: 0; -fx-border-width: 1; -fx-border-color: black; -fx-background-radius: 10;" text="Search" textFill="WHITE">
+            <Label alignment="TOP_LEFT" prefHeight="79.0" prefWidth="418.0" text="You can easily filter your search with by selecting many features." textAlignment="CENTER" textFill="#000000e3" wrapText="true">
                <font>
-                  <Font name="Arial" size="17.0" />
+                  <Font size="18.0" />
                </font>
-            </Button>
-            <Button fx:id="logOutButton" alignment="CENTER" layoutX="1175.0" layoutY="25.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: black; -fx-border-radius: 10; -fx-border-insets: 0; -fx-border-width: 1; -fx-border-color: black; -fx-background-radius: 10;" text="Log Out" textFill="WHITE">
+            </Label>
+            <Button fx:id="searchByFilterButton" alignment="CENTER" mnemonicParsing="false" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #2C3E50; -fx-background-radius: 10;" text="Search" textFill="WHITE">
                <font>
                   <Font name="Arial" size="17.0" />
                </font>
             </Button>
          </children>
-      </Pane>
-      <SplitPane dividerPositions="0.5" layoutX="342.0" layoutY="280.0" prefHeight="449.0" prefWidth="807.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="720.0" prefWidth="400.0">
-               <children>
-                  <SplitPane dividerPositions="0.15" prefHeight="720.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="720.0" prefWidth="179.0" />
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                           <children>
-                              <Accordion layoutX="86.0" layoutY="109.0" prefHeight="366.0" prefWidth="512.0" style="-fx-padding: 15;" AnchorPane.bottomAnchor="354.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                <panes>
-                                    <TitledPane animated="false" graphicTextGap="15.0" lineSpacing="15.0" prefHeight="125.0" prefWidth="512.0" style="-fx-background-color: #D8f5f8; -fx-background-radius: 20; -fx-padding: 5;" text="   Distance">
-                                       <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                             <children>
-                                                <Spinner fx:id="maxDistanceFilter" editable="true" layoutX="293.0" layoutY="23.0" prefHeight="34.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: black;" AnchorPane.topAnchor="23.0" />
-                                                <Spinner fx:id="minDistanceFilter" editable="true" layoutX="84.0" layoutY="23.0" prefHeight="34.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: black;" AnchorPane.leftAnchor="84.0" AnchorPane.rightAnchor="278.4" AnchorPane.topAnchor="23.0" />
-                                                <Label alignment="TOP_CENTER" layoutX="233.0" layoutY="24.0" prefHeight="34.0" prefWidth="64.0" text="Max:" AnchorPane.topAnchor="24.0">
-                                                   <font>
-                                                      <Font size="22.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label alignment="TOP_CENTER" layoutX="24.0" layoutY="24.0" prefHeight="23.0" prefWidth="64.0" text="Min:" AnchorPane.topAnchor="24.0">
-                                                   <font>
-                                                      <Font size="22.0" />
-                                                   </font>
-                                                </Label>
-                                             </children>
-                                          </AnchorPane>
-                                       </content>
-                                       <font>
-                                          <Font size="23.0" />
-                                       </font>
-                                       <opaqueInsets>
-                                          <Insets top="15.0" />
-                                       </opaqueInsets>
-                                    </TitledPane>
-                                    <TitledPane animated="false" graphicTextGap="15.0" lineSpacing="15.0" prefHeight="125.0" prefWidth="512.0" style="-fx-background-color: #D8f5f8; -fx-background-radius: 20; -fx-padding: 5;" text="   Licenses">
-                                       <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                       </content>
-                                       <font>
-                                          <Font size="23.0" />
-                                       </font>
-                                       <opaqueInsets>
-                                          <Insets top="15.0" />
-                                       </opaqueInsets>
-                                    </TitledPane>
-                                    <TitledPane animated="false" graphicTextGap="15.0" lineSpacing="15.0" style="-fx-background-color: #D8f5f8; -fx-background-radius: 20; -fx-padding: 5;" text="   Vehicle Type">
-                                       <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                       </content>
-                                       <font>
-                                          <Font size="23.0" />
-                                       </font>
-                                       <opaqueInsets>
-                                          <Insets bottom="15.0" top="15.0" />
-                                       </opaqueInsets>
-                                    </TitledPane>
-                                    <TitledPane fx:id="experienceLevelFilter" animated="false" graphicTextGap="15.0" lineSpacing="15.0" prefHeight="125.0" prefWidth="512.0" style="-fx-background-color: #D8f5f8; -fx-background-radius: 20; -fx-padding: 5;" text="   Experience Level">
-                                       <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                             <children>
-                                                <Slider fx:id="ageSelector" blockIncrement="1.0" layoutX="90.0" layoutY="65.0" max="25.0" min="1.0" minorTickCount="10" prefHeight="7.0" prefWidth="322.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-color: white; -fx-background-radius: 8;" value="10.0" />
-                                             </children>
-                                          </AnchorPane>
-                                       </content>
-                                       <font>
-                                          <Font size="23.0" />
-                                       </font>
-                                       <opaqueInsets>
-                                          <Insets top="15.0" />
-                                       </opaqueInsets>
-                                    </TitledPane>
-                                    <TitledPane animated="false" graphicTextGap="15.0" lineSpacing="15.0" style="-fx-background-color: #D8f5f8; -fx-background-radius: 20; -fx-padding: 5;" text="   Due Date">
-                                       <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                             <children>
-                                                <DatePicker fx:id="startDateFilter" layoutX="132.0" layoutY="32.0" prefHeight="31.0" prefWidth="336.0" promptText="     Enter Start Date" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;" />
-                                                <DatePicker fx:id="endDateFilter" layoutX="132.0" layoutY="73.0" prefHeight="31.0" prefWidth="336.0" promptText="     Enter End Date" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;" />
-                                                <Label alignment="TOP_LEFT" layoutX="28.0" layoutY="33.0" prefHeight="31.0" prefWidth="111.0" text="Start Date  :">
-                                                   <font>
-                                                      <Font size="19.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label alignment="TOP_LEFT" layoutX="31.0" layoutY="73.0" prefHeight="31.0" prefWidth="128.0" text="End Date   :">
-                                                   <font>
-                                                      <Font size="19.0" />
-                                                   </font>
-                                                </Label>
-                                             </children></AnchorPane>
-                                       </content>
-                                       <font>
-                                          <Font size="23.0" />
-                                       </font>
-                                       <opaqueInsets>
-                                          <Insets top="15.0" />
-                                       </opaqueInsets>
-                                    </TitledPane>
-                                </panes>
-                                 <opaqueInsets>
-                                    <Insets bottom="15.0" />
-                                 </opaqueInsets>
-                              </Accordion>
-                           </children>
-                        </AnchorPane>
-                    </items>
-                  </SplitPane>
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="631.0" prefWidth="724.0">
-               <children>
-                  <Button fx:id="searchByFilterButton" alignment="CENTER" layoutX="237.0" layoutY="345.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="170.0" style="-fx-background-color: #2C3E50; -fx-background-radius: 10;" text="Search" textFill="WHITE">
-                     <font>
-                        <Font name="Arial" size="17.0" />
-                     </font>
-                  </Button>
-                  <Label alignment="TOP_CENTER" layoutX="92.0" layoutY="219.0" prefHeight="32.0" prefWidth="474.0" text="Filter your Search for Drivers">
-                     <font>
-                        <Font name="System Bold" size="22.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="TOP_LEFT" layoutX="116.0" layoutY="264.0" prefHeight="79.0" prefWidth="418.0" text="You can easily filter your search with by selecting many features." textAlignment="CENTER" textFill="#000000e3" wrapText="true">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-               </children></AnchorPane>
-        </items>
-      </SplitPane>
-   </children>
-</AnchorPane>
+      </VBox>
+   </right>
+</BorderPane>
