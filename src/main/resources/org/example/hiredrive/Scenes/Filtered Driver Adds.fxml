@@ -76,7 +76,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="42.0" prefWidth="424.0">
                      <children>
-                        <ChoiceBox prefHeight="26.0" prefWidth="158.0" />
+                        <ChoiceBox fx:id="addOrderSelector" prefHeight="26.0" prefWidth="158.0" />
                      </children>
                   </HBox>
                </children>
@@ -87,7 +87,7 @@
                      <children>
                         <Label prefHeight="34.0" prefWidth="120.0" text="ID">
                            <font>
-                              <Font size="21.0" />
+                              <Font size="18.0" />
                            </font>
                         </Label>
                      </children>
@@ -97,7 +97,7 @@
                      <children>
                         <Label prefHeight="34.0" prefWidth="155.0" text="Driver Name">
                            <font>
-                              <Font size="21.0" />
+                              <Font size="18.0" />
                            </font>
                            <opaqueInsets>
                               <Insets />
@@ -113,7 +113,7 @@
                      <children>
                         <Label prefHeight="34.0" prefWidth="95.0" text="Rating">
                            <font>
-                              <Font size="21.0" />
+                              <Font size="18.0" />
                            </font>
                         </Label>
                      </children>
@@ -126,7 +126,7 @@
                      <children>
                         <Label prefHeight="34.0" prefWidth="125.0" text="Experience">
                            <font>
-                              <Font size="21.0" />
+                              <Font size="18.0" />
                            </font>
                         </Label>
                      </children>
@@ -139,7 +139,7 @@
                      <children>
                         <Label prefHeight="34.0" prefWidth="122.0" text="Date">
                            <font>
-                              <Font size="21.0" />
+                              <Font size="18.0" />
                            </font>
                         </Label>
                      </children>
@@ -152,7 +152,7 @@
                      <children>
                         <Label prefHeight="34.0" prefWidth="120.0" text="Owner">
                            <font>
-                              <Font size="21.0" />
+                              <Font size="18.0" />
                            </font>
                         </Label>
                      </children>

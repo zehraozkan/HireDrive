@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1050.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox fx:id="IDText" alignment="CENTER" prefHeight="50.0" prefWidth="90.0">
+         <children>
+            <Label text="ID" />
+         </children>
+      </HBox>
+      <Separator orientation="VERTICAL" prefHeight="200.0" />
+      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="350.0">
+         <children>
+            <Label fx:id="nameSurnameText" text="Add Topic">
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </Label>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+      <Separator orientation="VERTICAL" prefHeight="200.0" />
+      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="150.0">
+         <children>
+            <Label fx:id="nameSurnameText1" text="Company Name">
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </Label>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+      <Separator orientation="VERTICAL" prefHeight="200.0" />
+      <HBox alignment="BOTTOM_CENTER" prefHeight="50.0" prefWidth="120.0">
+         <children>
+            <Button mnemonicParsing="false" style="-fx-background-color: white;">
+               <graphic>
+                  <ImageView fx:id="ratingPng" fitHeight="90.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../pngs/4.5.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      <Separator orientation="VERTICAL" prefHeight="200.0" />
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="120.0">
+         <children>
+            <Label fx:id="experienceOfDriverText" alignment="CENTER" prefHeight="22.0" prefWidth="91.0" style="-fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: black;" text="Experience" />
+         </children>
+      </HBox>
+      <Separator orientation="VERTICAL" prefHeight="200.0" />
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="80.0">
+         <children>
+            <Label fx:id="creationDateText" alignment="CENTER" prefHeight="22.0" prefWidth="91.0" style="-fx-border-radius: 8; -fx-border-width: 1;" text="Date" />
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="58.0" prefWidth="60.0">
+         <children>
+            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </HBox>
+      <Separator orientation="VERTICAL" prefHeight="200.0" />
+      <HBox alignment="CENTER" prefHeight="58.0" prefWidth="40.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="15.0" style="-fx-background-color: white;">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../pngs/3dot.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</HBox>
