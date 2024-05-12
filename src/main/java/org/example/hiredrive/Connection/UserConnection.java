@@ -109,6 +109,7 @@ public class UserConnection {
                 String userSurname = rs.getString("user_surname").split(" ")[1];
                 String userPassword = rs.getString("user_password");
                 String userMail = rs.getString("user_mail");
+                String phoneNumber = rs.getString("phone_number");
                 String dateCreated = rs.getString("date_created");
                 String type = rs.getString("user_type");
                 double rating = rs.getDouble("rating");
@@ -116,11 +117,11 @@ public class UserConnection {
 
 
                 if(type.equals("driver")){
-                    user = new Driver(userName, userSurname, userPassword, userMail, userId);
+                    user = new Driver(userName, userSurname, userPassword, userMail, userId, phoneNumber);
 
                 }
                 else{
-                    user = new Company(userName + userSurname , userPassword, userMail, userId);
+                    user = new Company(userName + userSurname , userPassword, userMail, userId, phoneNumber);
                 }
 
             } else {
@@ -197,14 +198,15 @@ public class UserConnection {
                 String dateCreated = rs.getString("date_created");
                 String userMail = rs.getString("user_mail");
                 String user_type = rs.getString("user_type");
+                String phoneNumber = rs.getString("phone_number");
                 double rating = rs.getDouble("rating");
                 String available = rs.getString("available");
 
                 if(user_type.equals("driver")){
-                    users.add(new Driver(userName, userSurname, userPassword, userMail, userId));
+                    users.add(new Driver(userName, userSurname, userPassword, userMail, userId, phoneNumber));
                 }
                 else if(user_type.equals("company")){
-                    users.add(new Company(userName + userSurname, userPassword, userMail,userId));
+                    users.add(new Company(userName + userSurname, userPassword, userMail, userId, phoneNumber));
                 }
 
                 // Append user information to the result string
@@ -307,16 +309,17 @@ public class UserConnection {
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 int userId = rs.getInt("user_id");
-                String userName = rs.getString("user_name");
-                String userPassword = rs.getString("user_password");
+                String userName = rs.getString("user_name").split(" ")[0];
+                String userPassword = rs.getString("user_password").split(" ")[1];
                 String userSurname = rs.getString("user_surname");
+                String phoneNumber = rs.getString("phone_number");
                 String dateCreated = rs.getString("date_created");
                 String userMail = rs.getString("user_mail");
-                String userType = rs.getString("user_type");
+                String user_type = rs.getString("user_type");
                 double rating = rs.getDouble("rating");
                 String available = rs.getString("available");
 
-                drivers.add(new Driver(userName, userSurname, userPassword, userMail, userId));
+                drivers.add(new Driver(userName, userSurname, userPassword, userMail, userId, phoneNumber));
             }
 
         } catch (SQLException e) {

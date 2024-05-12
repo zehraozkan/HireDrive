@@ -11,8 +11,8 @@ public class Company extends User {
 
 
     //for the user
-    public Company(String username, String password, String email){
-        super(username,  password, email);
+    public Company(String username, String password, String email, String phoneNo){
+        super(username,  password, email, phoneNo);
 
         //adds the user to the database
         UserConnection.addUser(username,"", email, password, "company", Date.valueOf(LocalDate.now()));//no surname for company
@@ -21,8 +21,8 @@ public class Company extends User {
     }
 
     //for the database
-    public Company(String username,  String password, String email, int user_id){
-        super(username,  password, email);
+    public Company(String username,  String password, String email, int user_id, String phoneNo){
+        super(username,  password, email, phoneNo);
         userId = user_id;
         worksWith = UserConnection.getAssociatedDrivers(user_id);
     }

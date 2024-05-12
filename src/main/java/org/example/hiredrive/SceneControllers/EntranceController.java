@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class EntranceController {
+public class EntranceController extends SuperSceneController{
 
     @FXML
     private Button btn_signIn;
@@ -45,25 +45,6 @@ public class EntranceController {
             createScene("/org/example/hiredrive/Scenes/sign up scene.fxml");
 
         }
-
-    }
-    
-    //helper
-    private void createScene(String path) {
-        Stage stage = new Stage();
-        Parent root;
-
-        try {
-            root = FXMLLoader.load(getClass().getResource(path));
-            Scene scene = new Scene(root);
-
-            stage.setTitle("bkah blaj");
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        
     }
 
 }

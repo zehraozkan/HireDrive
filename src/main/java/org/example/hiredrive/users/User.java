@@ -13,13 +13,15 @@ public class User {
     protected String password;
     protected String email;
     protected double rating;
+    protected String phoneNumber;
 
 
-    public User(String username,String password, String email){
+    public User(String username,String password, String email, String phoneNumber){
         this.username = username;
         this.password = password;
         this.email = email;
         this.rating = 0;
+        this.phoneNumber = phoneNumber;
     }
 
 
@@ -50,6 +52,9 @@ public class User {
     }
     public double getRating() {
         return this.rating;
+    }
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
     public void updateRating() {
         this.rating = ReviewConnection.getRating(userId);

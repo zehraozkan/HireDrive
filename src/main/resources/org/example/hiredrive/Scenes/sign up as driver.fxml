@@ -14,6 +14,8 @@
 <?import javafx.scene.text.Font?>
 
 <!--TODO date of born yok-->
+<!--TODO address yok-->
+<!--TODO png görmüyor-->
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.hiredrive.SceneControllers.DriverSignUpController">
    <children>
@@ -117,7 +119,8 @@
       </Button>
       <ImageView fitHeight="266.0" fitWidth="303.0" layoutX="795.0" layoutY="273.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@/org/example/hiredrive/pngs/steering-wheel-14-512.png" />-->
+<!--            TODO-->
+<!--            <Image url="@/org/example/hiredrive/pngs/steering-wheel-14-512.png" />-->
          </image>
       </ImageView>
    </children>

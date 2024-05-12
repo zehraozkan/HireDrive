@@ -7,8 +7,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import org.example.hiredrive.message.MailManager;
+import org.example.hiredrive.users.Company;
 
-public class CompanySignUpController {
+public class CompanySignUpController extends SuperSceneController{
 
     @FXML
     private ResourceBundle resources;
@@ -39,6 +42,22 @@ public class CompanySignUpController {
 
     @FXML
     void btn_clicked(ActionEvent event) {
+        if(event.getSource() == nextBtn){
+            String name = cNameField.getText();
+            String pass = passField1.getText();
+            String phone = phoneField.getText();
+            String mail = mailField.getText();
+            String pass2 = passField2.getText();
+            if(!pass2.equals(pass)) throw new IllegalArgumentException("Passwords do not match");
+            if(!MailManager.isValidEmail(mail)) throw new IllegalArgumentException("Illegal mail address");
+
+            createScene("org/example/hiredrive/Scenes/VerificationScene.fxml");
+
+            Stage main = (Stage) nextBtn.getScene().getWindow();
+            main.close();
+
+            Company company = new Company(name, pass, mail, phone);
+        }
 
     }
 

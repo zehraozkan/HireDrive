@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-
+<!--TODO ilke scenede back butonuna gerek yok-->
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.hiredrive.SceneControllers.EntranceController">
    <children>
       <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#2c3e50" height="345.0" layoutX="856.0" layoutY="-158.0" rotate="165.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="533.0" />

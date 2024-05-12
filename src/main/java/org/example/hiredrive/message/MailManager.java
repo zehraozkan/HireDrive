@@ -6,7 +6,7 @@ import javax.mail.*;
 import javax.mail.Message;
 import javax.mail.internet.*;
 
-public class SendEmail {
+public class MailManager {
 
     private static final String EMAILREGEX = "\\w+@gmail.com";
 
@@ -14,7 +14,7 @@ public class SendEmail {
         return email.matches(EMAILREGEX);
 
     }
-    public static void sendMail(String mailTo, String content) {
+    public static void sendVerificationMail(String mailTo) {
         // Sender's email
         String from = "hiredrivecs@gmail.com";
         // Sender's password
@@ -53,7 +53,8 @@ public class SendEmail {
             message.setSubject("HireDrive Authentication Code");
             // Creating the authentication code (6-digits)
             // Set email content
-            message.setText("The authentication code to login is: " + content + "");
+            //String content = Math.random() * 1000000
+            message.setText("The authentication code to login is: " +  + "");
 
             // Send email
             Transport.send(message);

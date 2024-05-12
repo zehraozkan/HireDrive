@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class DriverSignUpController {
+public class DriverSignUpController extends SuperSceneController{
 
     @FXML
     private Button backBtn;

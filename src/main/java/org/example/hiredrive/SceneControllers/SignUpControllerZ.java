@@ -14,7 +14,7 @@ import org.example.hiredrive.Connection.UserConnection;
 import java.sql.Date;
 import java.time.LocalDate;
 
-public class SignUpControllerZ {
+public class SignUpControllerZ extends SuperSceneController{
 
     @FXML
     private Button codeButton;
@@ -39,7 +39,6 @@ public class SignUpControllerZ {
         
         //check the variables
         Stage main = (Stage) codeButton.getScene().getWindow();
-            
         main.close();
 
         createScene("/org/example/hiredrive/Scenes/VerificationScene.fxml");
@@ -57,20 +56,4 @@ public class SignUpControllerZ {
         UserConnection.addUser(nameField.getText(), surnameField.getText(), mailField1.getText(),passwordField.getText(), userType, Date.valueOf(LocalDate.now()));
     }
 
-    //helper
-    private void createScene(String path) {
-        Stage stage = new Stage();
-        Parent root;
-
-        try {
-            root = FXMLLoader.load(getClass().getResource(path));
-            Scene scene = new Scene(root);
-
-            stage.setTitle("bkah blaj");
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
 }

@@ -14,7 +14,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.example.hiredrive.Connection.UserConnection;
 
-public class SignInController {
+public class SignInController extends SuperSceneController{
 
     @FXML
     private TextField mailField;
@@ -33,7 +33,10 @@ public class SignInController {
 
     @FXML
     void LinkClicked(ActionEvent event) {
-        createScene("/org/example/hiredrive/Scenes/HomePage.fxml");
+
+        Stage main = (Stage) signUpLink.getScene().getWindow();
+        createScene("/org/example/hiredrive/Scenes/sign up scene.fxml");
+        main.close();
 
     }
 
@@ -52,23 +55,6 @@ public class SignInController {
         }
         else {
             wrongPrompt.setVisible(true);
-        }
-
-    }
-    //helper
-    public void createScene(String path) {
-        Stage stage = new Stage();
-        Parent root;
-
-        try {
-            root = FXMLLoader.load(getClass().getResource(path));
-            Scene scene = new Scene(root);
-
-            stage.setTitle("bkah blaj");
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            System.out.println(e);
         }
 
     }

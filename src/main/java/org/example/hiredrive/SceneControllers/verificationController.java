@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class verificationController {
+public class verificationController extends SuperSceneController{
 
     @FXML
     private Button OKbtn;
@@ -20,6 +20,8 @@ public class verificationController {
     @FXML
     void okClicked(ActionEvent event) {
 
+
+        int verCode =
         if(codeField.getText().equals("123456")) {
 
             Stage main = (Stage) OKbtn.getScene().getWindow();
@@ -32,22 +34,7 @@ public class verificationController {
     }
 
         //helper
-        private void createScene(String path) {
-            Stage stage = new Stage();
-            Parent root;
-    
-            try {
-                root = FXMLLoader.load(getClass().getResource(path));
-                Scene scene = new Scene(root);
-    
-                stage.setTitle("bkah blaj");
-                stage.setScene(scene);
-                stage.show();
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-            
-        }
+
     
 
 }

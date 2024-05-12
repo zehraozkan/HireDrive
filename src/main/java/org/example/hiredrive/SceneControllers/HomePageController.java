@@ -11,7 +11,7 @@ import org.example.hiredrive.Connection.UserConnection;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class HomePageController implements Initializable {
+public class HomePageController extends SuperSceneController implements Initializable{
 
 
     @FXML

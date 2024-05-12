@@ -2,13 +2,10 @@ package org.example.hiredrive.SceneControllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class SignUpController {
+public class SignUpController extends SuperSceneController{
 
     @FXML
     private Button btnBack;
@@ -24,26 +21,11 @@ public class SignUpController {
         if(event.getSource() == signUpCompany){
 
         } else if (event.getSource() == signUpDriver) {
+            Stage main = (Stage) signUpDriver.getScene().getWindow();
             createScene("/org/example/hiredrive/Scenes/sign up as driver.fxml");
+
+            main.close();
         }
 
     }
-
-    public void createScene(String path) {
-        Stage stage = new Stage();
-        Parent root;
-
-        try {
-            root = FXMLLoader.load(getClass().getResource(path));
-            Scene scene = new Scene(root);
-
-            stage.setTitle("bkah blaj");
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-
-    }
-
 }
