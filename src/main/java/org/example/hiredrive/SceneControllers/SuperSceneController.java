@@ -20,6 +20,26 @@ public class SuperSceneController {
         } catch (Exception e) {
             System.out.println(e);
         }
-
     }
+    public void createScene(String path, Object Data) {
+        Stage stage = new Stage();
+        Parent root;
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+
+            root = loader.load();
+            SuperSceneController controller = loader.getController();
+
+            Scene scene = new Scene(root);
+
+            stage.setTitle("bkah blaj");
+            stage.setScene(scene);
+            controller.setData(Data);
+            stage.show();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    public void setData(Object Data) {}
 }

@@ -8,13 +8,13 @@ import javax.mail.internet.*;
 
 public class MailManager {
 
-    private static final String EMAILREGEX = "\\w+@gmail.com";
+    private static final String EMAILREGEX = ".*@gmail\\.com$";
 
     public static boolean isValidEmail(String email){
         return email.matches(EMAILREGEX);
 
     }
-    public static void sendVerificationMail(String mailTo) {
+    public static int sendVerificationMail(String mailTo) {
         // Sender's email
         String from = "hiredrivecs@gmail.com";
         // Sender's password
@@ -52,9 +52,9 @@ public class MailManager {
             // Set email subject
             message.setSubject("HireDrive Authentication Code");
             // Creating the authentication code (6-digits)
+            code = (int) (Math.random() * 900000) + 100000;
             // Set email content
-            //String content = Math.random() * 1000000
-            message.setText("The authentication code to login is: " +  + "");
+            message.setText("The authentication code to login is: " + code + "");
 
             // Send email
             Transport.send(message);
@@ -62,9 +62,6 @@ public class MailManager {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        sendMail("tayyibe395@gmail.com", "123456");
+        return code;
     }
 }

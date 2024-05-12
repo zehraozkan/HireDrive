@@ -14,12 +14,6 @@ import org.example.hiredrive.users.Company;
 public class CompanySignUpController extends SuperSceneController{
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private TextField cNameField;
 
     @FXML
@@ -40,25 +34,31 @@ public class CompanySignUpController extends SuperSceneController{
     @FXML
     private TextField phoneField;
 
+    protected String name;
+    protected String pass;
+    protected String mail;
+    protected String phone;
+    protected String user_type;
+
+
     @FXML
     void btn_clicked(ActionEvent event) {
         if(event.getSource() == nextBtn){
-            String name = cNameField.getText();
-            String pass = passField1.getText();
-            String phone = phoneField.getText();
-            String mail = mailField.getText();
+            name = cNameField.getText();
+            pass = passField1.getText();
+            phone = phoneField.getText();
+            mail = mailField.getText();
+            user_type = "company";
             String pass2 = passField2.getText();
             if(!pass2.equals(pass)) throw new IllegalArgumentException("Passwords do not match");
             if(!MailManager.isValidEmail(mail)) throw new IllegalArgumentException("Illegal mail address");
 
-            createScene("org/example/hiredrive/Scenes/VerificationScene.fxml");
+            createScene("/org/example/hiredrive/Scenes/email authentication.fxml", this);
 
             Stage main = (Stage) nextBtn.getScene().getWindow();
             main.close();
 
-            Company company = new Company(name, pass, mail, phone);
         }
-
     }
 
     @FXML

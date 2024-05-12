@@ -8,8 +8,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.example.hiredrive.message.MailManager;
+import org.example.hiredrive.users.Company;
+import org.example.hiredrive.users.User;
 
 public class verificationController extends SuperSceneController{
+
+    private String email;
+    private String userType;
+    private SuperSceneController prevScene;
+    User user;
 
     @FXML
     private Button OKbtn;
@@ -21,9 +29,15 @@ public class verificationController extends SuperSceneController{
     void okClicked(ActionEvent event) {
 
 
-        int verCode =
-        if(codeField.getText().equals("123456")) {
+        int verCode = MailManager.sendVerificationMail(email);
+        if(codeField.getText().equals(verCode + "")) {
 
+            if(userType.equals("user")){
+
+            } else if (userType.equals("company")) {
+                user = new Company();
+            }
+            user = new
             Stage main = (Stage) OKbtn.getScene().getWindow();
             
             main.close();
@@ -33,7 +47,20 @@ public class verificationController extends SuperSceneController{
 
     }
 
-        //helper
+    @FXML
+    public void initialise() {
+        //email = codeField.getText();
+    }
+
+    public void setData(Object data) {
+        if(data instanceof CompanySignUpController) {
+            prevScene = (CompanySignUpController) data;
+            userType = (CompanySignUpController)(prevScene.userType);
+        } else if (data instanceof DriverSignUpController) {
+            prevScene = (DriverSignUpController) data;
+        }
+
+    }
 
     
 

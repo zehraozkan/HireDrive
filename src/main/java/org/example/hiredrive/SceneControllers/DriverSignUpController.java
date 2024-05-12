@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 
 public class DriverSignUpController extends SuperSceneController{
 
+    String user_type;
     @FXML
     private Button backBtn;
 
@@ -36,6 +37,7 @@ public class DriverSignUpController extends SuperSceneController{
 
     @FXML
     void btnClicked(ActionEvent event) {
+        user_type = "driver";
 
     }
 
