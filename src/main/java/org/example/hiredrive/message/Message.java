@@ -5,6 +5,7 @@ import org.example.hiredrive.users.User;
 import java.sql.Date;
 import java.time.LocalDate;
 
+@SuppressWarnings("exports")
 public class Message {
     //private int messageID;
     private boolean isRead;
@@ -40,6 +41,11 @@ public class Message {
     public String getContent(){
         return content;
     }
-
+    public boolean getIsRead(){
+        return isRead;
+    }
+    public Date getDate(){
+        return timeStamp;
+    }
 
 }

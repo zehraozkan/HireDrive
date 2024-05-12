@@ -7,6 +7,7 @@ import org.example.hiredrive.users.Company;
 import java.sql.Date;
 import java.util.ArrayList;
 
+@SuppressWarnings("exports")
 public class Advertisement {
 
     private int advertisementID;
@@ -40,14 +41,70 @@ public class Advertisement {
         this.requests = new ArrayList<>();
 
     }
+
     public void deleteAdvertisement(){
         AdvertisementConnection.deleteAdvertisement(advertisementID);
     }
 
     //TODO addRequest
-    //TODO getter/setter
     //TODO getAllRequests
 
+    // Getter methods
+    public int getAdvertisementID() {
+        return advertisementID;
+    }
 
+    public Company getOwner() {
+        return owner;
+    }
+
+    public String getAddTitle() {
+        return addTitle;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getCargoType() {
+        return cargoType;
+    }
+
+    public Date getDueDate() {
+        return dueDate;
+    }
+
+    public ArrayList<Request> getRequests() {
+        return requests;
+    }
+
+    // Setter methods
+    public void setAdvertisementID(int advertisementID) {
+        this.advertisementID = advertisementID;
+    }
+
+    public void setOwner(Company owner) {
+        this.owner = owner;
+    }
+
+    public void setAddTitle(String addTitle) {
+        this.addTitle = addTitle;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setCargoType(String cargoType) {
+        this.cargoType = cargoType;
+    }
+
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public void setRequests(ArrayList<Request> requests) {
+        this.requests = requests;
+    }
 
 }
