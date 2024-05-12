@@ -13,13 +13,14 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <HBox prefHeight="80.0" prefWidth="1280.0" style="-fx-background-color: #2c3e50;" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="80.0" prefWidth="433.0">
+            <HBox alignment="CENTER" prefHeight="80.0" prefWidth="430.0">
                <children>
                   <Button fx:id="goMainPageScene" mnemonicParsing="false" prefHeight="60.0" prefWidth="238.0" style="-fx-background-color: red; -fx-background-radius: 10;" text="HIREDRIVE" textFill="WHITE">
                      <font>
@@ -31,7 +32,7 @@
                   </Button>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="80.0" prefWidth="422.0">
+            <HBox alignment="CENTER" prefHeight="80.0" prefWidth="510.0">
                <children>
                   <TextField fx:id="searchByNameTextArea" prefHeight="60.0" prefWidth="304.0" promptText="Search" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
                      <opaqueInsets>
@@ -51,7 +52,11 @@
                   </Button>
                </children>
             </HBox>
-            <HBox prefHeight="80.0" prefWidth="165.0" />
+            <HBox alignment="CENTER" prefHeight="80.0" prefWidth="76.0">
+               <children>
+                  <Circle fx:id="profilePicCircle" fill="#ff1f1f" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+               </children>
+            </HBox>
             <HBox alignment="CENTER" prefHeight="80.0" prefWidth="247.0">
                <children>
                   <Button fx:id="myProfileButton" alignment="CENTER" mnemonicParsing="false" prefHeight="34.0" prefWidth="143.0" style="-fx-background-color: #538abd; -fx-background-radius: 10;" text="My Profile" textFill="WHITE">

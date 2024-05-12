@@ -8,7 +8,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
-
+<?import javafx.scene.shape.Circle?>
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1050.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -31,7 +31,7 @@
          </opaqueInsets>
       </HBox>
       <Separator orientation="VERTICAL" prefHeight="200.0" />
-      <HBox alignment="BOTTOM_CENTER" prefHeight="50.0" prefWidth="120.0">
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="120.0">
          <children>
             <Button mnemonicParsing="false" style="-fx-background-color: white;">
                <graphic>
@@ -54,12 +54,12 @@
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="120.0">
          <children>
             <Label fx:id="creationDateText" alignment="CENTER" prefHeight="22.0" prefWidth="91.0" style="-fx-border-radius: 8; -fx-border-width: 1;" text="Date" />
-            <Separator orientation="VERTICAL" prefHeight="200.0" />
          </children>
       </HBox>
+      <Separator orientation="VERTICAL" prefHeight="50.0" prefWidth="0.0" />
       <HBox alignment="CENTER" prefHeight="58.0" prefWidth="66.0">
          <children>
-            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" />
+            <Circle fx:id="profilePicCircle" fill="#ff1f1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </HBox>
       <Separator orientation="VERTICAL" prefHeight="200.0" />
