@@ -11,18 +11,18 @@ public class Company extends User {
 
 
     //for the user
-    public Company(String username, String usersurname, String password, String email){
-        super(username, usersurname, password, email);
+    public Company(String username, String password, String email){
+        super(username,  password, email);
 
         //adds the user to the database
-        UserConnection.addUser(username, surname, email, password, "company", Date.valueOf(LocalDate.now()));
+        UserConnection.addUser(username,"", email, password, "company", Date.valueOf(LocalDate.now()));//no surname for company
         userId = UserConnection.getUserID(email);
         worksWith = UserConnection.getAssociatedDrivers(userId);
     }
 
     //for the database
-    public Company(String username, String usersurname, String password, String email, int user_id){
-        super(username, usersurname, password, email);
+    public Company(String username,  String password, String email, int user_id){
+        super(username,  password, email);
         userId = user_id;
         worksWith = UserConnection.getAssociatedDrivers(user_id);
     }

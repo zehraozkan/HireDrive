@@ -26,22 +26,16 @@ public class UserConnection {
     private static final String username = properties.getProperty("db.username");
     private static final String password = properties.getProperty("db.password");
 
-
-    private static Connection connection;
-    private static PreparedStatement statement;
-    private static ResultSet resultSet;
-
     public static void addUser(String userName, String userSurname, String userMail,String aPassword, String userType, Date dateCreated) {
-        String sql = "INSERT INTO users (user_name, user_surname, user_mail,user_password, user_type, date_created) VALUES (?, ?, ?, ?, ? , ?)";
+        String sql = "INSERT INTO users (user_name, user_mail,user_password, user_type, date_created) VALUES (?, ?, ?, ?, ? , ?)";
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, userName);
-            pstmt.setString(2, userSurname);
-            pstmt.setString(3, userMail);
-            pstmt.setString(4, aPassword);
-            pstmt.setString(5, userType);
-            pstmt.setDate(6, dateCreated);
+            pstmt.setString(1, userName + " " + userSurname);
+            pstmt.setString(2, userMail);
+            pstmt.setString(3, aPassword);
+            pstmt.setString(4, userType);
+            pstmt.setDate(5, dateCreated);
             pstmt.executeUpdate();
 
             System.out.println("User added successfully.");
@@ -70,13 +64,12 @@ public class UserConnection {
         }
     }
     public static boolean updateUserNameAndSurname(int userId, String newName, String newSurname) {
-        String sql = "UPDATE users SET user_name = ?, user_surname = ? WHERE user_id = ?";
+        String sql = "UPDATE users SET user_name = ? WHERE user_id = ?";
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, newName);
-            pstmt.setString(2, newSurname);
-            pstmt.setInt(3, userId);
+            pstmt.setString(1, newName + " " + newSurname);
+            pstmt.setInt(2, userId);
 
             // Execute the update operation
             int rowsAffected = pstmt.executeUpdate();
@@ -102,7 +95,7 @@ public class UserConnection {
      */
     public static User getUser(int userId) {
         String sql = "SELECT * FROM users WHERE user_id = ?";
-        Driver driver = null;
+        User user = null;
         //StringBuilder resultString = new StringBuilder();
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
@@ -112,8 +105,8 @@ public class UserConnection {
 
             // Check if there is a result
             if (rs.next()) {
-                String userName = rs.getString("user_name");
-                String userSurname = rs.getString("user_surname");
+                String userName = rs.getString("user_name").split(" ")[0];
+                String userSurname = rs.getString("user_surname").split(" ")[1];
                 String userPassword = rs.getString("user_password");
                 String userMail = rs.getString("user_mail");
                 String dateCreated = rs.getString("date_created");
@@ -122,16 +115,22 @@ public class UserConnection {
                 String available = rs.getString("available");
 
 
-                driver = new Driver(userName, userSurname, userPassword, userMail, userId);
+                if(type.equals("driver")){
+                    user = new Driver(userName, userSurname, userPassword, userMail, userId);
+
+                }
+                else{
+                    user = new Company(userName + userSurname , userPassword, userMail, userId);
+                }
 
             } else {
-            //    resultString.append("User not found.");
+
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
         }
         // Return the result string
-        return driver;
+        return user;
     }
 
     /**
@@ -205,7 +204,7 @@ public class UserConnection {
                     users.add(new Driver(userName, userSurname, userPassword, userMail, userId));
                 }
                 else if(user_type.equals("company")){
-                    users.add(new Company(userName, userSurname, userPassword, userMail,userId));
+                    users.add(new Company(userName + userSurname, userPassword, userMail,userId));
                 }
 
                 // Append user information to the result string
@@ -371,87 +370,7 @@ public class UserConnection {
         throw new UnsupportedOperationException("Unimplemented method 'retrieveUser'");
     }
 
-    public static double getRating(int user_id){
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        double rating =0;
 
-        try {
-            // Establish database connection
-            conn = DriverManager.getConnection(url, username, password);
-
-            // Retrieve current total rating and total number of ratings for the user
-            String query = "SELECT rating FROM users WHERE user_id = ?";
-            stmt = conn.prepareStatement(query);
-            stmt.setInt(1, user_id);
-            rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                rating = rs.getDouble("rating");
-
-            } else {
-                System.out.println("User not found.");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            // Close all resources
-            try {
-                if (rs != null) rs.close();
-                if (stmt != null) stmt.close();
-                if (conn != null) conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return rating;
-    }
-    public static void rateUser(double rate, int user_id){
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-
-        try {
-            conn = DriverManager.getConnection(url, username, password);
-
-            String query = "SELECT rating, total_rated FROM users WHERE user_id = ?";
-            stmt = conn.prepareStatement(query);
-            stmt.setDouble(1, user_id);
-            rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                double currentRating = rs.getDouble("rating");
-                int totalRated = rs.getInt("total_rated");
-
-                int newTotalRated = totalRated + 1;
-                double newTotalRating = ((currentRating * totalRated) + rate) / newTotalRated;
-
-                String updateQuery = "UPDATE users SET rating = ?, total_rated = ?, available = ? WHERE user_id = ?";
-                stmt = conn.prepareStatement(updateQuery);
-                stmt.setDouble(1, newTotalRating);
-                stmt.setInt(2, newTotalRated);
-                stmt.setInt(4, user_id);
-                stmt.setString(3, "yes");
-                stmt.executeUpdate();
-
-                System.out.println("User rating updated successfully!");
-            } else {
-                System.out.println("User not found.");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            // Close all resources
-            try {
-                if (rs != null) rs.close();
-                if (stmt != null) stmt.close();
-                if (conn != null) conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     public static boolean worksWith(int userId1, int userId2) {
         Connection conn = null;
@@ -489,12 +408,8 @@ public class UserConnection {
 
     public static void main(String[] args) {
 
-        rateUser(0, 3);
         for(User user : getAllUsers()){
             System.out.println(user.getUserId() + " |" + user.getUsername() + " rating:" +  user.getRating());
         }
     }
 }
-
-
-

@@ -24,9 +24,9 @@ public class EntranceController {
         if(event.getSource() == btn_signIn) {
 
             Stage main = (Stage) btn_signIn.getScene().getWindow();
-            
-            main.close();
+
             createScene("/org/example/hiredrive/Scenes/sign in scene.fxml");
+            main.close();
 
         }
         else if(event.getSource() == btn_signUp) {
