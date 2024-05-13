@@ -15,7 +15,7 @@ public class Company extends User {
         super(username,  password, email, phoneNo);
 
         //adds the user to the database
-        UserConnection.addUser(username,"", email, password,phoneNo, "company", Date.valueOf(LocalDate.now()));//no surname for company
+        UserConnection.addUser(username, "", email, password, phoneNo, "company", Date.valueOf(LocalDate.now()), 0);//no surname for company
         userId = UserConnection.getUserID(email);
         worksWith = UserConnection.getAssociatedDrivers(userId);
         userType = "company";
