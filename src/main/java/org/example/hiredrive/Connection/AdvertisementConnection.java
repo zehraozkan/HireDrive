@@ -284,7 +284,6 @@ public class AdvertisementConnection {
         
             return matchingAdvertisements;
         }
-        
     }
         
 
