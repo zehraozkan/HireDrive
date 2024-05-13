@@ -8,6 +8,7 @@ import com.mysql.cj.jdbc.Driver;
 public class Filter {
     private String from;
     private String destination;
+    private String cargoType;
     private int minExperienceLevel;
     private int maxExperienceLevel;
     private int minRate;
@@ -23,6 +24,8 @@ public class Filter {
 
   //null constructor, for displayment of every ad
     public Filter(){
+        this.from = "%";
+        this.destination = "%";
         this.minRate = 0;
         this.maxRate = 5;//MAX_VALUE is impossible
         this.minExperienceLevel = 0;//MIN_VALUE is impossible
@@ -31,31 +34,70 @@ public class Filter {
         this.resultantsDrivers = new ArrayList<Driver>();
         this.licenses = new ArrayList<String>();
     }
+
+    public ArrayList<Advertisement> getMatchingAds(){
+
+      return resultantsAds;
+    }
+
+    public ArrayList<Driver> getMatchingDrivers(){
+      return resultantsDrivers;
     
-
-
-    private void updateListing(){
-      //to be done
     }
 
-    private void closeListing(){
-      //to be done
-    }
+    public void setFrom(String from) {
+      this.from = from;
+  }
 
-    private void setFilterCriteria(String requirements, String industry, String location, String experienceLevel){
-        this.location = location;
-        this.industry = industry;
-        this.requirements = requirements;
-        this.experienceLevel = experienceLevel;
-    }
+    public void setDestination(String destination) {
+      this.destination = destination;
+  }
+  
+    public void setCargoType(String cargoType) {
+      this.cargoType = cargoType;
+  }
 
-    public String getCargoType(){
+    public void setMinExperienceLevel(int minExperienceLevel) {
+      this.minExperienceLevel = minExperienceLevel;
+  }
 
-    }
-    public String getRequiredLicense(){
-      
-    }
-    public String getExperience(){
-      
-    }
+    public void setMaxExperienceLevel(int maxExperienceLevel) {
+      this.maxExperienceLevel = maxExperienceLevel;
+  }
+
+    public void setMinRate(int minRate) {
+      this.minRate = minRate;
+  }
+
+    public void setMaxRate(int maxRate) {
+      this.maxRate = maxRate;
+  }
+
+    public void setLicenses(ArrayList<String> licenses) {
+      this.licenses = licenses;
+  }
+
+    public void setMinDeadline(Date minDeadline) {
+      this.minDeadline = minDeadline;
+  }
+
+    public void setMaxDeadline(Date maxDeadline) {
+      this.maxDeadline = maxDeadline;
+  }
+
+    public void setUser(boolean isUser) {
+      this.isUser = isUser;
+  }
+
+    public void setAvailable(boolean isAvailable) {
+      this.isAvailable = isAvailable;
+  }
+
+    public void setResultantsAds(ArrayList<Advertisement> resultantsAds) {
+      this.resultantsAds = resultantsAds;
+  }
+
+    public void setResultantsDrivers(ArrayList<Driver> resultantsDrivers) {
+      this.resultantsDrivers = resultantsDrivers;
+  }
 }
