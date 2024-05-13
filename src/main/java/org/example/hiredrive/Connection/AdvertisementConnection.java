@@ -2,6 +2,7 @@ package org.example.hiredrive.Connection;
 
 import org.example.hiredrive.advertisement.Advertisement;
 import org.example.hiredrive.advertisement.Request;
+import org.example.hiredrive.users.Company;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream.Filter;
@@ -36,8 +37,8 @@ public class AdvertisementConnection {
      * creates a new advertisement
      * only companies can add advertisement
      */
-    public static int addAdvertisement(int ownerId, String addTitle, String cargoType, String addContent, Date dueDate) {
-        String sql = "INSERT INTO advertisement (owner_id, add_title, cargo_type, add_content, due_date) VALUES (?, ?, ?, ?, ?)";
+    public static int addAdvertisement(int ownerId, String addTitle, String cargoType, String addContent, Date dueDate, String requiredLicense, int experience) {
+        String sql = "INSERT INTO advertisement (owner_id, add_title, cargo_type, add_content, due_date, required_license, experience) VALUES (?, ?, ?, ?, ?, ?, ?)";
         int advertisementId = -1; // Initialize advertisement ID to -1 (invalid value)
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
@@ -47,6 +48,8 @@ public class AdvertisementConnection {
             pstmt.setString(3, cargoType);
             pstmt.setString(4, addContent);
             pstmt.setDate(5, new java.sql.Date(dueDate.getTime()));
+            pstmt.setString(6, requiredLicense);
+            pstmt.setInt(7, experience);
 
             int rowsInserted = pstmt.executeUpdate();
 
@@ -65,6 +68,7 @@ public class AdvertisementConnection {
 
         return advertisementId; // Return the generated advertisement ID
     }
+
 
     /**
      * deletes the advertisement wiht the given id
@@ -108,12 +112,16 @@ public class AdvertisementConnection {
             // Iterate through the result set and append each advertisement to the result string
             while (rs.next()) {
                 int advertId = rs.getInt("advert_id");
+                int owner_id = rs.getInt("owner_id");
                 String addTitle = rs.getString("add_title");
                 String cargoType = rs.getString("cargo_type");
                 String addContent = rs.getString("add_content");
                 Date dueDate = rs.getDate("due_date");
-                //int AdvertisementID, int company_id, String addTitle, String cargoType, Date dueDate
-                advertisements.add(new Advertisement(advertId, ownerId, addTitle, addContent, cargoType, dueDate, getAllRequestsForAdvertisement(advertId)));
+                String license = rs.getString("required_license");
+                int experience = rs.getInt("experience");
+
+
+                advertisements.add(new Advertisement(advertId, owner_id, addTitle, addContent, cargoType,dueDate, getAllRequestsForAdvertisement(advertId), license, experience ));
 
             }
         } catch (SQLException e) {
@@ -136,12 +144,12 @@ public class AdvertisementConnection {
                         String cargo_type = resultSet.getString("cargo_type");
                         String add_content = resultSet.getString("add_content");
                         Date due_date = resultSet.getDate("due_date");
-                        int requests = resultSet.getInt("requests");
+                        String license = resultSet.getString("required_license");
+                        int experience = resultSet.getInt("experience");
 
                         //public Advertisement(Company owner, String addTitle,String addContent, String cargoType, Date dueDate)
-                        //advertisement = new Advertisement(); //TODO
-                        //int AdvertisementID, int company_id, String addTitle,String content, String cargoType, Date dueDate
-                        advertisement = new Advertisement(add_id, owner_id, add_title, add_content, cargo_type, due_date, getAllRequestsForAdvertisement(add_id));
+//
+                        advertisement = new Advertisement(add_id, owner_id, add_title, add_content, cargo_type, due_date, getAllRequestsForAdvertisement(add_id), license, experience);
                     }
                 }
             }
@@ -267,7 +275,7 @@ public class AdvertisementConnection {
                     String requiredLicense = rs.getString("required_license");
                     int experience = rs.getInt("experience");
         
-                    Advertisement advertisement = new Advertisement(advertId, ownerId, addTitle, addContent, cargoType, dueDate, requests, requiredLicense, experience);
+                    Advertisement advertisement = new Advertisement(advertId, ownerId, addTitle, addContent, cargoType, dueDate, getAllRequestsForAdvertisement(advertId), requiredLicense, experience);
                     matchingAdvertisements.add(advertisement);
                 }
             } catch (SQLException e) {

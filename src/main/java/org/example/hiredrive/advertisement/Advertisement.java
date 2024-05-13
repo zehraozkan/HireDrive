@@ -23,6 +23,7 @@ public class Advertisement {
     private ArrayList<Request> requests;
 
 
+
     //database constructor
     public Advertisement(int AdvertisementID, int company_id, String addTitle, String content, String cargoType, Date dueDate, ArrayList<Request> requests, String requiredLicense, int experience){
         this.advertisementID = AdvertisementID;
@@ -49,6 +50,8 @@ public class Advertisement {
         this.experience = experience;
 
     }
+
+
 
     public void deleteAdvertisement(){
         AdvertisementConnection.deleteAdvertisement(advertisementID);
