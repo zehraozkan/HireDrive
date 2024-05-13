@@ -449,6 +449,90 @@ public class UserConnection {
         }
     }
 
+    public static ArrayList<Driver> filterDrivers(String from, String destination, String cargoType, int minExperience, int maxExperience, int minRate, int maxRate, Date minDeadline, Date maxDeadline) {
+        ArrayList<Driver> matchingDrivers = new ArrayList<>();
+        String sql = "SELECT * FROM users WHERE cargo_type = ?";
+        
+        // Construct the SQL query based on the provided parameters
+        if (from != null && !from.isEmpty()) {
+            sql += " AND add_title LIKE ?";
+        }
+        if (destination != null && !destination.isEmpty()) {
+            sql += " AND add_content LIKE ?";
+        }
+        if (minExperience >= 0) {
+            sql += " AND experience >= ?";
+        }
+        if (maxExperience >= 0) {
+            sql += " AND experience <= ?";
+        }
+        if (minRate >= 0) {
+            sql += " AND requests >= ?";
+        }
+        if (maxRate >= 0) {
+            sql += " AND requests <= ?";
+        }
+        if (minDeadline != null) {
+            sql += " AND due_date >= ?";
+        }
+        if (maxDeadline != null) {
+            sql += " AND due_date <= ?";
+        }
+    
+        try (Connection conn = DriverManager.getConnection(url, username, password);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, cargoType);
+    
+            int parameterIndex = 2; // Start index for additional parameters
+    
+            // Set parameters based on the provided criteria
+            if (from != null && !from.isEmpty()) {
+                pstmt.setString(parameterIndex++, "%" + from + "%");
+            }
+            if (destination != null && !destination.isEmpty()) {
+                pstmt.setString(parameterIndex++, "%" + destination + "%");
+            }
+            if (minExperience >= 0) {
+                pstmt.setInt(parameterIndex++, minExperience);
+            }
+            if (maxExperience >= 0) {
+                pstmt.setInt(parameterIndex++, maxExperience);
+            }
+            if (minRate >= 0) {
+                pstmt.setInt(parameterIndex++, minRate);
+            }
+            if (maxRate >= 0) {
+                pstmt.setInt(parameterIndex++, maxRate);
+            }
+            if (minDeadline != null) {
+                pstmt.setDate(parameterIndex++, minDeadline);
+            }
+            if (maxDeadline != null) {
+                pstmt.setDate(parameterIndex++, maxDeadline);
+            }
+    
+            ResultSet rs = pstmt.executeQuery();
+    
+            while (rs.next()) {
+                int userId = rs.getInt("user_id");
+                String username = rs.getString("username");
+                String userSurname = rs.getString("user_surname");
+                String password = rs.getString("password");
+                String email = rs.getString("email");
+                String phoneNo = rs.getString("phone_no");
+                int experience = rs.getInt("experience");
+    
+                Driver driver = new Driver(username, userSurname, password, email, userId, phoneNo, experience);
+                matchingDrivers.add(driver);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    
+        return matchingDrivers;
+    }
+    
+
     public static void main(String[] args) {
 
         for(User user : getAllUsers()){
