@@ -33,4 +33,5 @@ public class Request {
     public User getSender() {
         return sender;
     }
+    public Advertisement getAdd(){return add; }
 }
