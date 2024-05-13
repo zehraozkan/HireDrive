@@ -26,6 +26,9 @@ public class CompanySearchController extends SuperSceneController{
     private TitledPane experienceLevelFilter;
 
     @FXML
+    private TitledPane experienceLevelFilter1;
+
+    @FXML
     private Button goMainPageScene;
 
     @FXML
