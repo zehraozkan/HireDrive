@@ -10,7 +10,7 @@ public class Review {
 
     public Review(int reviewerID, String comment, int rating){
         setReviewID();
-        this.reviewer = UserConnection.retrieveUser(reviewerID);
+        this.reviewer = UserConnection.getUser(reviewerID);
         this.comment = comment;
         this.rating = rating;
     }

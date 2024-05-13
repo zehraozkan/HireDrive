@@ -72,14 +72,16 @@ public class CompanySearchController extends SuperSceneController{
             company = null;
             createScene("/org/example/hiredrive/Scenes/entranceScene.fxml");
         }else if(event.getSource() == searchByFilterButton) {
-
+            createFilter();
         }
-
     }
 
     @Override
     public void setData(Object o){
         company = (Company) o;
+    }
+    public void createFilter() {
+        filter = new Filter();
     }
 
 }
