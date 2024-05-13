@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 public class AdvertisementConnection {
+
     private static final Properties properties;
 
     static {
@@ -279,7 +280,4 @@ public class AdvertisementConnection {
     }
         
 
-    public static void main(String[] args) {
-        System.out.println(getAdvertisementCount());
-    }
-}
+
