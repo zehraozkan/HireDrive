@@ -15,31 +15,36 @@ public class Advertisement {
     private String addTitle;
     private String content;
     private String requiredLicense;
+    private int experience;
     private String cargoType;
     private Date dueDate;
     private ArrayList<Request> requests;
 
 
     //database constructor
-    public Advertisement(int AdvertisementID, int company_id, String addTitle,String content, String cargoType, Date dueDate, ArrayList<Request> requests){
+    public Advertisement(int AdvertisementID, int company_id, String addTitle, String content, String cargoType, Date dueDate, ArrayList<Request> requests, String requiredLicense, int experience){
         this.advertisementID = AdvertisementID;
         this.owner = (Company) UserConnection.getUser(company_id);
         this.addTitle = addTitle;
         this.cargoType = cargoType;
         this.dueDate = dueDate;
         this.requests = requests;
+        this.requiredLicense = requiredLicense;
         this.content = content;
+        this.experience = experience;
 
     }
     //user view
-    public Advertisement(Company owner, String addTitle,String addContent,String requiredLicense, String cargoType, Date dueDate){
-        this.advertisementID = AdvertisementConnection.addAdvertisement(owner.getUserId(), addTitle, cargoType, addContent, dueDate);
+    public Advertisement(Company owner, String addTitle,String addContent,String requiredLicense, String cargoType, Date dueDate, int experience){
+        this.advertisementID = AdvertisementConnection.addAdvertisement(owner.getUserId(), addTitle, cargoType, addContent, dueDate, requiredLicense, experience);
         this.owner = owner;
         this.addTitle = addTitle;
         this.cargoType = cargoType;
         this.dueDate = dueDate;
         this.content = addContent;
+        this.requiredLicense = requiredLicense;
         this.requests = new ArrayList<>();
+        this.experience = experience;
 
     }
 

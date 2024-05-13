@@ -33,9 +33,10 @@ public class AdvertisementConnection {
      * @param dueDate Date
      * creates a new advertisement
      * only companies can add advertisement
+     * returns the add id
      */
-    public static int addAdvertisement(int ownerId, String addTitle, String cargoType, String addContent, Date dueDate) {
-        String sql = "INSERT INTO advertisement (owner_id, add_title, cargo_type, add_content, due_date) VALUES (?, ?, ?, ?, ?)";
+    public static int addAdvertisement(int ownerId, String addTitle, String cargoType, String addContent, Date dueDate, String requiredLicense, int experience) {
+        String sql = "INSERT INTO advertisement (owner_id, add_title, cargo_type, add_content, due_date, required_license, experience) VALUES (?, ?, ?, ?, ?, ?, ?)";
         int advertisementId = -1; // Initialize advertisement ID to -1 (invalid value)
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
@@ -45,6 +46,8 @@ public class AdvertisementConnection {
             pstmt.setString(3, cargoType);
             pstmt.setString(4, addContent);
             pstmt.setDate(5, new java.sql.Date(dueDate.getTime()));
+            pstmt.setString(6, requiredLicense);
+            pstmt.setInt(7, experience);
 
             int rowsInserted = pstmt.executeUpdate();
 
@@ -109,10 +112,11 @@ public class AdvertisementConnection {
                 String addTitle = rs.getString("add_title");
                 String cargoType = rs.getString("cargo_type");
                 String addContent = rs.getString("add_content");
+                String reqLicense = rs.getString("required-license");
                 Date dueDate = rs.getDate("due_date");
+                int experience = rs.getInt("experience");
                 //int AdvertisementID, int company_id, String addTitle, String cargoType, Date dueDate
-                advertisements.add(new Advertisement(advertId, ownerId, addTitle, addContent, cargoType, dueDate, getAllRequestsForAdvertisement(advertId)));
-
+                advertisements.add(new Advertisement(advertId, ownerId, addTitle, addContent, cargoType, dueDate, getAllRequestsForAdvertisement(advertId), reqLicense, experience));
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
@@ -133,13 +137,11 @@ public class AdvertisementConnection {
                         String add_title = resultSet.getString("add_title");
                         String cargo_type = resultSet.getString("cargo_type");
                         String add_content = resultSet.getString("add_content");
+                        String reqLicense = resultSet.getString("required-license");
                         Date due_date = resultSet.getDate("due_date");
-                        int requests = resultSet.getInt("requests");
+                        int experience = resultSet.getInt("experience");
 
-                        //public Advertisement(Company owner, String addTitle,String addContent, String cargoType, Date dueDate)
-                        //advertisement = new Advertisement(); //TODO
-                        //int AdvertisementID, int company_id, String addTitle,String content, String cargoType, Date dueDate
-                        advertisement = new Advertisement(add_id, owner_id, add_title, add_content, cargo_type, due_date, getAllRequestsForAdvertisement(add_id));
+                        advertisement = new Advertisement(add_id, owner_id, add_title, add_content, cargo_type, due_date, getAllRequestsForAdvertisement(add_id), reqLicense, experience);
                     }
                 }
             }

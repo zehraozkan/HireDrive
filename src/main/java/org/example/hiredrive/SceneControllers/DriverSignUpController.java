@@ -56,7 +56,7 @@ public class DriverSignUpController extends SuperSceneController {
             if (!pass2.equals(pass)) throw new IllegalArgumentException("Passwords do not match");
             if (!MailManager.isValidEmail(mail)) throw new IllegalArgumentException("Illegal mail address");
 
-            createScene("/org/example/hiredrive/Scenes/email authentication.fxml", mail);
+            createScene("/org/example/hiredrive/Scenes/email authentication.fxml", this);
 
             Stage main = (Stage) nextBtn.getScene().getWindow();
             main.close();

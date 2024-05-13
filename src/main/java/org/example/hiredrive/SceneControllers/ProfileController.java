@@ -1,2 +1,4 @@
-package org.example.hiredrive.SceneControllers;public class ProfileController {
+package org.example.hiredrive.SceneControllers;
+
+public class ProfileController extends SuperSceneController{
 }

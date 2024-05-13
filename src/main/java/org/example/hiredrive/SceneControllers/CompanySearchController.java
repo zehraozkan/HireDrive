@@ -10,8 +10,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
+import org.example.hiredrive.advertisement.Filter;
+import org.example.hiredrive.users.Company;
 
-public class CompanySearchController {
+//Company searching for profiles
+public class CompanySearchController extends SuperSceneController{
 
     @FXML
     private Slider ageSelector;
@@ -55,9 +58,25 @@ public class CompanySearchController {
     @FXML
     private DatePicker startDateFilter;
 
+    private Filter filter;
+    private Company company;
+
     @FXML
     void btn_clicked(ActionEvent event) {
+        if(event.getSource() == goMainPageScene) {
 
+        } else if(event.getSource() == logOutButton) {
+            company = null;
+            createScene("/org/example/hiredrive/Scenes/entranceScene.fxml");
+        }else if(event.getSource() == searchByFilterButton) {
+
+        }
+
+    }
+
+    @Override
+    public void setData(Object o){
+        company = (Company) o;
     }
 
 }

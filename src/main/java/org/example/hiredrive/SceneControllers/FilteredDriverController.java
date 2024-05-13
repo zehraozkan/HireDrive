@@ -1,2 +1,5 @@
-package org.example.hiredrive.SceneControllers;public class FilteredDriverController {
+package org.example.hiredrive.SceneControllers;
+
+public class FilteredDriverController extends SuperSceneController{
+
 }

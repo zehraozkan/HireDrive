@@ -26,8 +26,8 @@ public class UserConnection {
     private static final String username = properties.getProperty("db.username");
     private static final String password = properties.getProperty("db.password");
 
-    public static void addUser(String userName, String userSurname, String userMail,String aPassword,String phoneNo ,String userType, Date dateCreated) {
-        String sql = "INSERT INTO users (user_name, user_mail,user_password, user_type, date_created, phone_number) VALUES (?, ?, ?, ?, ? , ?)";
+    public static void addUser(String userName, String userSurname, String userMail,String aPassword,String phoneNo ,String userType, Date dateCreated, int experience) {
+        String sql = "INSERT INTO users (user_name, user_mail,user_password, user_type, date_created, phone_number, experience) VALUES (?, ?, ?, ?, ? , ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -37,6 +37,11 @@ public class UserConnection {
             pstmt.setString(4, userType);
             pstmt.setDate(5, dateCreated);
             pstmt.setString(6, phoneNo);
+            if(userType.equals("company")){
+                pstmt.setInt(7, 0);
+
+            }
+            pstmt.setInt(7, experience);
             pstmt.executeUpdate();
 
             System.out.println("User added successfully.");
@@ -115,11 +120,10 @@ public class UserConnection {
                 String phoneNumber = rs.getString("phone_number");
                 String dateCreated = rs.getString("date_created");
                 String type = rs.getString("user_type");
-                double rating = rs.getDouble("rating");
-                String available = rs.getString("available");
+                int experience = rs.getInt("experience");
 
                 if(type.equals("driver")){
-                    user = new Driver(userName, userSurname, userPassword, userMail, userId, phoneNumber);
+                    user = new Driver(userName, userSurname, userPassword, userMail, userId, phoneNumber, experience);
 
                 }
                 else{
@@ -156,11 +160,10 @@ public class UserConnection {
                 String dateCreated = rs.getString("date_created");
                 String type = rs.getString("user_type");
                 int userId = rs.getInt("user_id");
-                double rating = rs.getDouble("rating");
-                String available = rs.getString("available");
+                int experience = rs.getInt("experience");
 
                 if(type.equals("driver")){
-                    user = new Driver(userName, userSurname, userPassword, userMail, userId, phoneNumber);
+                    user = new Driver(userName, userSurname, userPassword, userMail, userId, phoneNumber, experience);
 
                 }
                 else{
@@ -244,11 +247,10 @@ public class UserConnection {
                 String userMail = rs.getString("user_mail");
                 String user_type = rs.getString("user_type");
                 String phoneNumber = rs.getString("phone_number");
-                double rating = rs.getDouble("rating");
-                String available = rs.getString("available");
+                int experience = rs.getInt("experience");
 
                 if(user_type.equals("driver")){
-                    users.add(new Driver(userName, userSurname, userPassword, userMail, userId, phoneNumber));
+                    users.add(new Driver(userName, userSurname, userPassword, userMail, userId, phoneNumber, experience));
                 }
                 else if(user_type.equals("company")){
                     users.add(new Company(userName + userSurname, userPassword, userMail, userId, phoneNumber));
@@ -360,13 +362,10 @@ public class UserConnection {
                 if(k.contains(" ")) userSurname = k.split(" ")[1];
                 String userPassword = rs.getString("user_password").split(" ")[1];
                 String phoneNumber = rs.getString("phone_number");
-                String dateCreated = rs.getString("date_created");
                 String userMail = rs.getString("user_mail");
-                String user_type = rs.getString("user_type");
-                double rating = rs.getDouble("rating");
-                String available = rs.getString("available");
+                int experience = rs.getInt("experience");
 
-                drivers.add(new Driver(userName, userSurname, userPassword, userMail, userId, phoneNumber));
+                drivers.add(new Driver(userName, userSurname, userPassword, userMail, userId, phoneNumber, experience));
             }
 
         } catch (SQLException e) {
@@ -415,12 +414,6 @@ public class UserConnection {
             e.printStackTrace();
         }
     }
-    public static User retrieveUser(int reviewerID) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'retrieveUser'");
-    }
-
-
 
     public static boolean worksWith(int userId1, int userId2) {
         Connection conn = null;

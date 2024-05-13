@@ -10,21 +10,25 @@ public class Driver extends User {
     private boolean available;
     private ArrayList<String> lisenses;
     private String surname;
+    private int experience;
 
 
     //for the user
-    public Driver(String username, String usersurname, String password, String email, String phoneNo){
+    public Driver(String username, String usersurname, String password, String email, String phoneNo, int experience){
         super(username + usersurname, password, email, phoneNo);
         this.surname = usersurname;
-        
-        UserConnection.addUser(username, surname, email, password, phoneNo,"driver", Date.valueOf(LocalDate.now()));
+        this.experience = experience;
+
+        UserConnection.addUser(username, surname, email, password, phoneNo,"driver", Date.valueOf(LocalDate.now()), experience);
         userId = UserConnection.getUserID(email);
         userType = "driver";
 
     }
     //for database
-    public Driver(String username, String userSurname, String password, String email, int userId, String phoneNo) {
+    public Driver(String username, String userSurname, String password, String email, int userId, String phoneNo, int experience) {
         super(username,  password, email, phoneNo);
+        this.surname = userSurname;
+        this.experience = userId;
         super.userId = userId;
     }
 

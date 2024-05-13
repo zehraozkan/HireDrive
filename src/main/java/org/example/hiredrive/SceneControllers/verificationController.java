@@ -37,23 +37,20 @@ public class verificationController extends SuperSceneController{
                 System.out.println("creted user successfully");
 
                 if(user.getUserType().equals("driver")){
-                    createScene("/org/example/hiredrive/Scenes/Search Page Driver.fxml");
+                    createScene("/org/example/hiredrive/Scenes/Search Page Driver.fxml", user);
                     Stage main = (Stage) verifyButton.getScene().getWindow();
                     main.close();
                 } else if (user.getUserType().equals("company")) {
-                    createScene("/org/example/hiredrive/Scenes/Search Page Company.fxml");
+                    createScene("/org/example/hiredrive/Scenes/Search Page Company.fxml", user);
                     Stage main = (Stage) verifyButton.getScene().getWindow();
                     main.close();
                 }
-
             }
         } else if (event.getSource() == backBtn) {
             Stage main = (Stage) backBtn.getScene().getWindow();
             main.close();
             createScene("/org/example/hiredrive/Scenes/sign up as cpmpany.fxml");
         }
-
-
     }
 
     @FXML
@@ -64,8 +61,11 @@ public class verificationController extends SuperSceneController{
     public void setData(Object data) {
         if(data instanceof CompanySignUpController) {
             prevScene = (CompanySignUpController) data;
-           this.email = prevScene.getMail();
-           verificationCode = MailManager.sendVerificationMail(email);
+        } else if (data instanceof DriverSignUpController) {
+            prevScene = (DriverSignUpController) data;
         }
+        this.email = prevScene.getMail();
+        verificationCode = MailManager.sendVerificationMail(email);
+
     }
 }
