@@ -1,8 +1,10 @@
 package org.example.hiredrive.advertisement;
 
 import org.example.hiredrive.Connection.AdvertisementConnection;
+import org.example.hiredrive.Connection.RequestConnection;
 import org.example.hiredrive.Connection.UserConnection;
 import org.example.hiredrive.users.Company;
+import org.example.hiredrive.users.Driver;
 
 import java.sql.Date;
 import java.util.ArrayList;
