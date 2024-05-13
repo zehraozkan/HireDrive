@@ -36,11 +36,15 @@ public class DriverSignUpController extends SuperSceneController {
     @FXML
     private TextField phoneField;
 
+
+
     protected String name;
     protected String surname;
     protected String pass;
     protected String mail;
     protected String phone;
+    protected int experience;
+
 
 
     @FXML
@@ -65,7 +69,7 @@ public class DriverSignUpController extends SuperSceneController {
     }
     @Override
     public User getUserData() {
-        return new Driver(name, pass , mail, phone);
+        return new Driver(name, surname, pass , mail, phone, experience);
         //bura bozuk
     }
     @Override
