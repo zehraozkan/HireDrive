@@ -14,6 +14,7 @@ public class Advertisement {
     private Company owner;
     private String addTitle;
     private String content;
+    private String requiredLicense;
     private String cargoType;
     private Date dueDate;
     private ArrayList<Request> requests;
@@ -31,7 +32,7 @@ public class Advertisement {
 
     }
     //user view
-    public Advertisement(Company owner, String addTitle,String addContent, String cargoType, Date dueDate){
+    public Advertisement(Company owner, String addTitle,String addContent,String requiredLicense, String cargoType, Date dueDate){
         this.advertisementID = AdvertisementConnection.addAdvertisement(owner.getUserId(), addTitle, cargoType, addContent, dueDate);
         this.owner = owner;
         this.addTitle = addTitle;
