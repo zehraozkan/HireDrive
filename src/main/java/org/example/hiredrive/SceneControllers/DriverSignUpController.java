@@ -65,7 +65,8 @@ public class DriverSignUpController extends SuperSceneController {
     }
     @Override
     public User getUserData() {
-        return new Driver(name,surname, pass , mail, phone);
+        return new Driver(name, pass , mail, phone);
+        //bura bozuk
     }
     @Override
     public String getMail(){
