@@ -52,8 +52,17 @@ public class Advertisement {
         AdvertisementConnection.deleteAdvertisement(advertisementID);
     }
 
-    //TODO addRequest
+     //TODO addRequest
+    public void addRequest(Request request){
+        RequestConnection.sendJobRequestToAdd(request.getSender().getUserId(), request.getAdd().getAdvertisementID());
+    }
     //TODO getAllRequests
+    public void getAllRequests(Driver driver){
+        RequestConnection.getRequestsFromDriver(driver.getUserId(),"PENDING");
+        RequestConnection.getRequestsFromDriver(driver.getUserId(),"ACCEPTED");
+        RequestConnection.getRequestsFromDriver(driver.getUserId(),"REJECTED");
+        RequestConnection.getRequestsFromDriver(driver.getUserId(),null);
+    }
 
     // Getter methods
     public int getAdvertisementID() {
