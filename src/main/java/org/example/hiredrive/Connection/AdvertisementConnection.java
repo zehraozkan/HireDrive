@@ -4,6 +4,7 @@ import org.example.hiredrive.advertisement.Advertisement;
 import org.example.hiredrive.advertisement.Request;
 
 import java.io.IOException;
+import java.nio.file.DirectoryStream.Filter;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -33,10 +34,9 @@ public class AdvertisementConnection {
      * @param dueDate Date
      * creates a new advertisement
      * only companies can add advertisement
-     * returns the add id
      */
-    public static int addAdvertisement(int ownerId, String addTitle, String cargoType, String addContent, Date dueDate, String requiredLicense, int experience) {
-        String sql = "INSERT INTO advertisement (owner_id, add_title, cargo_type, add_content, due_date, required_license, experience) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    public static int addAdvertisement(int ownerId, String addTitle, String cargoType, String addContent, Date dueDate) {
+        String sql = "INSERT INTO advertisement (owner_id, add_title, cargo_type, add_content, due_date) VALUES (?, ?, ?, ?, ?)";
         int advertisementId = -1; // Initialize advertisement ID to -1 (invalid value)
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
@@ -46,8 +46,6 @@ public class AdvertisementConnection {
             pstmt.setString(3, cargoType);
             pstmt.setString(4, addContent);
             pstmt.setDate(5, new java.sql.Date(dueDate.getTime()));
-            pstmt.setString(6, requiredLicense);
-            pstmt.setInt(7, experience);
 
             int rowsInserted = pstmt.executeUpdate();
 
@@ -112,11 +110,10 @@ public class AdvertisementConnection {
                 String addTitle = rs.getString("add_title");
                 String cargoType = rs.getString("cargo_type");
                 String addContent = rs.getString("add_content");
-                String reqLicense = rs.getString("required-license");
                 Date dueDate = rs.getDate("due_date");
-                int experience = rs.getInt("experience");
                 //int AdvertisementID, int company_id, String addTitle, String cargoType, Date dueDate
-                advertisements.add(new Advertisement(advertId, ownerId, addTitle, addContent, cargoType, dueDate, getAllRequestsForAdvertisement(advertId), reqLicense, experience));
+                advertisements.add(new Advertisement(advertId, ownerId, addTitle, addContent, cargoType, dueDate, getAllRequestsForAdvertisement(advertId)));
+
             }
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
@@ -137,11 +134,13 @@ public class AdvertisementConnection {
                         String add_title = resultSet.getString("add_title");
                         String cargo_type = resultSet.getString("cargo_type");
                         String add_content = resultSet.getString("add_content");
-                        String reqLicense = resultSet.getString("required-license");
                         Date due_date = resultSet.getDate("due_date");
-                        int experience = resultSet.getInt("experience");
+                        int requests = resultSet.getInt("requests");
 
-                        advertisement = new Advertisement(add_id, owner_id, add_title, add_content, cargo_type, due_date, getAllRequestsForAdvertisement(add_id), reqLicense, experience);
+                        //public Advertisement(Company owner, String addTitle,String addContent, String cargoType, Date dueDate)
+                        //advertisement = new Advertisement(); //TODO
+                        //int AdvertisementID, int company_id, String addTitle,String content, String cargoType, Date dueDate
+                        advertisement = new Advertisement(add_id, owner_id, add_title, add_content, cargo_type, due_date, getAllRequestsForAdvertisement(add_id));
                     }
                 }
             }
@@ -192,6 +191,93 @@ public class AdvertisementConnection {
         }
         return requests;
     }
+
+    public static ArrayList<Advertisement> filterAdvertisements(String from, String destination, String cargoType, int minExperience, int maxExperience, int minRate, int maxRate, Date minDeadline, Date maxDeadline){
+            ArrayList<Advertisement> matchingAdvertisements = new ArrayList<>();
+            String sql = "SELECT * FROM advertisement WHERE cargo_type = ?";
+        
+            // Construct the SQL query based on the provided parameters
+            if (from != null && !from.isEmpty()) {
+                sql += " AND add_title LIKE ?";
+            }
+            if (destination != null && !destination.isEmpty()) {
+                sql += " AND add_content LIKE ?";
+            }
+            if (minExperience >= 0) {
+                sql += " AND experience >= ?";
+            }
+            if (maxExperience >= 0) {
+                sql += " AND experience <= ?";
+            }
+            if (minRate >= 0) {
+                sql += " AND requests >= ?";
+            }
+            if (maxRate >= 0) {
+                sql += " AND requests <= ?";
+            }
+            if (minDeadline != null) {
+                sql += " AND due_date >= ?";
+            }
+            if (maxDeadline != null) {
+                sql += " AND due_date <= ?";
+            }
+        
+            try (Connection conn = DriverManager.getConnection(url, username, password);
+                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setString(1, cargoType);
+        
+                int parameterIndex = 2; // Start index for additional parameters
+        
+                // Set parameters based on the provided criteria
+                if (from != null && !from.isEmpty()) {
+                    pstmt.setString(parameterIndex++, "%" + from + "%");
+                }
+                if (destination != null && !destination.isEmpty()) {
+                    pstmt.setString(parameterIndex++, "%" + destination + "%");
+                }
+                if (minExperience >= 0) {
+                    pstmt.setInt(parameterIndex++, minExperience);
+                }
+                if (maxExperience >= 0) {
+                    pstmt.setInt(parameterIndex++, maxExperience);
+                }
+                if (minRate >= 0) {
+                    pstmt.setInt(parameterIndex++, minRate);
+                }
+                if (maxRate >= 0) {
+                    pstmt.setInt(parameterIndex++, maxRate);
+                }
+                if (minDeadline != null) {
+                    pstmt.setDate(parameterIndex++, minDeadline);
+                }
+                if (maxDeadline != null) {
+                    pstmt.setDate(parameterIndex++, maxDeadline);
+                }
+        
+                ResultSet rs = pstmt.executeQuery();
+        
+                while (rs.next()) {
+                    int advertId = rs.getInt("advert_id");
+                    int ownerId = rs.getInt("owner_id");
+                    String addTitle = rs.getString("add_title");
+                    String addContent = rs.getString("add_content");
+                    Date dueDate = rs.getDate("due_date");
+                    int requests = rs.getInt("requests");
+                    String requiredLicense = rs.getString("required_license");
+                    int experience = rs.getInt("experience");
+        
+                    Advertisement advertisement = new Advertisement(advertId, ownerId, addTitle, addContent, cargoType, dueDate, requests, requiredLicense, experience);
+                    matchingAdvertisements.add(advertisement);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        
+            return matchingAdvertisements;
+        }
+        
+    }
+        
 
     public static void main(String[] args) {
         System.out.println(getAdvertisementCount());
