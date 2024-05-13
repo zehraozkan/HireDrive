@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings("exports")
 public class Advertisement {
-
+//test
     private int advertisementID;
     private Company owner;
     private String addTitle;
