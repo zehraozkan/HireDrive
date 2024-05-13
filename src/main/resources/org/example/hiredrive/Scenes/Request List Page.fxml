@@ -14,13 +14,13 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="RequestListPage">
    <top>
       <HBox prefHeight="80.0" prefWidth="1280.0" style="-fx-background-color: #2c3e50;" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER" prefHeight="80.0" prefWidth="430.0">
                <children>
-                  <Button fx:id="goMainPageScene" mnemonicParsing="false" prefHeight="60.0" prefWidth="238.0" style="-fx-background-color: red; -fx-background-radius: 10;" text="HIREDRIVE" textFill="WHITE">
+                  <Button fx:id="goMainPageScene" mnemonicParsing="false" onAction="#btn_clicked" prefHeight="60.0" prefWidth="238.0" style="-fx-background-color: red; -fx-background-radius: 10;" text="HIREDRIVE" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
@@ -32,7 +32,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="80.0" prefWidth="510.0">
                <children>
-                  <TextField fx:id="searchByNameTextArea" prefHeight="60.0" prefWidth="304.0" promptText="Search" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+                  <TextField fx:id="searchByNameTextArea" onAction="#search_name" prefHeight="60.0" prefWidth="304.0" promptText="Search" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
                      <opaqueInsets>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </opaqueInsets>
@@ -43,7 +43,7 @@
                         <Insets right="5.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button fx:id="searchByNameButton" alignment="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="83.0" style="-fx-background-color: black; -fx-border-radius: 10; -fx-border-insets: 0; -fx-border-width: 1; -fx-border-color: black; -fx-background-radius: 10;" text="Search" textFill="WHITE">
+                  <Button fx:id="searchByNameButton" alignment="CENTER" mnemonicParsing="false" onAction="#btn_clicked" prefHeight="60.0" prefWidth="83.0" style="-fx-background-color: black; -fx-border-radius: 10; -fx-border-insets: 0; -fx-border-width: 1; -fx-border-color: black; -fx-background-radius: 10;" text="Search" textFill="WHITE">
                      <font>
                         <Font name="Arial" size="17.0" />
                      </font>
@@ -57,7 +57,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="80.0" prefWidth="247.0">
                <children>
-                  <Button fx:id="myProfileButton" alignment="CENTER" mnemonicParsing="false" prefHeight="34.0" prefWidth="143.0" style="-fx-background-color: #538abd; -fx-background-radius: 10;" text="My Profile" textFill="WHITE">
+                  <Button fx:id="myProfileButton" alignment="CENTER" mnemonicParsing="false" onAction="#btn_clicked" prefHeight="34.0" prefWidth="143.0" style="-fx-background-color: #538abd; -fx-background-radius: 10;" text="My Profile" textFill="WHITE">
                      <font>
                         <Font name="Arial" size="17.0" />
                      </font>
@@ -65,7 +65,7 @@
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="logOutButton" alignment="CENTER" mnemonicParsing="false" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: black; -fx-border-radius: 10; -fx-border-insets: 0; -fx-border-width: 1; -fx-border-color: black; -fx-background-radius: 10;" text="Log Out" textFill="WHITE">
+                  <Button fx:id="logOutButton" alignment="CENTER" mnemonicParsing="false" onAction="#btn_clicked" prefHeight="34.0" prefWidth="85.0" style="-fx-background-color: black; -fx-border-radius: 10; -fx-border-insets: 0; -fx-border-width: 1; -fx-border-color: black; -fx-background-radius: 10;" text="Log Out" textFill="WHITE">
                      <font>
                         <Font name="Arial" size="17.0" />
                      </font>
@@ -80,7 +80,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="37.0" prefWidth="1280.0">
                <children>
-                  <RadioButton mnemonicParsing="false" text="Sent requests">
+                  <RadioButton fx:id="sentRequests" mnemonicParsing="false" onAction="#btn_clicked" text="Sent requests">
                      <toggleGroup>
                         <ToggleGroup fx:id="request" />
                      </toggleGroup>
@@ -88,7 +88,7 @@
                         <Insets right="500.0" />
                      </HBox.margin>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="Received requests" toggleGroup="$request" />
+                  <RadioButton fx:id="receivedRequests" mnemonicParsing="false" onAction="#btn_clicked" text="Received requests" toggleGroup="$request" />
                </children>
             </HBox>
             <HBox prefHeight="56.0" prefWidth="1080.0" style="-fx-padding: 10; -fx-background-color: #f2f4f7; -fx-background-radius: 10;">
