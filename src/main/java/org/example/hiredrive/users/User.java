@@ -7,7 +7,6 @@ import org.example.hiredrive.message.Message;
 
 public class User {
 
-
     protected int userId;
     protected String username;
     protected String password;

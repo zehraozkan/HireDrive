@@ -29,7 +29,10 @@ public class SignUpController extends SuperSceneController{
             createScene("/org/example/hiredrive/Scenes/sign up as driver.fxml");
 
             main.close();
+        } else if (event.getSource() == btnBack) {
+            Stage main = (Stage) signUpDriver.getScene().getWindow();
+            createScene("/org/example/hiredrive/Scenes/entranceScene.fxml");
+            main.close();
         }
-
     }
 }
