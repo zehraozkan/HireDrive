@@ -8,4 +8,6 @@ public class FilteredCompanyController extends SuperSceneController{
     public void setData(Object data){
 
     }
+
+
 }
