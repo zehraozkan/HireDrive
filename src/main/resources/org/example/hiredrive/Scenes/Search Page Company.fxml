@@ -18,8 +18,6 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<!--TODO driver sadece rating ve licenses ile aranabiliyor-->
-<!--TODO licenses kısmına seçenek koy-->
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.hiredrive.SceneControllers.CompanySearchController">
    <top>
@@ -124,7 +122,7 @@
                         <Insets bottom="15.0" />
                      </padding>
                   </TitledPane>
-                  <TitledPane graphicTextGap="15.0" lineSpacing="15.0" prefHeight="125.0" prefWidth="512.0" text="   Required Licenses">
+                  <TitledPane fx:id="experienceLevelFilter1" graphicTextGap="15.0" lineSpacing="15.0" prefHeight="125.0" prefWidth="512.0" text="   Required Licenses">
                      <font>
                         <Font size="23.0" />
                      </font>
@@ -145,6 +143,9 @@
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
                                           </CheckBox>
                                        </children>
                                     </HBox>
@@ -154,6 +155,9 @@
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
                                           </CheckBox>
                                        </children>
                                     </HBox>
@@ -163,6 +167,9 @@
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
                                           </CheckBox>
                                        </children>
                                     </HBox>
@@ -172,6 +179,9 @@
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
                                           </CheckBox>
                                        </children>
                                     </HBox>
@@ -181,6 +191,9 @@
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
                                           </CheckBox>
                                        </children>
                                     </HBox>
@@ -190,6 +203,9 @@
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
                                           </CheckBox>
                                        </children>
                                     </HBox>
@@ -199,6 +215,9 @@
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
                                           </CheckBox>
                                        </children>
                                     </HBox>
@@ -208,6 +227,9 @@
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
                                           </CheckBox>
                                        </children>
                                     </HBox>
@@ -217,6 +239,9 @@
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
                                           </CheckBox>
                                        </children>
                                     </HBox>
@@ -226,6 +251,9 @@
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
                                           </CheckBox>
                                        </children>
                                     </HBox>
@@ -235,6 +263,9 @@
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
                                           </CheckBox>
                                        </children>
                                     </HBox>
@@ -244,6 +275,9 @@
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
                                           </CheckBox>
                                        </children>
                                     </HBox>
@@ -253,6 +287,9 @@
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
                                           </CheckBox>
                                        </children>
                                     </HBox>
