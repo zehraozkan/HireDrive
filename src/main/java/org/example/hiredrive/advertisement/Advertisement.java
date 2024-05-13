@@ -1,5 +1,5 @@
 package org.example.hiredrive.advertisement;
-
+import org.example.hiredrive.Connection.RequestConnection;
 import org.example.hiredrive.Connection.AdvertisementConnection;
 import org.example.hiredrive.Connection.RequestConnection;
 import org.example.hiredrive.Connection.UserConnection;
