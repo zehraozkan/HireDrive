@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.shape.Circle?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1050.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1050.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.hiredrive.SceneControllers.companyAddInduvidualController">
    <children>
-      <HBox fx:id="IDText" alignment="CENTER" prefHeight="50.0" prefWidth="90.0">
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="90.0">
          <children>
-            <Label text="ID" />
+            <Label fx:id="IDText" text="ID" />
          </children>
       </HBox>
       <Separator orientation="VERTICAL" prefHeight="200.0" />
@@ -33,7 +33,7 @@
       <Separator orientation="VERTICAL" prefHeight="200.0" />
       <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="150.0">
          <children>
-            <Label fx:id="nameSurnameText1" text="Company Name">
+            <Label fx:id="CompanyNameText" text="Company Name">
                <padding>
                   <Insets left="30.0" />
                </padding>
@@ -46,7 +46,7 @@
       <Separator orientation="VERTICAL" prefHeight="200.0" />
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="120.0">
          <children>
-            <Button mnemonicParsing="false" style="-fx-background-color: white;">
+            <Button fx:id="rating_btn" mnemonicParsing="false" onAction="#btn_clicked" style="-fx-background-color: white;">
                <graphic>
                   <ImageView fx:id="ratingPng" fitHeight="90.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -72,7 +72,7 @@
       <Separator orientation="VERTICAL" prefHeight="200.0" />
       <HBox alignment="CENTER" prefHeight="58.0" prefWidth="60.0">
          <children>
-            <Circle fx:id="profilePicCircle" fill="#ff1f1f" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="profilePicCircle" fill="#ff1f1f" onMouseClicked="#mouse_clicked" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </HBox>
       <Separator orientation="VERTICAL" prefHeight="200.0" />

@@ -2,19 +2,16 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
-
-<!--TODO sadece rating ve licenses-->
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <top>
@@ -22,7 +19,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="80.0" prefWidth="430.0">
                <children>
-                  <Button fx:id="goMainPageScene" mnemonicParsing="false" prefHeight="60.0" prefWidth="238.0" style="-fx-background-color: red; -fx-background-radius: 10;" text="HIREDRIVE" textFill="WHITE">
+                  <Button fx:id="main_btn" mnemonicParsing="false" onAction="#btn_clicked" prefHeight="60.0" prefWidth="238.0" style="-fx-background-color: red; -fx-background-radius: 10;" text="HIREDRIVE" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
@@ -78,34 +75,84 @@
       </HBox>
    </top>
    <left>
-      <VBox prefHeight="720.0" prefWidth="494.0" BorderPane.alignment="CENTER">
-         <children>
-            <ListView prefHeight="670.0" prefWidth="775.0" />
-         </children></VBox>
+      <ScrollPane prefHeight="720.0" prefWidth="490.0" BorderPane.alignment="CENTER">
+         <content>
+            <VBox />
+         </content>
+      </ScrollPane>
    </left>
-   <right>
-      <VBox alignment="CENTER" prefHeight="551.0" prefWidth="786.0" BorderPane.alignment="CENTER">
+   <center>
+      <VBox alignment="CENTER" prefHeight="720.0" prefWidth="584.0" BorderPane.alignment="CENTER">
          <children>
-            <ScrollPane prefHeight="700.0" prefWidth="785.0" />
-            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0">
+            <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" prefHeight="79.0" prefWidth="790.0" style="-fx-background-color: white;">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
                <children>
-                  <Button fx:id="buttonSend" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendButtonAction" prefHeight="43.0" prefWidth="140.0" scaleShape="false" text="Send" textAlignment="CENTER" HBox.hgrow="NEVER" />
-                  <TextArea fx:id="messageBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" nodeOrientation="LEFT_TO_RIGHT" onKeyPressed="#sendMethod" prefHeight="16.0" prefWidth="606.0" promptText="Enter Message..." scaleShape="false">
+                  <Circle fx:id="profilePicCircle11" fill="#a4a4a4" radius="27.0" stroke="BLACK" strokeType="INSIDE">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                  </Circle>
+               </children>
+            </HBox>
+            <Separator prefWidth="200.0">
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" />
+               </VBox.margin>
+            </Separator>
+            <VBox />
+            <ScrollPane prefHeight="677.0" prefWidth="860.0" style="-fx-background-color: white;" />
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" prefHeight="79.0" prefWidth="790.0" style="-fx-background-color: #2c3e50;">
+               <children>
+                  <TextArea fx:id="messageBox1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="100.0" nodeOrientation="LEFT_TO_RIGHT" onKeyPressed="#sendMethod" prefHeight="43.0" prefWidth="740.0" promptText="Enter Message..." scaleShape="false" style="-fx-border-radius: 5; -fx-border-color: black;" wrapText="true">
                      <font>
-                        <Font name="SansSerif Regular" size="14.0" />
+                        <Font name="Arial" size="14.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets bottom="15.0" left="15.0" right="2.0" top="15.0" />
+                     </HBox.margin>
                   </TextArea>
-                  <Button fx:id="recordBtn" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMousePressed="#recordVoiceMessage">
-                     <graphic>
-                        <ImageView fx:id="microphoneImageView" fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/microphone.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
+                  <Button fx:id="buttonSend1" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sendButtonAction" prefHeight="43.0" prefWidth="140.0" scaleShape="false" style="-fx-background-color: black;" text="Send" textAlignment="CENTER" textFill="WHITE" HBox.hgrow="NEVER">
+                     <HBox.margin>
+                        <Insets bottom="15.0" right="15.0" top="15.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
                   </Button>
                </children>
             </HBox>
+         </children>
+      </VBox>
+   </center>
+   <right>
+      <VBox alignment="TOP_CENTER" prefHeight="670.0" prefWidth="181.0" style="-fx-background-color: #538abd;" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+         </BorderPane.margin>
+         <children>
+            <Circle fx:id="profilePicCircle1" fill="#a4a4a4" radius="68.0" stroke="BLACK" strokeType="INSIDE">
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </Circle>
+            <Label alignment="CENTER" prefHeight="20.0" prefWidth="289.0" text="other username/ID ">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="view_profile_btn" alignment="CENTER" mnemonicParsing="false" onAction="#btn_clicked" prefHeight="34.0" prefWidth="129.0" style="-fx-background-color: black; -fx-border-radius: 10; -fx-border-insets: 0; -fx-border-width: 1; -fx-border-color: black; -fx-background-radius: 10;" text="View Profile" textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="17.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
    </right>
