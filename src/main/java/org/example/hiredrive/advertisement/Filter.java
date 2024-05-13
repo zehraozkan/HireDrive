@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.mysql.cj.jdbc.Driver;
 
 public class Filter {
+
     private String from;
     private String destination;
     private int minExperienceLevel;
