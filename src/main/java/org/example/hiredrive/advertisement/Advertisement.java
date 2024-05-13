@@ -1,8 +1,10 @@
 package org.example.hiredrive.advertisement;
-
+import org.example.hiredrive.Connection.RequestConnection;
 import org.example.hiredrive.Connection.AdvertisementConnection;
+import org.example.hiredrive.Connection.RequestConnection;
 import org.example.hiredrive.Connection.UserConnection;
 import org.example.hiredrive.users.Company;
+import org.example.hiredrive.users.Driver;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -52,8 +54,17 @@ public class Advertisement {
         AdvertisementConnection.deleteAdvertisement(advertisementID);
     }
 
-    //TODO addRequest
+     //TODO addRequest
+    public void addRequest(Request request){
+        RequestConnection.sendJobRequestToAdd(request.getSender().getUserId(), request.getAdd().getAdvertisementID());
+    }
     //TODO getAllRequests
+    public void getAllRequests(Driver driver){
+        RequestConnection.getRequestsFromDriver(driver.getUserId(),"PENDING");
+        RequestConnection.getRequestsFromDriver(driver.getUserId(),"ACCEPTED");
+        RequestConnection.getRequestsFromDriver(driver.getUserId(),"REJECTED");
+        RequestConnection.getRequestsFromDriver(driver.getUserId(),null);
+    }
 
     // Getter methods
     public int getAdvertisementID() {
