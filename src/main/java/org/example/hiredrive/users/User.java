@@ -14,6 +14,7 @@ public class User {
     protected String email;
     protected double rating;
     protected String phoneNumber;
+    protected String userType;
 
 
     public User(String username,String password, String email, String phoneNumber){
@@ -33,6 +34,9 @@ public class User {
             user.updateRating();
         }
         else throw new IllegalArgumentException("You cannot rate a user you are not associated with");
+    }
+    public String getUserType(){
+        return userType;
     }
 
     public void sendMessage(Message message) {

@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.example.hiredrive.Connection.UserConnection;
+import org.example.hiredrive.users.User;
 
 public class SignInController extends SuperSceneController{
 
@@ -30,12 +31,15 @@ public class SignInController extends SuperSceneController{
 
     @FXML
     private Text wrongPrompt;
+    private User user;
 
     @FXML
     void LinkClicked(ActionEvent event) {
 
         Stage main = (Stage) signUpLink.getScene().getWindow();
+
         createScene("/org/example/hiredrive/Scenes/sign up scene.fxml");
+
         main.close();
 
     }
@@ -47,17 +51,21 @@ public class SignInController extends SuperSceneController{
 
             System.out.println("completed");
             Stage main = (Stage) signIn.getScene().getWindow();
+            user = UserConnection.getUser(mailField.getText());
 
+            //TODO OOP mehot can only be added after deleting old ones
+            if(UserConnection.getUserType(user.getUserId()).equals("driver")){
+                createScene("/org/example/hiredrive/Scenes/Search Page Driver.fxml");
+
+            }
+            else{
+                createScene("/org/example/hiredrive/Scenes/Search Page Company.fxml");
+            }
             main.close();
-            createScene("/org/example/hiredrive/Scenes/HomePage.fxml");
-            
             wrongPrompt.setVisible(false);
         }
         else {
             wrongPrompt.setVisible(true);
         }
-
     }
-
-
 }

@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.hiredrive.message.MailManager;
 import org.example.hiredrive.users.Company;
+import org.example.hiredrive.users.User;
 
 public class CompanySignUpController extends SuperSceneController{
 
@@ -38,7 +39,6 @@ public class CompanySignUpController extends SuperSceneController{
     protected String pass;
     protected String mail;
     protected String phone;
-    protected String user_type;
 
 
     @FXML
@@ -48,8 +48,8 @@ public class CompanySignUpController extends SuperSceneController{
             pass = passField1.getText();
             phone = phoneField.getText();
             mail = mailField.getText();
-            user_type = "company";
             String pass2 = passField2.getText();
+
             if(!pass2.equals(pass)) throw new IllegalArgumentException("Passwords do not match");
             if(!MailManager.isValidEmail(mail)) throw new IllegalArgumentException("Illegal mail address");
 
@@ -73,4 +73,12 @@ public class CompanySignUpController extends SuperSceneController{
 
     }
 
+    @Override
+    public User getUserData() {
+        return new Company(name, pass, mail, phone);
+    }
+    @Override
+    public String getMail(){
+        return mail;
+    }
 }

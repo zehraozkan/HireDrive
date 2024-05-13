@@ -15,53 +15,57 @@ import org.example.hiredrive.users.User;
 public class verificationController extends SuperSceneController{
 
     private String email;
-    private String userType;
     private SuperSceneController prevScene;
+    private int verificationCode;
     User user;
 
     @FXML
-    private Button OKbtn;
+    private Button verifyButton;
+
+    @FXML
+    private Button backBtn;
 
     @FXML
     private TextField codeField;
 
     @FXML
-    void okClicked(ActionEvent event) {
+    void btn_clicked(ActionEvent event) {
 
+        if(event.getSource() == verifyButton){
+            if(codeField.getText().equals(verificationCode + "")) {
+                user = prevScene.getUserData();
+                System.out.println("creted user successfully");
 
-        int verCode = MailManager.sendVerificationMail(email);
-        if(codeField.getText().equals(verCode + "")) {
+                if(user.getUserType().equals("driver")){
+                    createScene("/org/example/hiredrive/Scenes/Search Page Driver.fxml");
+                    Stage main = (Stage) verifyButton.getScene().getWindow();
+                    main.close();
+                } else if (user.getUserType().equals("company")) {
+                    createScene("/org/example/hiredrive/Scenes/Search Page Company.fxml");
+                    Stage main = (Stage) verifyButton.getScene().getWindow();
+                    main.close();
+                }
 
-            if(userType.equals("user")){
-
-            } else if (userType.equals("company")) {
-                user = new Company();
             }
-            user = new
-            Stage main = (Stage) OKbtn.getScene().getWindow();
-            
+        } else if (event.getSource() == backBtn) {
+            Stage main = (Stage) backBtn.getScene().getWindow();
             main.close();
-            createScene("/org/example/hiredrive/Scenes/entranceScene.fxml");
-            
+            createScene("/org/example/hiredrive/Scenes/sign up as cpmpany.fxml");
         }
+
 
     }
 
     @FXML
     public void initialise() {
-        //email = codeField.getText();
+
     }
 
     public void setData(Object data) {
         if(data instanceof CompanySignUpController) {
             prevScene = (CompanySignUpController) data;
-            userType = (CompanySignUpController)(prevScene.userType);
-        } else if (data instanceof DriverSignUpController) {
-            prevScene = (DriverSignUpController) data;
+           this.email = prevScene.getMail();
+           verificationCode = MailManager.sendVerificationMail(email);
         }
-
     }
-
-    
-
 }

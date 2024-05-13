@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -79,7 +78,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="20.0" layoutY="370.0" onAction="#GetDriverPhoneNumber" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Phone Number" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+            <TextField fx:id="phoneField" layoutX="20.0" layoutY="370.0" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Phone Number" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
                <opaqueInsets>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </opaqueInsets>
@@ -89,7 +88,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="20.0" layoutY="435.0" onAction="#getDriverAdress" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Adress" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+            <TextField layoutX="20.0" layoutY="435.0" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Adress" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
                <opaqueInsets>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </opaqueInsets>
@@ -99,7 +98,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <DatePicker layoutX="20.0" layoutY="240.0" onAction="#getDriverBornDate" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Born Date" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;" />
+            <DatePicker layoutX="20.0" layoutY="240.0" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Born Date" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;" />
             <Label layoutX="30.0" layoutY="215.0" prefHeight="21.0" prefWidth="100.0" text="Date of Born">
                <font>
                   <Font size="15.0" />

@@ -17,8 +17,9 @@ public class Driver extends User {
         super(username + usersurname, password, email, phoneNo);
         this.surname = usersurname;
         
-        UserConnection.addUser(username, surname, email, password, "driver", Date.valueOf(LocalDate.now()));
+        UserConnection.addUser(username, surname, email, password, phoneNo,"driver", Date.valueOf(LocalDate.now()));
         userId = UserConnection.getUserID(email);
+        userType = "driver";
 
     }
     //for database

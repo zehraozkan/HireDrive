@@ -26,8 +26,8 @@ public class UserConnection {
     private static final String username = properties.getProperty("db.username");
     private static final String password = properties.getProperty("db.password");
 
-    public static void addUser(String userName, String userSurname, String userMail,String aPassword, String userType, Date dateCreated) {
-        String sql = "INSERT INTO users (user_name, user_mail,user_password, user_type, date_created) VALUES (?, ?, ?, ?, ? , ?)";
+    public static void addUser(String userName, String userSurname, String userMail,String aPassword,String phoneNo ,String userType, Date dateCreated) {
+        String sql = "INSERT INTO users (user_name, user_mail,user_password, user_type, date_created, phone_number) VALUES (?, ?, ?, ?, ? , ?)";
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -36,6 +36,7 @@ public class UserConnection {
             pstmt.setString(3, aPassword);
             pstmt.setString(4, userType);
             pstmt.setDate(5, dateCreated);
+            pstmt.setString(6, phoneNo);
             pstmt.executeUpdate();
 
             System.out.println("User added successfully.");
@@ -105,8 +106,10 @@ public class UserConnection {
 
             // Check if there is a result
             if (rs.next()) {
-                String userName = rs.getString("user_name").split(" ")[0];
-                String userSurname = rs.getString("user_surname").split(" ")[1];
+                String k = rs.getString("user_name");
+                String userName = k.split(" ")[0];
+                String userSurname = "";
+                if(k.contains(" ")) userSurname = rs.getString("user_name").split(" ")[1];
                 String userPassword = rs.getString("user_password");
                 String userMail = rs.getString("user_mail");
                 String phoneNumber = rs.getString("phone_number");
@@ -115,6 +118,46 @@ public class UserConnection {
                 double rating = rs.getDouble("rating");
                 String available = rs.getString("available");
 
+                if(type.equals("driver")){
+                    user = new Driver(userName, userSurname, userPassword, userMail, userId, phoneNumber);
+
+                }
+                else{
+                    user = new Company(userName + userSurname , userPassword, userMail, userId, phoneNumber);
+                }
+
+            } else {
+
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        // Return the result string
+        return user;
+    }
+    public static User getUser(String userMail) {
+        String sql = "SELECT * FROM users WHERE user_mail = ?";
+        User user = null;
+        //StringBuilder resultString = new StringBuilder();
+
+        try (Connection conn = DriverManager.getConnection(url, username, password);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, userMail);
+            ResultSet rs = pstmt.executeQuery();
+
+            // Check if there is a result
+            if (rs.next()) {
+                String k = rs.getString("user_name");
+                String userName = k.split(" ")[0];
+                String userSurname = "";
+                if(k.contains(" ")) userSurname = rs.getString("user_name").split(" ")[1];
+                String userPassword = rs.getString("user_password");
+                String phoneNumber = rs.getString("phone_number");
+                String dateCreated = rs.getString("date_created");
+                String type = rs.getString("user_type");
+                int userId = rs.getInt("user_id");
+                double rating = rs.getDouble("rating");
+                String available = rs.getString("available");
 
                 if(type.equals("driver")){
                     user = new Driver(userName, userSurname, userPassword, userMail, userId, phoneNumber);
@@ -192,9 +235,11 @@ public class UserConnection {
 
             while (rs.next()) {
                 int userId = rs.getInt("user_id");
-                String userName = rs.getString("user_name");
                 String userPassword = rs.getString("user_password");
-                String userSurname = rs.getString("user_surname");
+                String k = rs.getString("user_name");
+                String userName = k.split(" ")[0];
+                String userSurname = "";
+                if(k.contains(" ")) userSurname = rs.getString("user_name").split(" ")[1];
                 String dateCreated = rs.getString("date_created");
                 String userMail = rs.getString("user_mail");
                 String user_type = rs.getString("user_type");
@@ -300,7 +345,7 @@ public class UserConnection {
     public static ArrayList<Driver> getAssociatedDrivers(int company_id){
 
         ArrayList<Driver> drivers = new ArrayList<>();
-        String sql = "SELECT * FROM users WHERE user_id = ?";
+        String sql = "SELECT * FROM works_with WHERE company_id = ?";
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -309,9 +354,11 @@ public class UserConnection {
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 int userId = rs.getInt("user_id");
-                String userName = rs.getString("user_name").split(" ")[0];
+                String k = rs.getString("user_name");
+                String userName = k.split(" ")[0];
+                String userSurname = "";
+                if(k.contains(" ")) userSurname = k.split(" ")[1];
                 String userPassword = rs.getString("user_password").split(" ")[1];
-                String userSurname = rs.getString("user_surname");
                 String phoneNumber = rs.getString("phone_number");
                 String dateCreated = rs.getString("date_created");
                 String userMail = rs.getString("user_mail");
