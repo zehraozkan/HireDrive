@@ -28,6 +28,7 @@ public class Driver extends User {
     public Driver(String username, String userSurname, String password, String email, int userId, String phoneNo, int experience) {
         super(username,  password, email, phoneNo);
         this.surname = userSurname;
+        userType = "driver";
         this.experience = userId;
         super.userId = userId;
     }

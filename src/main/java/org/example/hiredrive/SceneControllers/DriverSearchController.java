@@ -9,19 +9,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
-import org.example.hiredrive.advertisement.Filter;
 import org.example.hiredrive.users.Driver;
 
 public class DriverSearchController extends SuperSceneController{
 
     @FXML
     private DatePicker endDateFilter;
-    
-    @FXML
-    private DatePicker startDateFilter;
-    
+
     @FXML
     private TitledPane experienceLevelFilter;
+
+    @FXML
+    private TitledPane experienceLevelFilter1;
 
     @FXML
     private Button goMainPageScene;
@@ -30,10 +29,10 @@ public class DriverSearchController extends SuperSceneController{
     private Button logOutBtn;
 
     @FXML
-    private Spinner<?> maxDistanceFilter;
+    private Spinner<?> maxDistanceFilter1;
 
     @FXML
-    private Spinner<?> minDistanceFilter;
+    private Spinner<?> minRate;
 
     @FXML
     private Button myProfileButton;
@@ -49,35 +48,29 @@ public class DriverSearchController extends SuperSceneController{
 
     @FXML
     private TextField searchByNameTextArea;
-    private Filter filter;
+
+    @FXML
+    private DatePicker startDateFilter;
+
     private Driver driver;
-
     
-
     @FXML
     void btn_clicked(ActionEvent event) {
         if(event.getSource() == goMainPageScene) {
             
-        } else if (event.getSource() == logOutBtn) {
-            driver = null;
-            createScene("/org/example/hiredrive/Scenes/entranceScene.fxml");
         } else if (event.getSource() == searchBtn) {
-            createFilter();
+
         }
     }
-    //searching through advertisement
-    public void createFilter(){
-
-    }
-
-    public void initialize() {
+    public void update() {
         myProfileButton.setText(driver.getUsername());
     }
 
     @Override
     public void setData(Object data){
         driver = (Driver) data;
-        initialize();
+        update();
     }
+
 
 }

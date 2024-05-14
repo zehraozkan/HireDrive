@@ -152,9 +152,9 @@ public class UserConnection {
             // Check if there is a result
             if (rs.next()) {
                 String k = rs.getString("user_name");
-                String userName = k.split(" ")[0];
+                String userName = k.split(" ")[1];
                 String userSurname = "";
-                if(k.contains(" ")) userSurname = rs.getString("user_name").split(" ")[1];
+                if(k.contains(" ")) userSurname = rs.getString("user_name").split(" ")[0];
                 String userPassword = rs.getString("user_password");
                 String phoneNumber = rs.getString("phone_number");
                 String dateCreated = rs.getString("date_created");

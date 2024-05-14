@@ -13,6 +13,9 @@ import org.example.hiredrive.users.User;
 public class DriverSignUpController extends SuperSceneController {
 
     @FXML
+    private TextField experienceField;
+
+    @FXML
     private Button backBtn;
 
     @FXML
@@ -55,6 +58,8 @@ public class DriverSignUpController extends SuperSceneController {
             pass = password1.getText();
             phone = phoneField.getText();
             mail = mailField.getText();
+            experience = Integer.parseInt(experienceField.getText());
+
             String pass2 = password2.getText();
 
             if (!pass2.equals(pass)) throw new IllegalArgumentException("Passwords do not match");
@@ -70,7 +75,6 @@ public class DriverSignUpController extends SuperSceneController {
     @Override
     public User getUserData() {
         return new Driver(name, surname, pass , mail, phone, experience);
-        //bura bozuk
     }
     @Override
     public String getMail(){

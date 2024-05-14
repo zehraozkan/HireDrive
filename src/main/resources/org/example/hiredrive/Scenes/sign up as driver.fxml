@@ -45,7 +45,7 @@
                   <Insets bottom="10.0" left="15.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="surnameField" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Surname" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+            <TextField fx:id="nameField" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Surname" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
                <opaqueInsets>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </opaqueInsets>
@@ -61,7 +61,7 @@
                   <Insets bottom="10.0" left="15.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="nameField" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Name" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+            <TextField fx:id="surnameField" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Name" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
                <opaqueInsets>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </opaqueInsets>
@@ -109,7 +109,7 @@
                   <Insets bottom="10.0" left="15.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="phoneField1" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Experience Year" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+            <TextField fx:id="experienceField" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Experience Year" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
                <opaqueInsets>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </opaqueInsets>

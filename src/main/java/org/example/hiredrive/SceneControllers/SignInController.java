@@ -6,10 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.example.hiredrive.Connection.UserConnection;
@@ -30,7 +27,8 @@ public class SignInController extends SuperSceneController{
     private Hyperlink signUpLink;
 
     @FXML
-    private Text wrongPrompt;
+    private Label wrongPrompt;
+
     private User user;
 
     @FXML
@@ -54,8 +52,8 @@ public class SignInController extends SuperSceneController{
             user = UserConnection.getUser(mailField.getText());
 
             //TODO OOP mehot can only be added after deleting old ones
-            if(UserConnection.getUserType(user.getUserId()).equals("driver")){
-                createScene("/org/example/hiredrive/Scenes/Search Page Driver.fxml");
+            if(user.getUserType().equals("driver")){
+                createScene("/org/example/hiredrive/Scenes/Search Page Driver.fxml", user);
 
             }
             else{

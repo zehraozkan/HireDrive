@@ -12,7 +12,13 @@ public abstract class SuperSceneController {
         Parent root;
 
         try {
-            root = FXMLLoader.load(getClass().getResource(path));
+//            root = FXMLLoader.load(getClass().getResource(path));
+//            Scene scene = new Scene(root);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+
+
+            root = loader.load();
+            SuperSceneController controller = loader.getController();
             Scene scene = new Scene(root);
 
             stage.setTitle("bkah blaj");

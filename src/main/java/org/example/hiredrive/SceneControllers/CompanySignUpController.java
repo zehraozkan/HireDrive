@@ -27,10 +27,10 @@ public class CompanySignUpController extends SuperSceneController{
     private Button nextBtn;
 
     @FXML
-    private PasswordField passField1;
+    private PasswordField password1;
 
     @FXML
-    private PasswordField passField2;
+    private PasswordField password2;
 
     @FXML
     private TextField phoneField;
@@ -45,10 +45,10 @@ public class CompanySignUpController extends SuperSceneController{
     void btn_clicked(ActionEvent event) {
         if(event.getSource() == nextBtn){
             name = cNameField.getText();
-            pass = passField1.getText();
+            pass = password1.getText();
             phone = phoneField.getText();
             mail = mailField.getText();
-            String pass2 = passField2.getText();
+            String pass2 = password2.getText();
 
             if(!pass2.equals(pass)) throw new IllegalArgumentException("Passwords do not match");
             if(!MailManager.isValidEmail(mail)) throw new IllegalArgumentException("Illegal mail address");
@@ -67,8 +67,6 @@ public class CompanySignUpController extends SuperSceneController{
         assert goBackScene != null : "fx:id=\"goBackScene\" was not injected: check your FXML file 'sign up as company.fxml'.";
         assert mailField != null : "fx:id=\"mailField\" was not injected: check your FXML file 'sign up as company.fxml'.";
         assert nextBtn != null : "fx:id=\"nextBtn\" was not injected: check your FXML file 'sign up as company.fxml'.";
-        assert passField1 != null : "fx:id=\"passField1\" was not injected: check your FXML file 'sign up as company.fxml'.";
-        assert passField2 != null : "fx:id=\"passField2\" was not injected: check your FXML file 'sign up as company.fxml'.";
         assert phoneField != null : "fx:id=\"phoneField\" was not injected: check your FXML file 'sign up as company.fxml'.";
 
     }
