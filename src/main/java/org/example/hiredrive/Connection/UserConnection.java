@@ -26,7 +26,7 @@ public class UserConnection {
     private static final String username = properties.getProperty("db.username");
     private static final String password = properties.getProperty("db.password");
 
-    public static void addUser(String userName, String userSurname, String userMail,String aPassword,String phoneNo ,String userType, Date dateCreated, int experience) {
+    public static void addUser(String userName, String userSurname, String userMail, String aPassword, String phoneNo, String userType, Date dateCreated, int experience) {
         String sql = "INSERT INTO users (user_name, user_mail,user_password, user_type, date_created, phone_number, experience) VALUES (?, ?, ?, ?, ? , ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
@@ -37,7 +37,7 @@ public class UserConnection {
             pstmt.setString(4, userType);
             pstmt.setDate(5, dateCreated);
             pstmt.setString(6, phoneNo);
-            if(userType.equals("company")){
+            if (userType.equals("company")) {
                 pstmt.setInt(7, 0);
 
             }
@@ -49,6 +49,7 @@ public class UserConnection {
             System.out.println("Error: " + e.getMessage());
         }
     }
+
     public static void deleteUser(int userId) {
         String sql = "DELETE FROM users WHERE user_id = ?";
 
@@ -69,6 +70,7 @@ public class UserConnection {
             System.out.println("Error: " + e.getMessage());
         }
     }
+
     public static boolean updateUserNameAndSurname(int userId, String newName, String newSurname) {
         String sql = "UPDATE users SET user_name = ? WHERE user_id = ?";
 
@@ -95,7 +97,6 @@ public class UserConnection {
     }
 
     /**
-     *
      * @param userId int
      * @return returns the information of the user whose id is given
      */
@@ -114,7 +115,7 @@ public class UserConnection {
                 String k = rs.getString("user_name");
                 String userName = k;
                 String userSurname = "";
-                if(k.contains(" ")){
+                if (k.contains(" ")) {
                     userName = k.split(" ")[0];
                     userSurname = rs.getString("user_name").split(" ")[1];
                 }
@@ -125,12 +126,11 @@ public class UserConnection {
                 String type = rs.getString("user_type");
                 int experience = rs.getInt("experience");
 
-                if(type.equals("driver")){
+                if (type.equals("driver")) {
                     user = new Driver(userName, userSurname, userPassword, userMail, userId, phoneNumber, experience);
 
-                }
-                else{
-                    user = new Company(userName + userSurname , userPassword, userMail, userId, phoneNumber);
+                } else {
+                    user = new Company(userName + userSurname, userPassword, userMail, userId, phoneNumber);
                 }
 
             } else {
@@ -142,6 +142,7 @@ public class UserConnection {
         // Return the result string
         return user;
     }
+
     public static User getUser(String userMail) {
         String sql = "SELECT * FROM users WHERE user_mail = ?";
         User user = null;
@@ -158,7 +159,7 @@ public class UserConnection {
                 String k = rs.getString("user_name");
                 String userName = k;
                 String userSurname = "";
-                if(k.contains(" ") && type.equals("driver")){
+                if (k.contains(" ") && type.equals("driver")) {
                     userName = k.split(" ")[0];
                     userSurname = k.split(" ")[1];
                 }
@@ -168,12 +169,11 @@ public class UserConnection {
                 int userId = rs.getInt("user_id");
                 int experience = rs.getInt("experience");
 
-                if(type.equals("driver")){
+                if (type.equals("driver")) {
                     user = new Driver(userName, userSurname, userPassword, userMail, userId, phoneNumber, experience);
 
-                }
-                else{
-                    user = new Company(userName + userSurname , userPassword, userMail, userId, phoneNumber);
+                } else {
+                    user = new Company(userName + userSurname, userPassword, userMail, userId, phoneNumber);
                 }
 
             } else {
@@ -187,13 +187,11 @@ public class UserConnection {
     }
 
     /**
-     *
-     * @param email String
+     * @param email    String
      * @param password String
-     * @return
-     * checks whether the email mathces the password
+     * @return checks whether the email mathces the password
      */
-    public static boolean checkPassword(String email, String password){
+    public static boolean checkPassword(String email, String password) {
 
         String sql = "SELECT user_password from users WHERE user_mail = ?";
 
@@ -211,22 +209,21 @@ public class UserConnection {
                 // No matching user found
                 return false;
             }
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
             return false;
         }
     }
+
     /**
      * return all the users in the user table
      */
-    public static ArrayList<User> getAllUsers(){
-            // Call getAllUsers(String usertype) with a wildcard parameter
-            return getAllUsers("%");
+    public static ArrayList<User> getAllUsers() {
+        // Call getAllUsers(String usertype) with a wildcard parameter
+        return getAllUsers("%");
     }
 
     /**
-     *
      * @param usertype String
      * @return returns all the users in the usertype type
      */
@@ -248,17 +245,16 @@ public class UserConnection {
                 String k = rs.getString("user_name");
                 String userName = k.split(" ")[0];
                 String userSurname = "";
-                if(k.contains(" ")) userSurname = rs.getString("user_name").split(" ")[1];
+                if (k.contains(" ")) userSurname = rs.getString("user_name").split(" ")[1];
                 String dateCreated = rs.getString("date_created");
                 String userMail = rs.getString("user_mail");
                 String user_type = rs.getString("user_type");
                 String phoneNumber = rs.getString("phone_number");
                 int experience = rs.getInt("experience");
 
-                if(user_type.equals("driver")){
+                if (user_type.equals("driver")) {
                     users.add(new Driver(userName, userSurname, userPassword, userMail, userId, phoneNumber, experience));
-                }
-                else if(user_type.equals("company")){
+                } else if (user_type.equals("company")) {
                     users.add(new Company(userName + userSurname, userPassword, userMail, userId, phoneNumber));
                 }
 
@@ -305,7 +301,8 @@ public class UserConnection {
             }
         }
     }
-    public static String getUserType(int user_id){
+
+    public static String getUserType(int user_id) {
         String userType = null;
         String sql = "SELECT user_type FROM users WHERE user_id = ?";
 
@@ -327,7 +324,8 @@ public class UserConnection {
 
         return userType;
     }
-    public static int getUserID(String email){
+
+    public static int getUserID(String email) {
         int user_id = 0;
         String sql = "SELECT user_id FROM users WHERE user_mail = ?";
 
@@ -350,7 +348,7 @@ public class UserConnection {
         return user_id;
     }
 
-    public static ArrayList<Driver> getAssociatedDrivers(int company_id){
+    public static ArrayList<Driver> getAssociatedDrivers(int company_id) {
 
         ArrayList<Driver> drivers = new ArrayList<>();
         String sql = "SELECT * FROM works_with WHERE company_id = ?";
@@ -361,24 +359,16 @@ public class UserConnection {
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                int userId = rs.getInt("user_id");
-                String k = rs.getString("user_name");
-                String userName = k;
-                String userSurname = "";
-                //if(k.contains(" ")) userSurname = k.split(" ")[1];
-                String userPassword = rs.getString("user_password").split(" ")[1];
-                String phoneNumber = rs.getString("phone_number");
-                String userMail = rs.getString("user_mail");
-                int experience = rs.getInt("experience");
+                int userId = rs.getInt("driver_id");
 
-                drivers.add(new Driver(userName, userSurname, userPassword, userMail, userId, phoneNumber, experience));
+                drivers.add((Driver)getUser(userId));
             }
 
         } catch (SQLException e) {
             System.out.println("Error: " + e.getMessage());
             return null;
         }
-        return  drivers;
+        return drivers;
     }
 
     public static void addWorksWith(int driverId, int companyId, Date startDate) {
@@ -401,6 +391,7 @@ public class UserConnection {
             e.printStackTrace();
         }
     }
+
     public static void deleteWorksWithRelation(int driverId, int companyId) {
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
             // Prepare SQL statement
@@ -513,6 +504,7 @@ public class UserConnection {
 
         return drivers;
     }
+
     public static int getTotalRated(int userId) throws SQLException {
         int totalRated = 0;
 
@@ -530,12 +522,36 @@ public class UserConnection {
 
         return totalRated;
     }
+
+    public static Company getCompanyOfDriver(int driverId) {
+        int companyId = -1; // Default value if no company found
+        Company user = null;
+
+        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+            // SQL query to retrieve company ID based on driver ID
+            String sql = "SELECT * FROM works_with WHERE driver_id = ?";
+
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, driverId);
+                try (ResultSet rs = statement.executeQuery()) {
+                    if (rs.next()) {
+                        companyId = rs.getInt("company_id");
+
+                        user = (Company) getUser(companyId);
+                    }
+                }
+                return (Company) getUser(companyId);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
     
 
     public static void main(String[] args) {
 
-        for(User user : getAllUsers()){
-            System.out.println(user.getUserId() + " |" + user.getUsername() + " rating:" +  user.getRating());
-        }
+        System.out.println(getCompanyOfDriver(33));
     }
 }
