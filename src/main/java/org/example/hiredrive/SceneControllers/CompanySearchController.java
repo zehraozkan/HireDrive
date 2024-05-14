@@ -60,10 +60,10 @@ public class CompanySearchController extends SuperSceneController{
     private Button logOutButton;
 
     @FXML
-    private Spinner<?> maxRate;
+    private Spinner<Integer> maxRate;
 
     @FXML
-    private Spinner<?> minRate;
+    private Spinner<Integer> minRate;
 
     @FXML
     private Button myProfileButton;
@@ -86,10 +86,14 @@ public class CompanySearchController extends SuperSceneController{
     @FXML
     private DatePicker startDateFilter;
 
-    private Filter filter;
-    private Filter nameFilter;
     private Company company;
-    private ArrayList<Driver> filteredDriver;
+    private int ratingMin;
+    private int ratingMax;
+    private ArrayList<CheckBox> checkedLicenses;
+    private int minExperienceLevel;
+    private int maxExperienceLevel;
+    private int expLevel;
+
 
     @FXML
     void btn_clicked(ActionEvent event) {
@@ -97,13 +101,15 @@ public class CompanySearchController extends SuperSceneController{
 
         } else if(event.getSource() == logOutButton) {
             company = null;
-            createScene("/org/example/hiredrive/Scenes/entranceScene.fxml");
+            createScene("/org/example/hiredrive/Scenes/entranceScene.fxml", this);
             Stage main = (Stage) logOutButton.getScene().getWindow();
             main.close();
 
+            setData();
+
         }else if(event.getSource() == searchByFilterButton) {
-            createFilter();
-            createScene("/org/example/hiredrive/Scenes/Filtered Company Adds.fxml", filteredDriver);
+            
+            //createScene("/org/example/hiredrive/Scenes/Filtered Company Adds.fxml", filteredDriver);
         }else if(event.getSource() == searchByNameButton) {
 
         }else if (event.getSource() == myProfileButton) {
@@ -113,16 +119,59 @@ public class CompanySearchController extends SuperSceneController{
         }
     }
 
-    @Override
-    public void setData(Object o){
-        company = (Company) o;
-    }
-    public Company getUserData(){
-        return company;
-    }
-    public void createFilter() {
-        filter = new Filter();
-        filteredDriver = filter.getMatchingDrivers();
+    
+    public void setData(){
+
+        checkedLicenses = new ArrayList<CheckBox>();
+        Filter filter = new Filter();
+
+        if (A.isSelected()) checkedLicenses.add(A);
+
+        if (A1.isSelected()) checkedLicenses.add(A1);
+
+        if (A2.isSelected()) checkedLicenses.add(A2);
+
+        if (B.isSelected()) checkedLicenses.add(B);
+
+        if (B1.isSelected()) checkedLicenses.add(B1);
+
+        if (BE.isSelected()) checkedLicenses.add(BE);
+
+        if (C1.isSelected()) checkedLicenses.add(C1);
+
+        if (C1E.isSelected()) checkedLicenses.add(C1E);
+
+        if (CE.isSelected()) checkedLicenses.add(CE);
+
+        if (D.isSelected()) checkedLicenses.add(D);
+
+        if (D1.isSelected()) checkedLicenses.add(D1);
+
+        if (D1E.isSelected()) checkedLicenses.add(D1E);
+
+        if (DE.isSelected()) checkedLicenses.add(DE);
+
+        ratingMin = (Integer) minRate.getValue();
+        ratingMax = (Integer) maxRate.getValue();
+
+        minExperienceLevel = (int) experienceYear.getMin();
+        maxExperienceLevel = (int) experienceYear.getMax();
+        expLevel = (int) experienceYear.getValue();
+
+
+        filter.setLicenses(getSelectedLicenseNames(checkedLicenses));
+        filter.setMinRate(ratingMin);
+        filter.setMaxRate(ratingMax);
+        filter.setMinExperienceLevel(minExperienceLevel);
+        filter.setMaxExperienceLevel(maxExperienceLevel);
+        filter.setExperienceLevel(expLevel);
     }
 
+    private ArrayList<String> getSelectedLicenseNames(ArrayList<CheckBox> checkedLicenses) {
+        ArrayList<String> selectedLicenses = new ArrayList<>();
+        for (CheckBox checkBox : checkedLicenses) {
+            selectedLicenses.add(checkBox.getText());
+        }
+        return selectedLicenses;
+    }
 }

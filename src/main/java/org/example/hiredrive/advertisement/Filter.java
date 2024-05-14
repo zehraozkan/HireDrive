@@ -102,4 +102,8 @@ public class Filter {
     public void setResultantsDrivers(ArrayList<Driver> resultantsDrivers) {
       this.resultantsDrivers = resultantsDrivers;
   }
+
+    public int setExperienceLevel(int expLevel) {
+      return expLevel;
+    }
 }
