@@ -7,6 +7,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 
 public class ChatPageController extends SuperSceneController {
 
@@ -45,7 +46,10 @@ public class ChatPageController extends SuperSceneController {
 
     @FXML
     void btn_clicked(ActionEvent event) {
+        if (event.getSource() == main_btn) {
+            Stage main = (Stage) main_btn.getScene().getWindow();
 
+        }
     }
 
     @FXML
