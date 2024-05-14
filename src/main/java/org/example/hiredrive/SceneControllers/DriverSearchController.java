@@ -133,8 +133,10 @@ public class DriverSearchController extends SuperSceneController{
 
             vehicleCargo.isSelected();
         }else if(event.getSource()== searchBtn){
-
+            Stage main = (Stage) searchBtn.getScene().getWindow();
             createFilter();
+            createScene("/org/example/hiredrive/Scenes/Filtered Company Adds.fxml", this);
+            main.close();
         }
         else if (event.getSource() == logOutBtn){
             Stage main = (Stage) myProfileButton.getScene().getWindow();
@@ -208,7 +210,6 @@ public class DriverSearchController extends SuperSceneController{
         if(ratingMax > 5) ratingMax = 5;
 
 
-
         minDate = startDateFilter.getValue();
         maxDate = endDateFilter.getValue();
 
@@ -222,7 +223,6 @@ public class DriverSearchController extends SuperSceneController{
 
     @Override
     public void setData(Object data){
-
         driver = (Driver) data;
         update();
     }

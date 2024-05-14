@@ -20,6 +20,7 @@ public class Driver extends User {
         super(username + usersurname, password, email, phoneNo);
         this.surname = usersurname;
         this.experience = experience;
+        this.available = true;
 
         UserConnection.addUser(username, surname, email, password, phoneNo,"driver", Date.valueOf(LocalDate.now()), experience);
         userId = UserConnection.getUserID(email);

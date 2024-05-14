@@ -1,5 +1,6 @@
 package org.example.hiredrive.advertisement;
 
+import org.example.hiredrive.Connection.UserConnection;
 import org.example.hiredrive.users.Driver;
 
 import java.sql.Date;
@@ -26,6 +27,7 @@ public class Filter {
 
   //null constructor, for displayment of every ad
     public Filter(){
+        this.isAvailable = true;
         this.from = "%";
         this.destination = "%";
         this.minRate = 0;
@@ -42,7 +44,7 @@ public class Filter {
     }
 
     public ArrayList<Driver> getMatchingDrivers(){
-      return resultantsDrivers;
+      return (ArrayList<Driver>) UserConnection.getUsersByFilter(minExperienceLevel, maxExperienceLevel, minRate, maxRate, licenses);
     }
 
     public void setFrom(String from) {

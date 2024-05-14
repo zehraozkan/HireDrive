@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.example.hiredrive.advertisement.Filter;
 import org.example.hiredrive.users.User;
 
 public abstract class SuperSceneController {
@@ -55,6 +56,7 @@ public abstract class SuperSceneController {
     public void setData(Object Data) {}
     public User getUserData() {return null;}
     public String getMail() {return null;}
+    public Filter getFilter(){return null;}
 
    // public abstract void sendData();
 }

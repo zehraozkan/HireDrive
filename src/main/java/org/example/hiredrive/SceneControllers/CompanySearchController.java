@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import org.example.hiredrive.advertisement.Filter;
 import org.example.hiredrive.users.Company;
 import org.example.hiredrive.users.Driver;
+import org.example.hiredrive.users.User;
 
 import java.util.ArrayList;
 
@@ -90,6 +91,7 @@ public class CompanySearchController extends SuperSceneController{
     private int minExperienceLevel;
     private int maxExperienceLevel;
     private int expLevel;
+    private Filter filter;
 
 
     @FXML
@@ -102,11 +104,14 @@ public class CompanySearchController extends SuperSceneController{
             Stage main = (Stage) logOutButton.getScene().getWindow();
             main.close();
 
-            setData();
+
 
         }else if(event.getSource() == searchByFilterButton) {
-            
-            //createScene("/org/example/hiredrive/Scenes/Filtered Company Adds.fxml", filteredDriver);
+
+            Stage main = (Stage) myProfileButton.getScene().getWindow();
+            createFilter();
+            createScene("/org/example/hiredrive/Scenes/Filtered Driver Adds.fxml", this);
+            main.close();
         }else if(event.getSource() == searchByNameButton) {
 
         }else if (event.getSource() == myProfileButton) {
@@ -116,11 +121,10 @@ public class CompanySearchController extends SuperSceneController{
         }
     }
 
-    
-    public void setData(){
 
+    public void createFilter(){
         checkedLicenses = new ArrayList<CheckBox>();
-        Filter filter = new Filter();
+        filter = new Filter();
 
         if (A.isSelected()) checkedLicenses.add(A);
 
@@ -165,6 +169,21 @@ public class CompanySearchController extends SuperSceneController{
         filter.setMinExperienceLevel(minExperienceLevel);
         filter.setMaxExperienceLevel(maxExperienceLevel);
         filter.setExperienceLevel(expLevel);
+    }
+    @Override
+    public void setData(Object data){
+
+        company = (Company) data;
+        update();
+    }
+    public void update() {
+        myProfileButton.setText(company.getUsername());
+    }
+    public Filter getFilter(){
+        return filter;
+    }
+    public User getUser(){
+        return company;
     }
 
     private ArrayList<String> getSelectedLicenseNames(ArrayList<CheckBox> checkedLicenses) {

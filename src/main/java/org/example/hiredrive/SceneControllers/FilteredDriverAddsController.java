@@ -8,6 +8,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import org.example.hiredrive.advertisement.Filter;
+import org.example.hiredrive.users.Company;
+import org.example.hiredrive.users.Driver;
+
+import java.util.ArrayList;
 
 public class FilteredDriverAddsController extends SuperSceneController{
 
@@ -34,6 +39,11 @@ public class FilteredDriverAddsController extends SuperSceneController{
 
     @FXML
     private TextField searchByNameTextArea;
+
+    private SuperSceneController prevScene;
+    private Company company;
+    private Filter filter;
+    private ArrayList<Driver> matchingDrivers;
 
     @FXML
     void btn_clicked(ActionEvent event) {
@@ -62,6 +72,14 @@ public class FilteredDriverAddsController extends SuperSceneController{
             createScene("/org/example/hiredrive/Scenes/ProfilePageCompany.fxml");
 
         }
+    }
+
+    @Override
+    public void setData(Object data) {
+        prevScene = (SuperSceneController) data;
+        company = (Company) prevScene.getUserData();
+        filter = prevScene.getFilter();
+        matchingDrivers = filter.getMatchingDrivers();
     }
 
 }

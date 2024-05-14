@@ -455,10 +455,8 @@ public class UserConnection {
         }
     }
 
-    public static List<Driver> getUsersByFilter(String from, String destination, int minExperienceLevel, int maxExperienceLevel,
-                                                int minRate, int maxRate, ArrayList<String> licenses,
-                                                ArrayList<String> cargoType, Date minDeadline, Date maxDeadline,
-                                                boolean isUser, boolean isAvailable) {
+    public static List<Driver> getUsersByFilter(int minExperienceLevel, int maxExperienceLevel,
+                                                int minRate, int maxRate, ArrayList<String> licenses) {
         List<Driver> drivers = new ArrayList<>();
         Set<Integer> seenUserIds = new HashSet<>(); // to avoid duplicates
 
@@ -467,12 +465,6 @@ public class UserConnection {
             StringBuilder sql = new StringBuilder("SELECT * FROM users WHERE 1=1");
 
             // Add conditions based on filter parameters
-            if (from != null && !from.isEmpty()) {
-                sql.append(" AND from_location = '").append(from).append("'");
-            }
-            if (destination != null && !destination.isEmpty()) {
-                sql.append(" AND destination = '").append(destination).append("'");
-            }
             if (minExperienceLevel > 0) {
                 sql.append(" AND experience >= ").append(minExperienceLevel);
             }
@@ -480,10 +472,10 @@ public class UserConnection {
                 sql.append(" AND experience <= ").append(maxExperienceLevel);
             }
             if (minRate > 0) {
-                sql.append(" AND rate >= ").append(minRate);
+                sql.append(" AND rating >= ").append(minRate);
             }
             if (maxRate > 0) {
-                sql.append(" AND rate <= ").append(maxRate);
+                sql.append(" AND rating <= ").append(maxRate);
             }
             if (licenses != null && !licenses.isEmpty()) {
                 sql.append(" AND licence_type IN (");
@@ -495,28 +487,6 @@ public class UserConnection {
                 }
                 sql.append(")");
             }
-            if (cargoType != null && !cargoType.isEmpty()) {
-                sql.append(" AND cargo_type IN (");
-                for (int i = 0; i < cargoType.size(); i++) {
-                    sql.append("'").append(cargoType.get(i)).append("'");
-                    if (i < cargoType.size() - 1) {
-                        sql.append(", ");
-                    }
-                }
-                sql.append(")");
-            }
-            if (minDeadline != null) {
-                sql.append(" AND deadline >= '").append(minDeadline).append("'");
-            }
-            if (maxDeadline != null) {
-                sql.append(" AND deadline <= '").append(maxDeadline).append("'");
-            }
-            if (isUser) {
-                sql.append(" AND user_type = 'user'");
-            }
-            if (isAvailable) {
-                sql.append(" AND available = 'yes'");
-            }
 
             try (PreparedStatement statement = connection.prepareStatement(sql.toString())) {
                 try (ResultSet resultSet = statement.executeQuery()) {
@@ -525,21 +495,20 @@ public class UserConnection {
                         int userId = resultSet.getInt("user_id");
                         if (!seenUserIds.contains(userId)) {
                             String userName = resultSet.getString("user_name");
-                            String userSurname = resultSet.getString("user_surname");
                             String userPassword = resultSet.getString("user_password");
                             String userMail = resultSet.getString("user_mail");
                             String phoneNumber = resultSet.getString("phone_number");
                             int experience = resultSet.getInt("experience");
 
                             // Create and add driver to the list
-                            drivers.add(new Driver(userName, userSurname, userPassword, userMail, userId, phoneNumber, experience));
+                            drivers.add(new Driver(userName, "", userPassword, userMail, userId, phoneNumber, experience));
                             seenUserIds.add(userId);
                         }
                     }
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
 
         return drivers;
