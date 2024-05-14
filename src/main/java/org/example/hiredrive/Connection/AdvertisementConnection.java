@@ -119,9 +119,11 @@ public class AdvertisementConnection {
                 Date dueDate = rs.getDate("due_date");
                 String license = rs.getString("required_license");
                 int experience = rs.getInt("experience");
+                String from = rs.getString("from_location");
+                String to = rs.getString("to_location");
 
 
-                advertisements.add(new Advertisement(advertId, owner_id, addTitle, addContent, cargoType,dueDate, getAllRequestsForAdvertisement(advertId), license, experience ));
+                advertisements.add(new Advertisement(advertId, owner_id, addTitle, addContent, cargoType,dueDate, getAllRequestsForAdvertisement(advertId), from, to, license, experience ));
 
             }
         } catch (SQLException e) {
@@ -146,10 +148,12 @@ public class AdvertisementConnection {
                         Date due_date = resultSet.getDate("due_date");
                         String license = resultSet.getString("required_license");
                         int experience = resultSet.getInt("experience");
+                        String from = resultSet.getString("from_location");
+                        String to = resultSet.getString("to_location");
 
                         //public Advertisement(Company owner, String addTitle,String addContent, String cargoType, Date dueDate)
 //
-                        advertisement = new Advertisement(add_id, owner_id, add_title, add_content, cargo_type, due_date, getAllRequestsForAdvertisement(add_id), license, experience);
+                        advertisement = new Advertisement(add_id, owner_id, add_title, add_content, cargo_type, due_date, getAllRequestsForAdvertisement(add_id),from, to, license, experience);
                     }
                 }
             }
@@ -201,88 +205,85 @@ public class AdvertisementConnection {
         return requests;
     }
 
-    public static ArrayList<Advertisement> filterAdvertisements(String from, String destination, String cargoType, int minExperience, int maxExperience, int minRate, int maxRate, Date minDeadline, Date maxDeadline){
-            ArrayList<Advertisement> matchingAdvertisements = new ArrayList<>();
-            String sql = "SELECT * FROM advertisement WHERE cargo_type = ?";
-        
-            // Construct the SQL query based on the provided parameters
+    public static ArrayList<Advertisement> filterAdvertisements(String from, String destination, String cargoType, int minRate, int maxRate, Date minDeadline, Date maxDeadline) {
+        ArrayList<Advertisement> filteredAdvertisements = new ArrayList<>();
+
+        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+            // Construct SQL query based on filter parameters
+            StringBuilder sql = new StringBuilder("SELECT * FROM advertisement WHERE 1=1");
+
             if (from != null && !from.isEmpty()) {
-                sql += " AND add_title LIKE ?";
+                sql.append(" AND from_location = ?");
             }
             if (destination != null && !destination.isEmpty()) {
-                sql += " AND add_content LIKE ?";
+                sql.append(" AND to_location = ?");
             }
-            if (minExperience >= 0) {
-                sql += " AND experience >= ?";
+            if (cargoType != null && !cargoType.isEmpty()) {
+                sql.append(" AND cargo_type = ?");
             }
-            if (maxExperience >= 0) {
-                sql += " AND experience <= ?";
+            if (minRate > 0) {
+                sql.append(" AND rate >= ?");
             }
-            if (minRate >= 0) {
-                sql += " AND requests >= ?";
-            }
-            if (maxRate >= 0) {
-                sql += " AND requests <= ?";
+            if (maxRate > 0) {
+                sql.append(" AND rate <= ?");
             }
             if (minDeadline != null) {
-                sql += " AND due_date >= ?";
+                sql.append(" AND due_date >= ?");
             }
             if (maxDeadline != null) {
-                sql += " AND due_date <= ?";
+                sql.append(" AND due_date <= ?");
             }
-        
-            try (Connection conn = DriverManager.getConnection(url, username, password);
-                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                pstmt.setString(1, cargoType);
-        
-                int parameterIndex = 2; // Start index for additional parameters
-        
-                // Set parameters based on the provided criteria
+
+            try (PreparedStatement statement = connection.prepareStatement(sql.toString())) {
+                int parameterIndex = 1;
                 if (from != null && !from.isEmpty()) {
-                    pstmt.setString(parameterIndex++, "%" + from + "%");
+                    statement.setString(parameterIndex++, from);
                 }
                 if (destination != null && !destination.isEmpty()) {
-                    pstmt.setString(parameterIndex++, "%" + destination + "%");
+                    statement.setString(parameterIndex++, destination);
                 }
-                if (minExperience >= 0) {
-                    pstmt.setInt(parameterIndex++, minExperience);
+                if (cargoType != null && !cargoType.isEmpty()) {
+                    statement.setString(parameterIndex++, cargoType);
                 }
-                if (maxExperience >= 0) {
-                    pstmt.setInt(parameterIndex++, maxExperience);
+                if (minRate > 0) {
+                    statement.setInt(parameterIndex++, minRate);
                 }
-                if (minRate >= 0) {
-                    pstmt.setInt(parameterIndex++, minRate);
-                }
-                if (maxRate >= 0) {
-                    pstmt.setInt(parameterIndex++, maxRate);
+                if (maxRate > 0) {
+                    statement.setInt(parameterIndex++, maxRate);
                 }
                 if (minDeadline != null) {
-                    pstmt.setDate(parameterIndex++, minDeadline);
+                    statement.setDate(parameterIndex++, new java.sql.Date(minDeadline.getTime()));
                 }
                 if (maxDeadline != null) {
-                    pstmt.setDate(parameterIndex++, maxDeadline);
+                    statement.setDate(parameterIndex++, new java.sql.Date(maxDeadline.getTime()));
                 }
-        
-                ResultSet rs = pstmt.executeQuery();
-        
-                while (rs.next()) {
-                    int advertId = rs.getInt("advert_id");
-                    int ownerId = rs.getInt("owner_id");
-                    String addTitle = rs.getString("add_title");
-                    String addContent = rs.getString("add_content");
-                    Date dueDate = rs.getDate("due_date");
-                    int requests = rs.getInt("requests");
-                    String requiredLicense = rs.getString("required_license");
-                    int experience = rs.getInt("experience");
-        
-                    Advertisement advertisement = new Advertisement(advertId, ownerId, addTitle, addContent, cargoType, dueDate, getAllRequestsForAdvertisement(advertId), requiredLicense, experience);
-                    matchingAdvertisements.add(advertisement);
+
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        // Retrieve advertisement details from the result set
+                        int advertId = resultSet.getInt("advert_id");
+                        int ownerId = resultSet.getInt("owner_id");
+                        String addTitle = resultSet.getString("add_title");
+                        String addContent = resultSet.getString("add_content");
+                        Date dueDate = resultSet.getDate("due_date");
+                        int requests = resultSet.getInt("requests");
+                        String requiredLicense = resultSet.getString("required_license");
+                        String fromLocation = resultSet.getString("from_location");
+                        String toLocation = resultSet.getString("to_location");
+                        int experience = resultSet.getInt("experience");
+
+                        // Create Advertisement object and add to list
+                        Advertisement advertisement = new Advertisement(advertId, ownerId, addTitle, addContent, cargoType,
+                                dueDate, getAllRequestsForAdvertisement(advertId), requiredLicense, fromLocation, toLocation, experience);
+                        filteredAdvertisements.add(advertisement);
+                    }
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
-        
-            return matchingAdvertisements;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return filteredAdvertisements;
         }
     }
         

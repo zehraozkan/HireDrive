@@ -21,11 +21,13 @@ public class Advertisement {
     private String cargoType;
     private Date dueDate;
     private ArrayList<Request> requests;
+    private String from;
+    private String to;
 
 
-
+                                                                        //Advertisement(advertId, ownerId, addTitle, addContent, cargoType, dueDate, requests, requiredLicense, fromLocation, toLocation, experience);
     //database constructor
-    public Advertisement(int AdvertisementID, int company_id, String addTitle, String content, String cargoType, Date dueDate, ArrayList<Request> requests, String requiredLicense, int experience){
+    public Advertisement(int AdvertisementID, int company_id, String addTitle, String content, String cargoType, Date dueDate, ArrayList<Request> requests, String requiredLicense, String from, String to, int experience){
         this.advertisementID = AdvertisementID;
         this.owner = (Company) UserConnection.getUser(company_id);
         this.addTitle = addTitle;
@@ -35,10 +37,12 @@ public class Advertisement {
         this.requiredLicense = requiredLicense;
         this.content = content;
         this.experience = experience;
+        this.from = from;
+        this.to = to;
 
     }
     //user view
-    public Advertisement(Company owner, String addTitle,String addContent,String requiredLicense, String cargoType, Date dueDate, int experience){
+    public Advertisement(Company owner, String addTitle,String addContent,String requiredLicense, String cargoType, Date dueDate, String from, String to, int experience){
         this.advertisementID = AdvertisementConnection.addAdvertisement(owner.getUserId(), addTitle, cargoType, addContent, dueDate, requiredLicense, experience);
         this.owner = owner;
         this.addTitle = addTitle;
@@ -48,10 +52,10 @@ public class Advertisement {
         this.requiredLicense = requiredLicense;
         this.requests = new ArrayList<>();
         this.experience = experience;
+        this.from = from;
+        this.to = to;
 
     }
-
-
 
     public void deleteAdvertisement(){
         AdvertisementConnection.deleteAdvertisement(advertisementID);
