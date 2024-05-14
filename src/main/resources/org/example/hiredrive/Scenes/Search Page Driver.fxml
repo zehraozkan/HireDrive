@@ -6,6 +6,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
@@ -120,113 +121,140 @@
                            <content>
                               <VBox>
                                  <children>
-                                    <HBox prefHeight="30.0" prefWidth="500.0">
+                                    <HBox prefHeight="32.0" prefWidth="500.0">
                                        <children>
-                                          <CheckBox fx:id="coldChainCargo" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="Cold Chain Cargo">
-                                             <padding>
-                                                <Insets bottom="5.0" left="25.0" top="5.0" />
-                                             </padding>
+                                          <RadioButton fx:id="coldChainCargo" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="233.0" text="Cold Chain Cargo">
                                              <font>
-                                                <Font size="15.0" />
+                                                <Font size="17.0" />
                                              </font>
-                                          </CheckBox>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </RadioButton>
                                        </children>
+                                       <padding>
+                                          <Insets left="25.0" />
+                                       </padding>
                                     </HBox>
-                                    <HBox prefHeight="30.0" prefWidth="500.0">
+                                    <HBox prefHeight="32.0" prefWidth="500.0">
                                        <children>
-                                          <CheckBox fx:id="vehicleCargo" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="Vehicle Cargo">
-                                             <padding>
-                                                <Insets bottom="5.0" left="25.0" top="5.0" />
-                                             </padding>
+                                          <RadioButton fx:id="vehicleCargo" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="233.0" text="Vehicle Cargo">
                                              <font>
-                                                <Font size="15.0" />
+                                                <Font size="17.0" />
                                              </font>
-                                          </CheckBox>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </RadioButton>
                                        </children>
+                                       <padding>
+                                          <Insets left="25.0" />
+                                       </padding>
                                     </HBox>
-                                    <HBox prefHeight="30.0" prefWidth="500.0">
+                                    <HBox prefHeight="32.0" prefWidth="500.0">
                                        <children>
-                                          <CheckBox fx:id="smallParcelCargo" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="Small Parcel Cargo">
-                                             <padding>
-                                                <Insets bottom="5.0" left="25.0" top="5.0" />
-                                             </padding>
+                                          <RadioButton fx:id="smallParcelCargo" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="233.0" text="Small Parcel Cargo">
                                              <font>
-                                                <Font size="15.0" />
+                                                <Font size="17.0" />
                                              </font>
-                                          </CheckBox>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </RadioButton>
                                        </children>
+                                       <padding>
+                                          <Insets left="25.0" />
+                                       </padding>
                                     </HBox>
-                                    <HBox prefHeight="30.0" prefWidth="500.0">
+                                    <HBox prefHeight="32.0" prefWidth="500.0">
                                        <children>
-                                          <CheckBox fx:id="heavyCargo" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="Heavy Cargo">
-                                             <padding>
-                                                <Insets bottom="5.0" left="25.0" top="5.0" />
-                                             </padding>
+                                          <RadioButton fx:id="heavyCargo" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="233.0" text="Heavy Cargo">
                                              <font>
-                                                <Font size="15.0" />
+                                                <Font size="17.0" />
                                              </font>
-                                          </CheckBox>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </RadioButton>
                                        </children>
+                                       <padding>
+                                          <Insets left="25.0" />
+                                       </padding>
                                     </HBox>
-                                    <HBox prefHeight="30.0" prefWidth="500.0">
+                                    <HBox prefHeight="32.0" prefWidth="500.0">
                                        <children>
-                                          <CheckBox fx:id="valuableCargo" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="Valuable Cargo">
-                                             <padding>
-                                                <Insets bottom="5.0" left="25.0" top="5.0" />
-                                             </padding>
+                                          <RadioButton fx:id="valuableCargo" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="233.0" text="Valuable Cargo">
                                              <font>
-                                                <Font size="15.0" />
+                                                <Font size="17.0" />
                                              </font>
-                                          </CheckBox>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </RadioButton>
                                        </children>
+                                       <padding>
+                                          <Insets left="25.0" />
+                                       </padding>
                                     </HBox>
-                                    <HBox prefHeight="30.0" prefWidth="500.0">
+                                    <HBox prefHeight="32.0" prefWidth="500.0">
                                        <children>
-                                          <CheckBox fx:id="dangerousGoodsCargo" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="Dangerous Goods Cargo">
-                                             <padding>
-                                                <Insets bottom="5.0" left="25.0" top="5.0" />
-                                             </padding>
+                                          <RadioButton fx:id="dangerousGoodsCargo" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="233.0" text="Dangerous Goods Cargo">
                                              <font>
-                                                <Font size="15.0" />
+                                                <Font size="17.0" />
                                              </font>
-                                          </CheckBox>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </RadioButton>
                                        </children>
+                                       <padding>
+                                          <Insets left="25.0" />
+                                       </padding>
                                     </HBox>
-                                    <HBox prefHeight="30.0" prefWidth="500.0">
+                                    <HBox prefHeight="32.0" prefWidth="500.0">
                                        <children>
-                                          <CheckBox fx:id="livestockCargo" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="Livestock Cargo">
-                                             <padding>
-                                                <Insets bottom="5.0" left="25.0" top="5.0" />
-                                             </padding>
+                                          <RadioButton fx:id="livestockCargo" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="233.0" text="Livestock Cargo">
                                              <font>
-                                                <Font size="15.0" />
+                                                <Font size="17.0" />
                                              </font>
-                                          </CheckBox>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </RadioButton>
                                        </children>
+                                       <padding>
+                                          <Insets left="25.0" />
+                                       </padding>
                                     </HBox>
-                                    <HBox prefHeight="30.0" prefWidth="500.0">
+                                    <HBox prefHeight="32.0" prefWidth="500.0">
                                        <children>
-                                          <CheckBox fx:id="specialHandlingCargo" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="Special Handling Cargo">
-                                             <padding>
-                                                <Insets bottom="5.0" left="25.0" top="5.0" />
-                                             </padding>
+                                          <RadioButton fx:id="specialHandlingCargo" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="233.0" text="Special Handling Cargo">
                                              <font>
-                                                <Font size="15.0" />
+                                                <Font size="17.0" />
                                              </font>
-                                          </CheckBox>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </RadioButton>
                                        </children>
+                                       <padding>
+                                          <Insets left="25.0" />
+                                       </padding>
                                     </HBox>
-                                    <HBox prefHeight="30.0" prefWidth="500.0">
+                                    <HBox prefHeight="32.0" prefWidth="500.0">
                                        <children>
-                                          <CheckBox fx:id="retailCargo" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="Retail Cargo">
-                                             <padding>
-                                                <Insets bottom="5.0" left="25.0" top="5.0" />
-                                             </padding>
+                                          <RadioButton fx:id="retailCargo" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="233.0" text="Retail Cargo">
                                              <font>
-                                                <Font size="15.0" />
+                                                <Font size="17.0" />
                                              </font>
-                                          </CheckBox>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </RadioButton>
                                        </children>
+                                       <padding>
+                                          <Insets left="25.0" />
+                                       </padding>
                                     </HBox>
                                  </children>
                               </VBox>

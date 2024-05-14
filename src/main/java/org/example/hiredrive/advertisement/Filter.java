@@ -15,7 +15,7 @@ public class Filter {
     private int minRate;
     private int maxRate;
     private ArrayList<String> licenses;
-    private ArrayList<String> cargoType;
+    private String cargoType;
     private Date minDeadline;
     private Date maxDeadline;
     private boolean isUser;
@@ -34,7 +34,6 @@ public class Filter {
         this.maxExperienceLevel = 1000;//MAX_VALUE is impossible
         this.resultantsAds = new ArrayList<Advertisement>();
         this.resultantsDrivers = new ArrayList<Driver>();
-        this.cargoType = new ArrayList<String>();
         this.licenses = new ArrayList<String>();
     }
 
@@ -54,7 +53,7 @@ public class Filter {
       this.destination = destination;
   }
   
-    public void setCargoType(ArrayList<String> cargoType) {
+    public void setCargoType(String cargoType) {
       this.cargoType = cargoType;
   }
 
