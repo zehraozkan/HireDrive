@@ -67,7 +67,15 @@ public class DriverSearchController extends SuperSceneController{
             Stage main = (Stage) myProfileButton.getScene().getWindow();
             createScene("/org/example/hiredrive/Scenes/profilePageDriver.fxml", this);
             main.close();
+<<<<<<< Updated upstream
         }
+=======
+
+            vehicleCargo.isSelected();
+        }else if(event.getSource()== searchBtn){
+             
+         }
+>>>>>>> Stashed changes
     }
     public void update() {
         myProfileButton.setText(driver.getUsername());
