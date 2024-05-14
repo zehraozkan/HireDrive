@@ -60,10 +60,7 @@ public class CompanySearchController extends SuperSceneController{
     private Button logOutButton;
 
     @FXML
-    private Spinner<Integer> maxRate;
-
-    @FXML
-    private Spinner<Integer> minRate;
+    private Slider ratingSlicer;
 
     @FXML
     private Button myProfileButton;
@@ -151,8 +148,11 @@ public class CompanySearchController extends SuperSceneController{
 
         if (DE.isSelected()) checkedLicenses.add(DE);
 
-        ratingMin = (Integer) minRate.getValue();
-        ratingMax = (Integer) maxRate.getValue();
+        ratingMin = (int) ratingSlicer.getValue() - 1;
+        ratingMax = (int) ratingSlicer.getValue() + 1;
+
+        if(ratingMin < 0) ratingMin = 0;
+        if(ratingMax > 5) ratingMax = 5;
 
         minExperienceLevel = (int) experienceYear.getMin();
         maxExperienceLevel = (int) experienceYear.getMax();
