@@ -58,6 +58,10 @@ public class CompanySignUpController extends SuperSceneController{
             Stage main = (Stage) nextBtn.getScene().getWindow();
             main.close();
 
+        } else if (event.getSource() == goBackScene) {
+            Stage main = (Stage) goBackScene.getScene().getWindow();
+            createScene("/org/example/hiredrive/Scenes/sign up scene.fxml");
+            main.close();
         }
     }
 

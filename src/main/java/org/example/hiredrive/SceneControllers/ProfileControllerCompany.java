@@ -67,12 +67,12 @@ public class ProfileControllerCompany extends  SuperSceneController{
         if(event.getSource() == addLicenseBtn) {
 
         }else if(event.getSource() == goMainPageScene) {
-            createScene("/org/example/hiredrive/Scenes/Search Page Driver.fxml", user);
+            createScene("/org/example/hiredrive/Scenes/Search Page Company.fxml", user);
             Stage main = (Stage) goMainPageScene.getScene().getWindow();
             main.close();
 
         }else if(event.getSource() == job_btn) {
-            createScene("/org/example/hiredrive/Scenes/Search Page Driver.fxml", user);
+            createScene("/org/example/hiredrive/Scenes/Search Page Company.fxml", user);
             Stage main = (Stage) job_btn.getScene().getWindow();
             main.close();
 

@@ -29,7 +29,7 @@
             <Font name="Arial" size="19.0" />
          </font>
       </Button>
-      <Button fx:id="goBackScene" alignment="CENTER" layoutX="852.0" layoutY="8.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: #808080; -fx-border-radius: 5; -fx-border-insets: 3; -fx-border-style: solid inside; -fx-border-width: 1; -fx-border-color: white; -fx-background-radius: 10;" text="Back" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="225.0">
+      <Button fx:id="goBackScene" alignment="CENTER" layoutX="852.0" layoutY="8.0" mnemonicParsing="false" onAction="#btn_clicked" prefHeight="38.0" prefWidth="200.0" style="-fx-background-color: #808080; -fx-border-radius: 5; -fx-border-insets: 3; -fx-border-style: solid inside; -fx-border-width: 1; -fx-border-color: white; -fx-background-radius: 10;" text="Back" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="225.0">
          <font>
             <Font name="Arial" size="19.0" />
          </font>
