@@ -139,8 +139,6 @@ public class DriverSearchController extends SuperSceneController{
         }else if(event.getSource()== searchBtn){
 
             createFilter();
-
-
         }
     }
 
