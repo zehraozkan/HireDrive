@@ -2,9 +2,11 @@ package org.example.hiredrive.SceneControllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import org.example.hiredrive.advertisement.Filter;
 import org.example.hiredrive.users.Driver;
 import org.example.hiredrive.users.User;
 
@@ -85,11 +87,6 @@ public class DriverSearchController extends SuperSceneController{
     @FXML
     private DatePicker endDateFilter;
 
-    @FXML
-    private TitledPane experienceLevelFilter;
-
-    @FXML
-    private TitledPane experienceLevelFilter1;
 
     @FXML
     private Button goMainPageScene;
@@ -129,6 +126,7 @@ public class DriverSearchController extends SuperSceneController{
     private int ratingMax;
     private LocalDate minDate;
     private LocalDate maxDate;
+    private Filter filter;
 
     @FXML
     void btn_clicked(ActionEvent event) {
@@ -140,7 +138,7 @@ public class DriverSearchController extends SuperSceneController{
             vehicleCargo.isSelected();
         }else if(event.getSource()== searchBtn){
 
-
+            createFilter();
 
 
         }
@@ -155,13 +153,8 @@ public class DriverSearchController extends SuperSceneController{
     public User getUserData(){
         return driver;
     }
-
-    @Override
-    public void setData(Object data){
-
-        driver = (Driver) data;
-        update();
-
+    public void createFilter() {
+        filter = new Filter();
         checkedLicenses = new ArrayList<>();
         checkedCargoType = new ArrayList<>();
 
@@ -209,19 +202,31 @@ public class DriverSearchController extends SuperSceneController{
 
         if (vehicleCargo.isSelected()) checkedCargoType.add(vehicleCargo);
 
+       // if()
         ratingMin = (Integer) minPointRating.getValue();
         ratingMax = (Integer) maxPointRating.getValue();
+
+        //filter.setMinExperienceLevel();
+        //filter.setMaxExperienceLevel();
+
 
         minDate = startDateFilter.getValue();
         maxDate = endDateFilter.getValue();
 
-        Filter filter = new Filter();
         filter.setLicenses(getSelectedLicenseNames(checkedLicenses));
         filter.setCargoType(getSelectedCargoTypes(checkedCargoType));
         filter.setMinRate(ratingMin);
         filter.setMaxRate(ratingMax);
         filter.setMinDeadline(Date.valueOf(minDate));
         filter.setMaxDeadline(Date.valueOf(maxDate));
+    }
+
+    @Override
+    public void setData(Object data){
+
+        driver = (Driver) data;
+        update();
+
 
     }
 
