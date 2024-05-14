@@ -229,13 +229,7 @@ public class DriverSearchController extends SuperSceneController{
         }
         return selectedLicenses;
     }
-
-    private ArrayList<String> getSelectedCargoTypes(ArrayList<CheckBox> checkedCargoType) {
-        for (CheckBox checkBox : checkedCargoType) {
-            selectedCargoTypes.add(checkBox.getText());
-        }
-        return selectedCargoTypes;
-    }
+    
 
 
 
