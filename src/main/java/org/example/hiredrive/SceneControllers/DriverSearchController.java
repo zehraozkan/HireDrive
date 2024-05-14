@@ -136,6 +136,12 @@ public class DriverSearchController extends SuperSceneController{
 
             createFilter();
         }
+        else if (event.getSource() == logOutBtn){
+            Stage main = (Stage) myProfileButton.getScene().getWindow();
+            createScene("/org/example/hiredrive/Scenes/entranceScene.fxml");
+            driver = null;
+            main.close();
+        }
     }
 
 
