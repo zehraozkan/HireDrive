@@ -18,7 +18,7 @@ public class FilteredCompanyController extends SuperSceneController{
     }
 
     public void initialise() {
-        
+
     }
 
 
