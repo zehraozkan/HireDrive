@@ -71,6 +71,11 @@ public class DriverSignUpController extends SuperSceneController {
             main.close();
 
         }
+        else if (event.getSource() == backBtn) {
+            Stage main = (Stage) backBtn.getScene().getWindow();
+            createScene("/org/example/hiredrive/Scenes/sign up scene.fxml");
+            main.close();
+        }
     }
     @Override
     public User getUserData() {
