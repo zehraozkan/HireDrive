@@ -29,7 +29,7 @@ public class SignInController extends SuperSceneController{
     @FXML
     private Label wrongPrompt;
 
-    private User user;
+    public static User user;
 
     @FXML
     void LinkClicked(ActionEvent event) {
