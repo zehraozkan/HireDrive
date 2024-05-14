@@ -137,6 +137,8 @@ public class DriverSearchController extends SuperSceneController{
             createScene("/org/example/hiredrive/Scenes/profilePageDriver.fxml", this);
             main.close();
 
+            setData();
+
             vehicleCargo.isSelected();
         }else if(event.getSource()== searchBtn){
 
@@ -153,12 +155,8 @@ public class DriverSearchController extends SuperSceneController{
         return driver;
     }
 
-    @Override
-    public void setData(Object data){
-
-        driver = (Driver) data;
-        update();
-
+    public void setData(){
+        
         checkedLicenses = new ArrayList<CheckBox>();
         Filter filter = new Filter();
 
@@ -229,7 +227,7 @@ public class DriverSearchController extends SuperSceneController{
         }
         return selectedLicenses;
     }
-    
+
 
 
 
