@@ -72,17 +72,16 @@ public class ProfileController extends  SuperSceneController{
     }
      @FXML
     void mouse_clicked(MouseEvent event) {
-        if (event.getSource() == profilePicCircle) {
+        if (event.getSource() == profilePicCircleBig) {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Choose Profile Picture");
             File file = fileChooser.showOpenDialog(new Stage());
             if (file != null) {
                 Image image = new Image(file.toURI().toString());
-                profilePicCircle.setFill(new ImagePattern(image));
+                profilePicCircleBig.setFill(new ImagePattern(image));
+            }
+        }
     }
-
-}
-}
 
     @Override
     public void setData(Object data){
