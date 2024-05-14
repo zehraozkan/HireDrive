@@ -48,6 +48,10 @@ public abstract class SuperSceneController {
             System.out.println(e);
         }
     }
+    public void hide(Scene sceneToHide) {
+        // Code to hide the scene
+        sceneToHide.getWindow().hide(); // Example of hiding the scene
+    }
     public void setData(Object Data) {}
     public User getUserData() {return null;}
     public String getMail() {return null;}

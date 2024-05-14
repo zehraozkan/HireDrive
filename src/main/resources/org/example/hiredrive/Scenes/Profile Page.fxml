@@ -12,13 +12,13 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProfileController">
    <top>
       <HBox prefHeight="80.0" prefWidth="1280.0" style="-fx-background-color: #2c3e50;" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER" prefHeight="80.0" prefWidth="430.0">
                <children>
-                  <Button fx:id="goMainPageScene" mnemonicParsing="false" prefHeight="60.0" prefWidth="238.0" style="-fx-background-color: red; -fx-background-radius: 10;" text="HIREDRIVE" textFill="WHITE">
+                  <Button fx:id="goMainPageScene" mnemonicParsing="false" onAction="#btn_clicked" prefHeight="60.0" prefWidth="238.0" style="-fx-background-color: red; -fx-background-radius: 10;" text="HIREDRIVE" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
@@ -77,7 +77,7 @@
                         <Insets bottom="15.0" />
                      </padding>
                   </Hyperlink>
-                  <Hyperlink prefWidth="310.0" text="Requests" textFill="#000000fe">
+                  <Hyperlink fx:id="requestBtn" onAction="#btn_clicked" prefWidth="310.0" text="Requests" textFill="#000000fe">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -85,7 +85,7 @@
                         <Insets bottom="15.0" />
                      </padding>
                   </Hyperlink>
-                  <Hyperlink prefWidth="310.0" text="Jobs" textFill="#000000fe">
+                  <Hyperlink fx:id="job_btn" onAction="#btn_clicked" prefWidth="310.0" text="Jobs" textFill="#000000fe">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -93,7 +93,7 @@
                         <Insets bottom="15.0" />
                      </padding>
                   </Hyperlink>
-                  <Hyperlink prefWidth="310.0" text="Create/Delete Adds " textFill="#000000fe">
+                  <Hyperlink fx:id="addLicenseBtn" onAction="#btn_clicked" prefWidth="310.0" text="Add Licenses" textFill="#000000fe">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -117,12 +117,12 @@
                   <Insets bottom="15.0" top="-75.0" />
                </VBox.margin>
             </Circle>
-            <Label alignment="CENTER" prefHeight="20.0" prefWidth="289.0" text="username/ID ">
+            <Label fx:id="userInfo" alignment="CENTER" prefHeight="20.0" prefWidth="289.0" text="username/ID ">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="20.0" prefWidth="289.0" text="Rating: 3.5/5">
+            <Label fx:id="rateInfo" alignment="CENTER" prefHeight="20.0" prefWidth="289.0" text="Rating: 3.5/5">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

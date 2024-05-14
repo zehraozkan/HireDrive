@@ -7,9 +7,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import org.example.hiredrive.users.Driver;
+import org.example.hiredrive.users.User;
 
 public class DriverSearchController extends SuperSceneController{
 
@@ -60,12 +60,18 @@ public class DriverSearchController extends SuperSceneController{
             
         } else if (event.getSource() == searchBtn) {
 
+        } else if (event.getSource()== myProfileButton) {
+            createScene("org/example/hiredrive/Scenes/Profile Page.fxml", this);
         }
     }
     public void update() {
         myProfileButton.setText(driver.getUsername());
     }
 
+    @Override
+    public User getUserData(){
+        return driver;
+    }
     @Override
     public void setData(Object data){
         driver = (Driver) data;
