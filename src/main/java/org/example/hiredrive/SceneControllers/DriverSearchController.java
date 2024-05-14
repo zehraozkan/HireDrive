@@ -224,8 +224,6 @@ public class DriverSearchController extends SuperSceneController{
 
         driver = (Driver) data;
         update();
-
-
     }
 
     private ArrayList<String> getSelectedLicenseNames(ArrayList<CheckBox> checkedLicenses) {
