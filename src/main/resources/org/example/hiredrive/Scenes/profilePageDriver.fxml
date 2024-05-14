@@ -105,7 +105,7 @@
                         <Insets bottom="5.0" />
                      </padding>
                   </Hyperlink>
-                  <ScrollPane fx:id="scrollPane" disable="true" prefHeight="183.0" prefWidth="354.0" style="-fx-background-color: #D8f5f8;">
+                  <ScrollPane fx:id="scrollPane" disable="true" prefHeight="183.0" prefWidth="354.0" style="-fx-background-color: #D8f5f8;" visible="false">
                      <content>
                         <VBox prefHeight="291.0" prefWidth="337.0">
                            <children>

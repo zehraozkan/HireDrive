@@ -63,7 +63,7 @@ public class DriverSearchController extends SuperSceneController{
 
         } else if (event.getSource()== myProfileButton) {
             Stage main = (Stage) myProfileButton.getScene().getWindow();
-            createScene("/org/example/hiredrive/Scenes/Profile Page.fxml", this);
+            createScene("/org/example/hiredrive/Scenes/profilePageDriver.fxml", this);
             main.close();
         }
     }

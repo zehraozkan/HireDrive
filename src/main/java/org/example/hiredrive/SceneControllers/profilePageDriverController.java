@@ -15,11 +15,11 @@ import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.example.hiredrive.Connection.UserConnection;
-import org.example.hiredrive.SceneControllers.SuperSceneController;
+import org.example.hiredrive.users.User;
 
 import java.io.File;
 
-public class profilePageDriverController {
+public class profilePageDriverController extends  SuperSceneController{
 
     @FXML
     private CheckBox A;
@@ -99,16 +99,30 @@ public class profilePageDriverController {
     @FXML
     private Label userInfo;
 
+    private User user;
+    private SuperSceneController prevScene;
+
+    @FXML
     void btn_clicked(ActionEvent event) {
-        if(event.getSource() == addLicenseBtn) {
+
+        if(event.getSource() == addLicencesButton) {
+
+            if(scrollPane.isDisable()){
+                scrollPane.setDisable(false);
+                scrollPane.setVisible(true);
+            }else{
+                scrollPane.setDisable(true);
+                scrollPane.setVisible(false);
+            }
+
 
         }else if(event.getSource() == goMainPageScene) {
             createScene("/org/example/hiredrive/Scenes/Search Page Driver.fxml", user);
             Stage main = (Stage) goMainPageScene.getScene().getWindow();
             main.close();
 
-        }else if(event.getSource() == addLicencesButton) {
-            scrollPane.setDisable(false);
+        }else if(event.getSource() == job_btn) {
+
         }
 
     }
@@ -143,5 +157,6 @@ public class profilePageDriverController {
             System.out.println(e);
         }
     }
+
 
 }

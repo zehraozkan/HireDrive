@@ -70,7 +70,7 @@ public class ProfileController extends  SuperSceneController{
         }
 
     }
-     @FXML
+    @FXML
     void mouse_clicked(MouseEvent event) {
         if (event.getSource() == profilePicCircleBig) {
             FileChooser fileChooser = new FileChooser();
@@ -79,7 +79,7 @@ public class ProfileController extends  SuperSceneController{
             if (file != null) {
                 Image image = new Image(file.toURI().toString());
                 profilePicCircleBig.setFill(new ImagePattern(image));
-               // Image im = new Image("/org/example/hiredrive/pngs/user.png",false);
+                // Image im = new Image("/org/example/hiredrive/pngs/user.png",false);
                 profilePicCircleBig.setFill(new ImagePattern(image));
             }
         }
@@ -103,4 +103,3 @@ public class ProfileController extends  SuperSceneController{
     }
 
 }
-
