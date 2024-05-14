@@ -14,6 +14,7 @@ import org.example.hiredrive.message.Chat;
 import org.example.hiredrive.users.Company;
 import org.example.hiredrive.users.Driver;
 import org.example.hiredrive.users.User;
+import static org.example.hiredrive.SceneControllers.SignInController.user;
 
 import java.util.ArrayList;
 
@@ -55,12 +56,13 @@ public class ChatPageController extends SuperSceneController {
     private ArrayList<Company> messageSendedCompanies;
 
     private Label userInfo;
-    private Driver driver;
+    private Driver driver = (Driver) user ;
+
 
     @FXML
     void btn_clicked(ActionEvent event) {
         if(event.getSource() == main_btn) {
-            createScene("/org/example/hiredrive/Scenes/Search Page Company.fxml", driver);
+            createScene("/org/example/hiredrive/Scenes/Search Page Driver.fxml", driver);
             Stage main = (Stage) main_btn.getScene().getWindow();
             main.close();
         }else if (event.getSource() == logOutButton) {
