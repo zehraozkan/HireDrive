@@ -242,34 +242,4 @@ public class DriverSearchController extends SuperSceneController{
         }
         return selectedCargoTypes;
     }
-
-
-
-    /*public ArrayList<CheckBox> getCheckedLicenses(){
-        return checkedLicenses;
-    }
-
-    public ArrayList<CheckBox> getCheckedCargoType(){
-        return checkedCargoType
-    }
-
-    public int getRatingMin(){
-        return ratingMin;
-    }
-    public int getRatingMax(){
-        return ratingMax;
-    }
-    public LocalDate getMinDate(){
-        return minDate;
-    }
-
-    public LocalDate getMaxDate(){
-        return minDate;
-    }*/
-
-
-
-
-
-
 }

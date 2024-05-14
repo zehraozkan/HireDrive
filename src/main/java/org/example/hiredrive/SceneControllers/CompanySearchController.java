@@ -3,12 +3,10 @@ package org.example.hiredrive.SceneControllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import org.example.hiredrive.advertisement.Filter;
 import org.example.hiredrive.users.Company;
-import org.example.hiredrive.users.Driver;
 import org.example.hiredrive.users.User;
 
 import java.util.ArrayList;
@@ -182,7 +180,9 @@ public class CompanySearchController extends SuperSceneController{
     public Filter getFilter(){
         return filter;
     }
-    public User getUser(){
+
+    @Override
+    public User getUserData(){
         return company;
     }
 

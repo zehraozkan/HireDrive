@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import java.io.File;
 
 import org.example.hiredrive.Connection.UserConnection;
+import org.example.hiredrive.users.Company;
 import org.example.hiredrive.users.User;
 
 //this is for company
@@ -101,7 +102,7 @@ public class ProfileControllerCompany extends  SuperSceneController{
     @Override
     public void setData(Object data){
         prevScene = (SuperSceneController) data;
-        user = prevScene.getUserData();
+        user = (Company)prevScene.getUserData();
         update();
     }
     public void update(){
