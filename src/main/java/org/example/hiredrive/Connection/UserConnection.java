@@ -6,8 +6,8 @@ import org.example.hiredrive.users.User;
 
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Properties;
+import java.sql.Date;
+import java.util.*;
 
 public class UserConnection {
 
@@ -363,9 +363,9 @@ public class UserConnection {
             while (rs.next()) {
                 int userId = rs.getInt("user_id");
                 String k = rs.getString("user_name");
-                String userName = k.split(" ")[0];
+                String userName = k;
                 String userSurname = "";
-                if(k.contains(" ")) userSurname = k.split(" ")[1];
+                //if(k.contains(" ")) userSurname = k.split(" ")[1];
                 String userPassword = rs.getString("user_password").split(" ")[1];
                 String phoneNumber = rs.getString("phone_number");
                 String userMail = rs.getString("user_mail");
@@ -455,87 +455,94 @@ public class UserConnection {
         }
     }
 
-    public static ArrayList<Driver> filterDrivers(String from, String destination, String cargoType, int minExperience, int maxExperience, int minRate, int maxRate, Date minDeadline, Date maxDeadline) {
-        ArrayList<Driver> matchingDrivers = new ArrayList<>();
-        String sql = "SELECT * FROM users WHERE cargo_type = ?";
-        
-        // Construct the SQL query based on the provided parameters
-        if (from != null && !from.isEmpty()) {
-            sql += " AND add_title LIKE ?";
-        }
-        if (destination != null && !destination.isEmpty()) {
-            sql += " AND add_content LIKE ?";
-        }
-        if (minExperience >= 0) {
-            sql += " AND experience >= ?";
-        }
-        if (maxExperience >= 0) {
-            sql += " AND experience <= ?";
-        }
-        if (minRate >= 0) {
-            sql += " AND requests >= ?";
-        }
-        if (maxRate >= 0) {
-            sql += " AND requests <= ?";
-        }
-        if (minDeadline != null) {
-            sql += " AND due_date >= ?";
-        }
-        if (maxDeadline != null) {
-            sql += " AND due_date <= ?";
-        }
-    
-        try (Connection conn = DriverManager.getConnection(url, username, password);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, cargoType);
-    
-            int parameterIndex = 2; // Start index for additional parameters
-    
-            // Set parameters based on the provided criteria
+    public static List<Driver> getUsersByFilter(String from, String destination, int minExperienceLevel, int maxExperienceLevel,
+                                                int minRate, int maxRate, ArrayList<String> licenses,
+                                                ArrayList<String> cargoType, Date minDeadline, Date maxDeadline,
+                                                boolean isUser, boolean isAvailable) {
+        List<Driver> drivers = new ArrayList<>();
+        Set<Integer> seenUserIds = new HashSet<>(); // to avoid duplicates
+
+        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+            // Construct SQL query based on filter parameters
+            StringBuilder sql = new StringBuilder("SELECT * FROM users WHERE 1=1");
+
+            // Add conditions based on filter parameters
             if (from != null && !from.isEmpty()) {
-                pstmt.setString(parameterIndex++, "%" + from + "%");
+                sql.append(" AND from_location = '").append(from).append("'");
             }
             if (destination != null && !destination.isEmpty()) {
-                pstmt.setString(parameterIndex++, "%" + destination + "%");
+                sql.append(" AND destination = '").append(destination).append("'");
             }
-            if (minExperience >= 0) {
-                pstmt.setInt(parameterIndex++, minExperience);
+            if (minExperienceLevel > 0) {
+                sql.append(" AND experience >= ").append(minExperienceLevel);
             }
-            if (maxExperience >= 0) {
-                pstmt.setInt(parameterIndex++, maxExperience);
+            if (maxExperienceLevel > 0) {
+                sql.append(" AND experience <= ").append(maxExperienceLevel);
             }
-            if (minRate >= 0) {
-                pstmt.setInt(parameterIndex++, minRate);
+            if (minRate > 0) {
+                sql.append(" AND rate >= ").append(minRate);
             }
-            if (maxRate >= 0) {
-                pstmt.setInt(parameterIndex++, maxRate);
+            if (maxRate > 0) {
+                sql.append(" AND rate <= ").append(maxRate);
+            }
+            if (licenses != null && !licenses.isEmpty()) {
+                sql.append(" AND licence_type IN (");
+                for (int i = 0; i < licenses.size(); i++) {
+                    sql.append("'").append(licenses.get(i)).append("'");
+                    if (i < licenses.size() - 1) {
+                        sql.append(", ");
+                    }
+                }
+                sql.append(")");
+            }
+            if (cargoType != null && !cargoType.isEmpty()) {
+                sql.append(" AND cargo_type IN (");
+                for (int i = 0; i < cargoType.size(); i++) {
+                    sql.append("'").append(cargoType.get(i)).append("'");
+                    if (i < cargoType.size() - 1) {
+                        sql.append(", ");
+                    }
+                }
+                sql.append(")");
             }
             if (minDeadline != null) {
-                pstmt.setDate(parameterIndex++, minDeadline);
+                sql.append(" AND deadline >= '").append(minDeadline).append("'");
             }
             if (maxDeadline != null) {
-                pstmt.setDate(parameterIndex++, maxDeadline);
+                sql.append(" AND deadline <= '").append(maxDeadline).append("'");
             }
-    
-            ResultSet rs = pstmt.executeQuery();
-    
-            while (rs.next()) {
-                int userId = rs.getInt("user_id");
-                String username = rs.getString("username");
-                String userSurname = rs.getString("user_surname");
-                String password = rs.getString("password");
-                String email = rs.getString("email");
-                String phoneNo = rs.getString("phone_no");
-                int experience = rs.getInt("experience");
-    
-                Driver driver = new Driver(username, userSurname, password, email, userId, phoneNo, experience);
-                matchingDrivers.add(driver);
+            if (isUser) {
+                sql.append(" AND user_type = 'user'");
+            }
+            if (isAvailable) {
+                sql.append(" AND available = 'yes'");
+            }
+
+            try (PreparedStatement statement = connection.prepareStatement(sql.toString())) {
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        // Retrieve user details from the result set
+                        int userId = resultSet.getInt("user_id");
+                        if (!seenUserIds.contains(userId)) {
+                            String userName = resultSet.getString("user_name");
+                            String userSurname = resultSet.getString("user_surname");
+                            String userPassword = resultSet.getString("user_password");
+                            String userMail = resultSet.getString("user_mail");
+                            String phoneNumber = resultSet.getString("phone_number");
+                            int experience = resultSet.getInt("experience");
+
+                            // Create and add driver to the list
+                            drivers.add(new Driver(userName, userSurname, userPassword, userMail, userId, phoneNumber, experience));
+                            seenUserIds.add(userId);
+                        }
+                    }
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    
-        return matchingDrivers;
+
+        return drivers;
     }
     public static int getTotalRated(int userId) throws SQLException {
         int totalRated = 0;
