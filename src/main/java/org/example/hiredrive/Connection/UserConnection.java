@@ -154,17 +154,17 @@ public class UserConnection {
 
             // Check if there is a result
             if (rs.next()) {
+                String type = rs.getString("user_type");
                 String k = rs.getString("user_name");
                 String userName = k;
                 String userSurname = "";
-                if(k.contains(" ")){
+                if(k.contains(" ") && type.equals("driver")){
                     userName = k.split(" ")[0];
                     userSurname = k.split(" ")[1];
                 }
                 String userPassword = rs.getString("user_password");
                 String phoneNumber = rs.getString("phone_number");
                 String dateCreated = rs.getString("date_created");
-                String type = rs.getString("user_type");
                 int userId = rs.getInt("user_id");
                 int experience = rs.getInt("experience");
 

@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import org.example.hiredrive.advertisement.Filter;
 import org.example.hiredrive.users.Driver;
 import org.example.hiredrive.users.User;
 
@@ -54,6 +55,7 @@ public class DriverSearchController extends SuperSceneController{
     private DatePicker startDateFilter;
 
     private Driver driver;
+    private Filter filter;
     
     @FXML
     void btn_clicked(ActionEvent event) {

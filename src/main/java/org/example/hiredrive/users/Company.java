@@ -25,6 +25,7 @@ public class Company extends User {
     public Company(String username,  String password, String email, int user_id, String phoneNo){
         super(username,  password, email, phoneNo);
         userId = user_id;
+        userType = "company";
         worksWith = UserConnection.getAssociatedDrivers(user_id);
     }
 
