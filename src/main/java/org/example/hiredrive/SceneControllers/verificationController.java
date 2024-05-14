@@ -66,6 +66,7 @@ public class verificationController extends SuperSceneController{
         }
         this.email = prevScene.getMail();
         verificationCode = MailManager.sendVerificationMail(email);
+        System.out.println(verificationCode);
 
     }
 }
