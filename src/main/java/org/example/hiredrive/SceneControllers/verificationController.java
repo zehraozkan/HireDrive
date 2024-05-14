@@ -49,7 +49,7 @@ public class verificationController extends SuperSceneController{
         } else if (event.getSource() == backBtn) {
             Stage main = (Stage) backBtn.getScene().getWindow();
             main.close();
-            createScene("/org/example/hiredrive/Scenes/sign up as cpmpany.fxml");
+            createScene("/org/example/hiredrive/Scenes/sign up as company.fxml");
         }
     }
 

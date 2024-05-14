@@ -5,9 +5,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.File;
+
 import org.example.hiredrive.Connection.UserConnection;
 import org.example.hiredrive.users.User;
 
@@ -63,6 +70,19 @@ public class ProfileController extends  SuperSceneController{
         }
 
     }
+     @FXML
+    void mouse_clicked(MouseEvent event) {
+        if (event.getSource() == profilePicCircle) {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Choose Profile Picture");
+            File file = fileChooser.showOpenDialog(new Stage());
+            if (file != null) {
+                Image image = new Image(file.toURI().toString());
+                profilePicCircle.setFill(new ImagePattern(image));
+    }
+
+}
+}
 
     @Override
     public void setData(Object data){
