@@ -1,21 +1,21 @@
 package org.example.hiredrive.SceneControllers;
 
+import org.example.hiredrive.Connection.RequestConnection;
+import org.example.hiredrive.advertisement.Advertisement;
+import  org.example.hiredrive.users.*;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-public class FilteredDriverAddsController extends SuperSceneController{
+public class SendDeleteRequestController extends SuperSceneController{
 
     @FXML
-    private ChoiceBox<?> addOrderSelector;
-
-    @FXML
-    private VBox addShowFrame;
+    private Button deleteRequestButton;
 
     @FXML
     private Button goMainPageScene;
@@ -30,11 +30,26 @@ public class FilteredDriverAddsController extends SuperSceneController{
     private Circle profilePicCircle;
 
     @FXML
-    private Button searchByNameButton;
+    private Circle profilePicCircleBig;
 
     @FXML
-    private TextField searchByNameTextArea;
+    private ImageView ratingPng;
 
+    @FXML
+    private VBox requestDeletedFrame;
+
+    @FXML
+    private VBox requestOperationsFrame;
+
+    @FXML
+    private VBox requestSendedFrame;
+
+    @FXML
+    private Button sendRequestButton;
+
+    private Driver driver;
+    private Advertisement add;
+    
     @FXML
     void btn_clicked(ActionEvent event) {
         if(event.getSource() == goMainPageScene) {
@@ -42,8 +57,9 @@ public class FilteredDriverAddsController extends SuperSceneController{
 
             Stage main = (Stage) goMainPageScene.getScene().getWindow();
 
-            createScene("/org/example/hiredrive/Scenes/Search Page Driver.fxml");
             main.close();
+            createScene("/org/example/hiredrive/Scenes/Search Page Driver.fxml");
+            
 
         }
         else if(event.getSource() == logOutButton) {
@@ -61,6 +77,12 @@ public class FilteredDriverAddsController extends SuperSceneController{
             main.close();
             createScene("/org/example/hiredrive/Scenes/Profile Page.fxml");
 
+        } 
+        else if(event.getSource() == sendRequestButton){
+            RequestConnection.sendJobRequestToAdd(driver.getUserId(), add.getAdvertisementID());
+        }
+        else if(event.getSource() == deleteRequestButton){
+            RequestConnection.deleteRequest(driver.getUserId(), add.getAdvertisementID());
         }
     }
 

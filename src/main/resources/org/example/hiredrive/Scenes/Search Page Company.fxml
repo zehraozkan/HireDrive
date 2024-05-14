@@ -18,7 +18,6 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.hiredrive.SceneControllers.CompanySearchController">
    <top>
       <HBox prefHeight="80.0" prefWidth="1280.0" style="-fx-background-color: #2c3e50;" BorderPane.alignment="CENTER">
@@ -106,7 +105,7 @@
                                           <Font size="22.0" />
                                        </font>
                                     </Label>
-                                    <Spinner fx:id="maxDistanceFilter" editable="true" prefHeight="34.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #2c3e50; -fx-border-width: 2;" />
+                                    <Spinner fx:id="maxRate" editable="true" prefHeight="34.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #2c3e50; -fx-border-width: 2;" />
                                  </children>
                               </HBox>
                            </children>
@@ -139,7 +138,7 @@
                                  <children>
                                     <HBox prefHeight="30.0" prefWidth="500.0">
                                        <children>
-                                          <CheckBox mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="A1">
+                                          <CheckBox fx:id="A1" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="A1">
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
@@ -151,7 +150,7 @@
                                     </HBox>
                                     <HBox prefHeight="30.0" prefWidth="500.0">
                                        <children>
-                                          <CheckBox mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="A2">
+                                          <CheckBox fx:id="A2" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="A2">
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
@@ -163,7 +162,7 @@
                                     </HBox>
                                     <HBox prefHeight="30.0" prefWidth="500.0">
                                        <children>
-                                          <CheckBox mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="A">
+                                          <CheckBox fx:id="A" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="A">
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
@@ -175,7 +174,7 @@
                                     </HBox>
                                     <HBox prefHeight="30.0" prefWidth="500.0">
                                        <children>
-                                          <CheckBox mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="B1">
+                                          <CheckBox fx:id="B1" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="B1">
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
@@ -187,7 +186,7 @@
                                     </HBox>
                                     <HBox prefHeight="30.0" prefWidth="500.0">
                                        <children>
-                                          <CheckBox mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="B">
+                                          <CheckBox fx:id="B" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="B">
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
@@ -199,7 +198,7 @@
                                     </HBox>
                                     <HBox prefHeight="30.0" prefWidth="500.0">
                                        <children>
-                                          <CheckBox mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="C1">
+                                          <CheckBox fx:id="C1" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="C1">
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
@@ -211,7 +210,7 @@
                                     </HBox>
                                     <HBox prefHeight="30.0" prefWidth="500.0">
                                        <children>
-                                          <CheckBox mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="D1">
+                                          <CheckBox fx:id="D1" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="D1">
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
@@ -223,7 +222,7 @@
                                     </HBox>
                                     <HBox prefHeight="30.0" prefWidth="500.0">
                                        <children>
-                                          <CheckBox mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="D">
+                                          <CheckBox fx:id="D" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="D">
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
@@ -235,7 +234,7 @@
                                     </HBox>
                                     <HBox prefHeight="30.0" prefWidth="500.0">
                                        <children>
-                                          <CheckBox mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="BE">
+                                          <CheckBox fx:id="BE" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="BE">
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
@@ -247,7 +246,7 @@
                                     </HBox>
                                     <HBox prefHeight="30.0" prefWidth="500.0">
                                        <children>
-                                          <CheckBox mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="C1E">
+                                          <CheckBox fx:id="C1E" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="C1E">
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
@@ -259,7 +258,7 @@
                                     </HBox>
                                     <HBox prefHeight="30.0" prefWidth="500.0">
                                        <children>
-                                          <CheckBox mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="CE">
+                                          <CheckBox fx:id="CE" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="CE">
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
@@ -271,7 +270,7 @@
                                     </HBox>
                                     <HBox prefHeight="30.0" prefWidth="500.0">
                                        <children>
-                                          <CheckBox mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="D1E">
+                                          <CheckBox fx:id="D1E" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="D1E">
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
@@ -283,7 +282,7 @@
                                     </HBox>
                                     <HBox prefHeight="30.0" prefWidth="500.0">
                                        <children>
-                                          <CheckBox mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="DE">
+                                          <CheckBox fx:id="DE" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="DE">
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
@@ -305,7 +304,7 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="170.4" prefWidth="554.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Slider fx:id="ageSelector" blockIncrement="1.0" max="25.0" min="1.0" minorTickCount="8" prefHeight="7.0" prefWidth="322.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-color: white; -fx-background-radius: 8;" value="13.0">
+                                    <Slider fx:id="experienceYear" blockIncrement="1.0" max="25.0" min="1.0" minorTickCount="8" prefHeight="7.0" prefWidth="322.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-background-color: white; -fx-background-radius: 8;" value="13.0">
                                        <HBox.margin>
                                           <Insets right="50.0" />
                                        </HBox.margin>
