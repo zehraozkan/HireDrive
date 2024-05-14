@@ -82,6 +82,9 @@ public class profilePageDriverController extends  SuperSceneController{
     private Hyperlink requestBtn;
 
     @FXML
+    private Hyperlink chat_btn;
+
+    @FXML
     private ScrollPane scrollPane;
 
     @FXML

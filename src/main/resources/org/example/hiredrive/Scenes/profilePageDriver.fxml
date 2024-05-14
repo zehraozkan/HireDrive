@@ -98,6 +98,14 @@
                         <Insets bottom="15.0" />
                      </padding>
                   </Hyperlink>
+                  <Hyperlink fx:id="chat_btn" onAction="#btn_clicked" prefWidth="310.0" text="Chat" textFill="#000000fe">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="15.0" />
+                     </padding>
+                  </Hyperlink>
                   <Hyperlink fx:id="addLicencesButton" onAction="#btn_clicked" prefWidth="310.0" text="Add Licences" textFill="#000000fe">
                      <font>
                         <Font size="18.0" />

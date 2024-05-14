@@ -52,6 +52,10 @@ public class ProfileControllerCompany extends  SuperSceneController{
     private Hyperlink requestBtn;
 
     @FXML
+    private Hyperlink chat_btn;
+
+
+    @FXML
     private Label userInfo;
 
     private User user;
@@ -67,6 +71,9 @@ public class ProfileControllerCompany extends  SuperSceneController{
             main.close();
 
         }else if(event.getSource() == job_btn) {
+            createScene("/org/example/hiredrive/Scenes/Search Page Driver.fxml", user);
+            Stage main = (Stage) job_btn.getScene().getWindow();
+            main.close();
 
         } else if (event.getSource() == logOutButton) {
             user = null;
