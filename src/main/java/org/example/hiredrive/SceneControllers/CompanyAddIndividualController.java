@@ -57,17 +57,5 @@ public class CompanyAddIndividualController extends SuperSceneController{
     private void setNewRatingImage() {
     }
 
-    @FXML
-    void mouse_clicked(MouseEvent event) {
-        if (event.getSource() == profilePicCircle) {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Choose Profile Picture");
-            File file = fileChooser.showOpenDialog(new Stage());
-            if (file != null) {
-                Image image = new Image(file.toURI().toString());
-                profilePicCircle.setFill(new ImagePattern(image));
-    }
-
-}
-}
+   
 }
