@@ -79,6 +79,8 @@ public class ProfileController extends  SuperSceneController{
             if (file != null) {
                 Image image = new Image(file.toURI().toString());
                 profilePicCircleBig.setFill(new ImagePattern(image));
+               // Image im = new Image("/org/example/hiredrive/pngs/user.png",false);
+                profilePicCircleBig.setFill(new ImagePattern(image));
             }
         }
     }
