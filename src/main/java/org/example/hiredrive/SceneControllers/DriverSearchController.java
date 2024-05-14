@@ -7,6 +7,10 @@ import javafx.scene.control.*;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import org.example.hiredrive.advertisement.Filter;
+<<<<<<< HEAD
+=======
+import org.example.hiredrive.users.Company;
+>>>>>>> 1eabbb2a1df7ad0359da2e427db24120de20bab0
 import org.example.hiredrive.users.Driver;
 import org.example.hiredrive.users.User;
 
@@ -16,6 +20,8 @@ import java.sql.Date;
 
 
 public class DriverSearchController extends SuperSceneController{
+
+    private Driver driver;
 
 
     @FXML
@@ -58,31 +64,31 @@ public class DriverSearchController extends SuperSceneController{
     private CheckBox DE;
 
     @FXML
-    private CheckBox coldChainCargo;
+    private RadioButton coldChainCargo;
 
     @FXML
-    private CheckBox dangerousGoodsCargo;
+    private RadioButton dangerousGoodsCargo;
 
     @FXML
-    private CheckBox heavyCargo;
+    private RadioButton heavyCargo;
 
     @FXML
-    private CheckBox livestockCargo;
+    private RadioButton livestockCargo;
 
     @FXML
-    private CheckBox smallParcelCargo;
+    private RadioButton smallParcelCargo;
 
     @FXML
-    private CheckBox specialHandlingCargo;
+    private RadioButton specialHandlingCargo;
 
     @FXML
-    private CheckBox retailCargo;
+    private RadioButton retailCargo;
 
     @FXML
-    private CheckBox valuableCargo;
+    private RadioButton valuableCargo;
 
     @FXML
-    private CheckBox vehicleCargo;
+    private RadioButton vehicleCargo;
 
     @FXML
     private DatePicker endDateFilter;
@@ -115,13 +121,11 @@ public class DriverSearchController extends SuperSceneController{
     @FXML
     private TextField searchByNameTextArea;
 
-
     @FXML
     private DatePicker startDateFilter;
 
-    private Driver driver;
     private ArrayList<CheckBox> checkedLicenses;
-    private ArrayList<CheckBox> checkedCargoType;
+    private String checkedCargoType;
     private int ratingMin;
     private int ratingMax;
     private LocalDate minDate;
@@ -135,14 +139,30 @@ public class DriverSearchController extends SuperSceneController{
             createScene("/org/example/hiredrive/Scenes/profilePageDriver.fxml", this);
             main.close();
 
+            setData();
+
             vehicleCargo.isSelected();
         }else if(event.getSource()== searchBtn){
 
+<<<<<<< HEAD
             createFilter();
 
 
+=======
+        }
+        else if (event.getSource() == logOutBtn){
+            driver = null;
+            System.out.println(driver);
+            Stage main = (Stage) logOutBtn.getScene().getWindow();
+            createScene("/org/example/hiredrive/Scenes/entranceScene.fxml", this);
+            main.close();
+>>>>>>> 1eabbb2a1df7ad0359da2e427db24120de20bab0
         }
     }
+    public void setData(Object o){
+        driver = (Driver) o;
+    }
+
 
 
     public void update() {
@@ -150,13 +170,21 @@ public class DriverSearchController extends SuperSceneController{
     }
 
     @Override
-    public User getUserData(){
+    public Driver getUserData(){
         return driver;
     }
+<<<<<<< HEAD
     public void createFilter() {
         filter = new Filter();
         checkedLicenses = new ArrayList<>();
         checkedCargoType = new ArrayList<>();
+=======
+
+    public void setData(){
+
+        checkedLicenses = new ArrayList<CheckBox>();
+        Filter filter = new Filter();
+>>>>>>> 1eabbb2a1df7ad0359da2e427db24120de20bab0
 
         if (A.isSelected()) checkedLicenses.add(A);
 
@@ -184,23 +212,23 @@ public class DriverSearchController extends SuperSceneController{
 
         if (DE.isSelected()) checkedLicenses.add(DE);
 
-        if (coldChainCargo.isSelected()) checkedCargoType.add(coldChainCargo);
+        if (coldChainCargo.isSelected()) filter.setCargoType(coldChainCargo.getText());
 
-        if (dangerousGoodsCargo.isSelected()) checkedCargoType.add(dangerousGoodsCargo);
+        if (dangerousGoodsCargo.isSelected()) filter.setCargoType(dangerousGoodsCargo.getText());
 
-        if (heavyCargo.isSelected()) checkedCargoType.add(heavyCargo);
+        if (heavyCargo.isSelected()) filter.setCargoType(heavyCargo.getText());
 
-        if (livestockCargo.isSelected()) checkedCargoType.add(livestockCargo);
+        if (livestockCargo.isSelected()) filter.setCargoType(livestockCargo.getText());
 
-        if (smallParcelCargo.isSelected()) checkedCargoType.add(smallParcelCargo);
+        if (smallParcelCargo.isSelected()) filter.setCargoType(smallParcelCargo.getText());
 
-        if (specialHandlingCargo.isSelected()) checkedCargoType.add(specialHandlingCargo);
+        if (specialHandlingCargo.isSelected()) filter.setCargoType(specialHandlingCargo.getText());
 
-        if (retailCargo.isSelected()) checkedCargoType.add(retailCargo);
+        if (retailCargo.isSelected()) filter.setCargoType(retailCargo.getText());
 
-        if (valuableCargo.isSelected()) checkedCargoType.add(valuableCargo);
+        if (valuableCargo.isSelected()) filter.setCargoType(valuableCargo.getText());
 
-        if (vehicleCargo.isSelected()) checkedCargoType.add(vehicleCargo);
+        if (vehicleCargo.isSelected()) filter.setCargoType(vehicleCargo.getText());
 
        // if()
         ratingMin = (Integer) minPointRating.getValue();
@@ -213,8 +241,12 @@ public class DriverSearchController extends SuperSceneController{
         minDate = startDateFilter.getValue();
         maxDate = endDateFilter.getValue();
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1eabbb2a1df7ad0359da2e427db24120de20bab0
         filter.setLicenses(getSelectedLicenseNames(checkedLicenses));
-        filter.setCargoType(getSelectedCargoTypes(checkedCargoType));
+
         filter.setMinRate(ratingMin);
         filter.setMaxRate(ratingMax);
         filter.setMinDeadline(Date.valueOf(minDate));
@@ -238,13 +270,6 @@ public class DriverSearchController extends SuperSceneController{
         return selectedLicenses;
     }
 
-    private ArrayList<String> getSelectedCargoTypes(ArrayList<CheckBox> checkedCargoType) {
-        ArrayList<String> selectedCargoTypes = new ArrayList<>();
-        for (CheckBox checkBox : checkedCargoType) {
-            selectedCargoTypes.add(checkBox.getText());
-        }
-        return selectedCargoTypes;
-    }
 
 
 

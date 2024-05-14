@@ -6,10 +6,18 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<<<<<<< HEAD
+=======
+<?import javafx.scene.control.RadioButton?>
+>>>>>>> 1eabbb2a1df7ad0359da2e427db24120de20bab0
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
+<<<<<<< HEAD
+=======
+<?import javafx.scene.control.ToggleGroup?>
+>>>>>>> 1eabbb2a1df7ad0359da2e427db24120de20bab0
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -81,7 +89,7 @@
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Accordion prefHeight="517.0" prefWidth="562.0" style="-fx-padding: 15;" AnchorPane.leftAnchor="100.0">
+            <Accordion prefHeight="440.0" prefWidth="562.0" style="-fx-padding: 15;" AnchorPane.leftAnchor="100.0">
                <panes>
                   <TitledPane graphicTextGap="15.0" lineSpacing="15.0" prefHeight="125.0" prefWidth="512.0" text="   Rating">
                      <content>
@@ -137,111 +145,231 @@
                                  <children>
                                     <HBox prefHeight="30.0" prefWidth="500.0">
                                        <children>
+<<<<<<< HEAD
                                           <CheckBox fx:id="coldChainCargo" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="Cold Chain Cargo">
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
+=======
+                                          <RadioButton fx:id="coldChainCargo" mnemonicParsing="false" prefHeight="26.0" prefWidth="313.0" text="Cold Chain Cargo">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+>>>>>>> 1eabbb2a1df7ad0359da2e427db24120de20bab0
                                              <font>
-                                                <Font size="15.0" />
+                                                <Font size="17.0" />
                                              </font>
-                                          </CheckBox>
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="cargo" />
+                                             </toggleGroup>
+                                          </RadioButton>
                                        </children>
+                                       <padding>
+                                          <Insets left="25.0" />
+                                       </padding>
                                     </HBox>
                                     <HBox prefHeight="30.0" prefWidth="500.0">
                                        <children>
+<<<<<<< HEAD
                                           <CheckBox fx:id="vehicleCargo" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="Vehicle Cargo">
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
+=======
+                                          <RadioButton fx:id="vehicleCargo" mnemonicParsing="false" prefHeight="26.0" prefWidth="244.0" text="Vehicle Cargo" toggleGroup="$cargo">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+>>>>>>> 1eabbb2a1df7ad0359da2e427db24120de20bab0
                                              <font>
-                                                <Font size="15.0" />
+                                                <Font size="17.0" />
                                              </font>
-                                          </CheckBox>
+                                          </RadioButton>
                                        </children>
+                                       <padding>
+                                          <Insets left="25.0" />
+                                       </padding>
                                     </HBox>
                                     <HBox prefHeight="30.0" prefWidth="500.0">
                                        <children>
+<<<<<<< HEAD
                                           <CheckBox fx:id="smallParcelCargo" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="Small Parcel Cargo">
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
+=======
+                                          <RadioButton fx:id="smallParcelCargo" mnemonicParsing="false" prefHeight="26.0" prefWidth="295.0" text="Small Parcel Cargo" toggleGroup="$cargo">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+>>>>>>> 1eabbb2a1df7ad0359da2e427db24120de20bab0
                                              <font>
-                                                <Font size="15.0" />
+                                                <Font size="17.0" />
                                              </font>
-                                          </CheckBox>
+                                          </RadioButton>
                                        </children>
+                                       <padding>
+                                          <Insets left="25.0" />
+                                       </padding>
                                     </HBox>
                                     <HBox prefHeight="30.0" prefWidth="500.0">
                                        <children>
+<<<<<<< HEAD
                                           <CheckBox fx:id="heavyCargo" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="Heavy Cargo">
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
+=======
+                                          <RadioButton fx:id="heavyCargo" mnemonicParsing="false" prefHeight="26.0" prefWidth="271.0" text="Heavy Cargo" toggleGroup="$cargo">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+>>>>>>> 1eabbb2a1df7ad0359da2e427db24120de20bab0
                                              <font>
-                                                <Font size="15.0" />
+                                                <Font size="17.0" />
                                              </font>
-                                          </CheckBox>
+                                          </RadioButton>
                                        </children>
+                                       <padding>
+                                          <Insets left="25.0" />
+                                       </padding>
                                     </HBox>
                                     <HBox prefHeight="30.0" prefWidth="500.0">
                                        <children>
+<<<<<<< HEAD
                                           <CheckBox fx:id="valuableCargo" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="Valuable Cargo">
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
+=======
+                                          <RadioButton fx:id="valuableCargo" mnemonicParsing="false" prefHeight="26.0" prefWidth="264.0" text="Valuable Cargo" toggleGroup="$cargo">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+>>>>>>> 1eabbb2a1df7ad0359da2e427db24120de20bab0
                                              <font>
-                                                <Font size="15.0" />
+                                                <Font size="17.0" />
                                              </font>
-                                          </CheckBox>
+                                          </RadioButton>
                                        </children>
+                                       <padding>
+                                          <Insets left="25.0" />
+                                       </padding>
                                     </HBox>
                                     <HBox prefHeight="30.0" prefWidth="500.0">
                                        <children>
+<<<<<<< HEAD
                                           <CheckBox fx:id="dangerousGoodsCargo" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="Dangerous Goods Cargo">
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
+=======
+                                          <RadioButton fx:id="dangerousGoodsCargo" mnemonicParsing="false" prefHeight="26.0" prefWidth="291.0" text="Dangerous Goods Cargo" toggleGroup="$cargo">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+>>>>>>> 1eabbb2a1df7ad0359da2e427db24120de20bab0
                                              <font>
-                                                <Font size="15.0" />
+                                                <Font size="17.0" />
                                              </font>
-                                          </CheckBox>
+                                          </RadioButton>
                                        </children>
+                                       <padding>
+                                          <Insets left="25.0" />
+                                       </padding>
                                     </HBox>
                                     <HBox prefHeight="30.0" prefWidth="500.0">
                                        <children>
+<<<<<<< HEAD
                                           <CheckBox fx:id="livestockCargo" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="Livestock Cargo">
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
+=======
+                                          <RadioButton fx:id="livestockCargo" mnemonicParsing="false" prefHeight="26.0" prefWidth="280.0" text="Livestock Cargo" toggleGroup="$cargo">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+>>>>>>> 1eabbb2a1df7ad0359da2e427db24120de20bab0
                                              <font>
-                                                <Font size="15.0" />
+                                                <Font size="17.0" />
                                              </font>
-                                          </CheckBox>
+                                          </RadioButton>
                                        </children>
+                                       <padding>
+                                          <Insets left="25.0" />
+                                       </padding>
                                     </HBox>
                                     <HBox prefHeight="30.0" prefWidth="500.0">
                                        <children>
+<<<<<<< HEAD
                                           <CheckBox fx:id="specialHandlingCargo" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="Special Handling Cargo">
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
+=======
+                                          <RadioButton fx:id="specialHandlingCargo" mnemonicParsing="false" prefHeight="26.0" prefWidth="223.0" text="Special Handling Cargo" toggleGroup="$cargo">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+>>>>>>> 1eabbb2a1df7ad0359da2e427db24120de20bab0
                                              <font>
-                                                <Font size="15.0" />
+                                                <Font size="17.0" />
                                              </font>
-                                          </CheckBox>
+                                          </RadioButton>
                                        </children>
+                                       <padding>
+                                          <Insets left="25.0" />
+                                       </padding>
                                     </HBox>
                                     <HBox prefHeight="30.0" prefWidth="500.0">
                                        <children>
+<<<<<<< HEAD
                                           <CheckBox fx:id="retailCargo" mnemonicParsing="false" prefHeight="16.0" prefWidth="214.0" text="Retail Cargo">
                                              <padding>
                                                 <Insets bottom="5.0" left="25.0" top="5.0" />
                                              </padding>
+=======
+                                          <RadioButton fx:id="retailCargo" mnemonicParsing="false" prefHeight="26.0" prefWidth="282.0" text="Retail Cargo" toggleGroup="$cargo">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+>>>>>>> 1eabbb2a1df7ad0359da2e427db24120de20bab0
                                              <font>
-                                                <Font size="15.0" />
+                                                <Font size="17.0" />
                                              </font>
-                                          </CheckBox>
+                                          </RadioButton>
                                        </children>
+                                       <padding>
+                                          <Insets left="25.0" />
+                                       </padding>
                                     </HBox>
                                  </children>
                               </VBox>
@@ -290,7 +418,11 @@
                         <Insets bottom="15.0" />
                      </padding>
                   </TitledPane>
+<<<<<<< HEAD
                   <TitledPane graphicTextGap="15.0" lineSpacing="15.0" prefHeight="125.0" prefWidth="512.0" text="   Required Licenses">
+=======
+                  <TitledPane fx:id="experienceLevelFilter" graphicTextGap="15.0" lineSpacing="15.0" prefHeight="250.0" prefWidth="532.0" text="   Required Licenses">
+>>>>>>> 1eabbb2a1df7ad0359da2e427db24120de20bab0
                      <font>
                         <Font size="23.0" />
                      </font>
