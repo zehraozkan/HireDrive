@@ -82,6 +82,11 @@ public class ProfileControllerCompany extends  SuperSceneController{
             createScene("/org/example/hiredrive/Scenes/entranceScene");
             Stage main = (Stage) logOutButton.getScene().getWindow();
             main.close();
+        }else if(event.getSource() == chat_btn) {
+            createScene("/org/example/hiredrive/Scenes/Chat Page Company.fxml", user);
+            Stage main = (Stage) chat_btn.getScene().getWindow();
+            main.close();
+
         }
     }
     @FXML

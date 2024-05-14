@@ -56,15 +56,18 @@ public class chatPageCompanyController  extends  SuperSceneController {
     @FXML
     private Button view_profile_btn;
 
+    @FXML
+    private Label userInfo;
+
     private User user;
     private SuperSceneController prevScene;
-    /*
+
     @FXML
     void btn_clicked(ActionEvent event) {
 
         if(event.getSource() == main_btn) {
             createScene("/org/example/hiredrive/Scenes/Search Page Driver.fxml", user);
-            Stage main = (Stage) goMainPageScene.getScene().getWindow();
+            Stage main = (Stage) main_btn.getScene().getWindow();
             main.close();
         }else if (event.getSource() == logOutButton) {
             user = null;
@@ -90,11 +93,7 @@ public class chatPageCompanyController  extends  SuperSceneController {
         myProfileButton.setDisable(true);
         myProfileButton.setText(user.getUsername());
         userInfo.setText(user.getUsername() + " (" + user.getUserType() + ") ");
-        try {
-            rateInfo.setText(user.getRating() + " rated " + UserConnection.getTotalRated(user.getUserId()));
-        }catch(Exception e){
-            System.out.println(e);
-        }
+
     }
 
     @FXML
@@ -105,6 +104,6 @@ public class chatPageCompanyController  extends  SuperSceneController {
     @FXML
     void sendMethod(KeyEvent event) {
 
-    }*/
+    }
 
 }
