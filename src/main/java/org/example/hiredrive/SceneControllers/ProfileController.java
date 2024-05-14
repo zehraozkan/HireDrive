@@ -7,10 +7,11 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
-import org.example.hiredrive.SceneControllers.SuperSceneController;
+import javafx.stage.Stage;
+import org.example.hiredrive.Connection.UserConnection;
 import org.example.hiredrive.users.User;
 
-public class ProfileController extends SuperSceneController {
+public class ProfileController extends  SuperSceneController{
 
     @FXML
     private Hyperlink addLicenseBtn;
@@ -45,14 +46,17 @@ public class ProfileController extends SuperSceneController {
     @FXML
     private Label userInfo;
 
-    private SuperSceneController prevScene;
     private User user;
+    private SuperSceneController prevScene;
 
     @FXML
     void btn_clicked(ActionEvent event) {
         if(event.getSource() == addLicenseBtn) {
 
         }else if(event.getSource() == goMainPageScene) {
+            createScene("/org/example/hiredrive/Scenes/Search Page Driver.fxml", user);
+            Stage main = (Stage) goMainPageScene.getScene().getWindow();
+            main.close();
 
         }else if(event.getSource() == job_btn) {
 
@@ -63,12 +67,19 @@ public class ProfileController extends SuperSceneController {
     @Override
     public void setData(Object data){
         prevScene = (SuperSceneController) data;
-        prevScene.hide(prevScene.getScene());
         user = prevScene.getUserData();
-        this.update();
+        update();
     }
     public void update(){
+        myProfileButton.setDisable(true);
+        myProfileButton.setText(user.getUsername());
         userInfo.setText(user.getUsername() + " (" + user.getUserType() + ") ");
+        try {
+            rateInfo.setText(user.getRating() + " rated " + UserConnection.getTotalRated(user.getUserId()));
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
 
 }
+

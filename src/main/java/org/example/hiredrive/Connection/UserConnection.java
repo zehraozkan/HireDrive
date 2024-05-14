@@ -112,9 +112,12 @@ public class UserConnection {
             // Check if there is a result
             if (rs.next()) {
                 String k = rs.getString("user_name");
-                String userName = k.split(" ")[0];
+                String userName = k;
                 String userSurname = "";
-                if(k.contains(" ")) userSurname = rs.getString("user_name").split(" ")[1];
+                if(k.contains(" ")){
+                    userName = k.split(" ")[0];
+                    userSurname = rs.getString("user_name").split(" ")[1];
+                }
                 String userPassword = rs.getString("user_password");
                 String userMail = rs.getString("user_mail");
                 String phoneNumber = rs.getString("phone_number");
@@ -152,9 +155,12 @@ public class UserConnection {
             // Check if there is a result
             if (rs.next()) {
                 String k = rs.getString("user_name");
-                String userName = k.split(" ")[1];
+                String userName = k;
                 String userSurname = "";
-                if(k.contains(" ")) userSurname = rs.getString("user_name").split(" ")[0];
+                if(k.contains(" ")){
+                    userName = k.split(" ")[0];
+                    userSurname = k.split(" ")[1];
+                }
                 String userPassword = rs.getString("user_password");
                 String phoneNumber = rs.getString("phone_number");
                 String dateCreated = rs.getString("date_created");
@@ -530,6 +536,23 @@ public class UserConnection {
         }
     
         return matchingDrivers;
+    }
+    public static int getTotalRated(int userId) throws SQLException {
+        int totalRated = 0;
+
+        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+            String query = "SELECT total_rated FROM users WHERE user_id = ?";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, userId);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        totalRated = resultSet.getInt("total_rated");
+                    }
+                }
+            }
+        }
+
+        return totalRated;
     }
     
 

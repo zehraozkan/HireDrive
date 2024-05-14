@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import org.example.hiredrive.Connection.ReviewConnection;
 import org.example.hiredrive.Connection.UserConnection;
 
 public class Driver extends User {
@@ -22,6 +23,7 @@ public class Driver extends User {
         UserConnection.addUser(username, surname, email, password, phoneNo,"driver", Date.valueOf(LocalDate.now()), experience);
         userId = UserConnection.getUserID(email);
         userType = "driver";
+        setRating(ReviewConnection.getRating(userId));
 
     }
     //for database
