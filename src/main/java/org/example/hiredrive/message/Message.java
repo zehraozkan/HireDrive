@@ -21,6 +21,7 @@ public class Message {
         this.receiver = receiver;
         this.content = content;
         this.timeStamp = Date.valueOf(LocalDate.now());
+
     }
     //for database
     public Message(User sender, User receiver, String content, Date date, boolean isRead) {
@@ -30,6 +31,7 @@ public class Message {
         this.receiver = receiver;
         this.content = content;
         this.timeStamp = date;
+
     }
 
     public User getSender(){

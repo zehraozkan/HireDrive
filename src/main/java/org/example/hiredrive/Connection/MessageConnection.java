@@ -121,7 +121,15 @@ public class MessageConnection {
 
 
     public static void main(String[] args) {
-        getMessagesForUser(3);
+
+
+
+        sendMessage(2,3, "sdnfjnsdf");
+        ArrayList<Message> messages = retrieveMessagesBetweenUsers(2, 3);
+
+        for (Message message : messages) {System.out.println(message.getContent());}
+
+
     }
 
 }
