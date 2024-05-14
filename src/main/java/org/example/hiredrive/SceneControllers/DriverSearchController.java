@@ -156,7 +156,7 @@ public class DriverSearchController extends SuperSceneController{
     }
 
     public void setData(){
-        
+
         checkedLicenses = new ArrayList<CheckBox>();
         Filter filter = new Filter();
 
