@@ -7,7 +7,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -91,22 +90,7 @@
                            <children>
                               <HBox alignment="CENTER" prefHeight="102.4" prefWidth="553.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <Label alignment="TOP_CENTER" prefHeight="23.0" prefWidth="64.0" text="From">
-                                       <font>
-                                          <Font size="22.0" />
-                                       </font>
-                                    </Label>
-                                    <Spinner fx:id="minRate" editable="true" prefHeight="34.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #2c3e50; -fx-border-width: 2;">
-                                       <HBox.margin>
-                                          <Insets right="50.0" />
-                                       </HBox.margin>
-                                    </Spinner>
-                                    <Label alignment="TOP_CENTER" prefHeight="34.0" prefWidth="64.0" text="To">
-                                       <font>
-                                          <Font size="22.0" />
-                                       </font>
-                                    </Label>
-                                    <Spinner fx:id="maxRate" editable="true" prefHeight="34.0" prefWidth="150.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #2c3e50; -fx-border-width: 2;" />
+                                    <Slider fx:id="ratingSlicer" majorTickUnit="5.0" max="5.0" min="1.0" minorTickCount="4" prefHeight="27.0" prefWidth="317.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
                                  </children>
                               </HBox>
                            </children>
