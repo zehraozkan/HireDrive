@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
+<!--TODO company mail alacağı yerde surname yazıyor-->
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.hiredrive.SceneControllers.CompanySignUpController">
    <children>
       <Rectangle arcHeight="40.0" arcWidth="40.0" fill="#2c3e50" height="316.0" layoutX="869.0" layoutY="-158.0" rotate="165.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="366.0" />
@@ -56,7 +56,7 @@
                   <Insets bottom="10.0" left="15.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="surnameField" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Surname" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+            <TextField fx:id="cNameField" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Surname" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
                <opaqueInsets>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </opaqueInsets>
@@ -72,7 +72,7 @@
                   <Insets bottom="10.0" left="15.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="mailField1" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Email " style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+            <TextField fx:id="mailField" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Email " style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
                <opaqueInsets>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </opaqueInsets>
@@ -88,7 +88,7 @@
                   <Insets bottom="10.0" left="15.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="phoneField1" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Phone Number" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
+            <TextField fx:id="phoneField" prefHeight="30.0" prefWidth="565.0" promptText="     Enter Your Phone Number" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: #2C3E50;">
                <opaqueInsets>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </opaqueInsets>
