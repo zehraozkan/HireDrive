@@ -3,8 +3,10 @@ package org.example.hiredrive.SceneControllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -12,16 +14,57 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
-import java.io.File;
-
 import org.example.hiredrive.Connection.UserConnection;
 import org.example.hiredrive.users.User;
 
-public class ProfileController extends  SuperSceneController{
+import java.io.File;
+
+public class profilePageDriverController extends  SuperSceneController{
 
     @FXML
-    private Hyperlink addLicenseBtn;
+    private CheckBox A;
+
+    @FXML
+    private CheckBox A1;
+
+    @FXML
+    private CheckBox A2;
+
+    @FXML
+    private CheckBox B;
+
+    @FXML
+    private CheckBox B1;
+
+    @FXML
+    private CheckBox BE;
+
+    @FXML
+    private CheckBox C1;
+
+    @FXML
+    private CheckBox C1E;
+
+    @FXML
+    private CheckBox CE;
+
+    @FXML
+    private CheckBox D;
+
+    @FXML
+    private CheckBox D1;
+
+    @FXML
+    private CheckBox D1E;
+
+    @FXML
+    private CheckBox DE;
+
+    @FXML
+    private Hyperlink aboutButton;
+
+    @FXML
+    private Hyperlink addLicencesButton;
 
     @FXML
     private Button goMainPageScene;
@@ -51,6 +94,9 @@ public class ProfileController extends  SuperSceneController{
     private Hyperlink requestBtn;
 
     @FXML
+    private ScrollPane scrollPane;
+
+    @FXML
     private Label userInfo;
 
     private User user;
@@ -58,7 +104,17 @@ public class ProfileController extends  SuperSceneController{
 
     @FXML
     void btn_clicked(ActionEvent event) {
-        if(event.getSource() == addLicenseBtn) {
+
+        if(event.getSource() == addLicencesButton) {
+
+            if(scrollPane.isDisable()){
+                scrollPane.setDisable(false);
+                scrollPane.setVisible(true);
+            }else{
+                scrollPane.setDisable(true);
+                scrollPane.setVisible(false);
+            }
+
 
         }else if(event.getSource() == goMainPageScene) {
             createScene("/org/example/hiredrive/Scenes/Search Page Driver.fxml", user);
@@ -101,5 +157,6 @@ public class ProfileController extends  SuperSceneController{
             System.out.println(e);
         }
     }
+
 
 }

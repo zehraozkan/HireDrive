@@ -123,6 +123,5 @@ public class CompanySearchController extends SuperSceneController{
         filter = new Filter();
         filteredDriver = filter.getMatchingDrivers();
     }
-    
 
 }
