@@ -35,11 +35,8 @@ public class SignInController extends SuperSceneController{
     void LinkClicked(ActionEvent event) {
 
         Stage main = (Stage) signUpLink.getScene().getWindow();
-
         createScene("/org/example/hiredrive/Scenes/sign up scene.fxml");
-
         main.close();
-
     }
 
     @FXML
@@ -51,13 +48,12 @@ public class SignInController extends SuperSceneController{
             Stage main = (Stage) signIn.getScene().getWindow();
             user = UserConnection.getUser(mailField.getText());
 
-            //TODO OOP mehot can only be added after deleting old ones
             if(user.getUserType().equals("driver")){
                 createScene("/org/example/hiredrive/Scenes/Search Page Driver.fxml", user);
 
             }
             else{
-                createScene("/org/example/hiredrive/Scenes/Search Page Company.fxml");
+                createScene("/org/example/hiredrive/Scenes/Search Page Company.fxml", user);
             }
             main.close();
             wrongPrompt.setVisible(false);

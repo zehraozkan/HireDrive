@@ -15,7 +15,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.example.hiredrive.Connection.UserConnection;
-import org.example.hiredrive.users.User;
+import org.example.hiredrive.users.Driver;
 
 import java.io.File;
 
@@ -23,40 +23,28 @@ public class profilePageDriverController extends  SuperSceneController{
 
     @FXML
     private CheckBox A;
-
     @FXML
     private CheckBox A1;
-
     @FXML
     private CheckBox A2;
-
     @FXML
     private CheckBox B;
-
     @FXML
     private CheckBox B1;
-
     @FXML
     private CheckBox BE;
-
     @FXML
     private CheckBox C1;
-
     @FXML
     private CheckBox C1E;
-
     @FXML
     private CheckBox CE;
-
     @FXML
     private CheckBox D;
-
     @FXML
     private CheckBox D1;
-
     @FXML
     private CheckBox D1E;
-
     @FXML
     private CheckBox DE;
 
@@ -99,7 +87,7 @@ public class profilePageDriverController extends  SuperSceneController{
     @FXML
     private Label userInfo;
 
-    private User user;
+    private Driver user;
     private SuperSceneController prevScene;
 
     @FXML
@@ -123,6 +111,13 @@ public class profilePageDriverController extends  SuperSceneController{
 
         }else if(event.getSource() == job_btn) {
 
+        } else if (event.getSource() == logOutButton) {
+            user = null;
+            prevScene = null;
+            createScene("/org/example/hiredrive/Scenes/entranceScene");
+            Stage main = (Stage) logOutButton.getScene().getWindow();
+            main.close();
+
         }
 
     }
@@ -135,7 +130,7 @@ public class profilePageDriverController extends  SuperSceneController{
             if (file != null) {
                 Image image = new Image(file.toURI().toString());
                 profilePicCircleBig.setFill(new ImagePattern(image));
-                // Image im = new Image("/org/example/hiredrive/pngs/user.png",false);
+                 Image im = new Image("/org/example/hiredrive/pngs/user.png",false);
                 profilePicCircleBig.setFill(new ImagePattern(image));
             }
         }
@@ -144,17 +139,48 @@ public class profilePageDriverController extends  SuperSceneController{
     @Override
     public void setData(Object data){
         prevScene = (SuperSceneController) data;
-        user = prevScene.getUserData();
+        user = (Driver)prevScene.getUserData();
         update();
     }
     public void update(){
         myProfileButton.setDisable(true);
         myProfileButton.setText(user.getUsername());
-        userInfo.setText(user.getUsername() + " (" + user.getUserType() + ") ");
+        userInfo.setText(user.getUsername() + " \n(" + user.getUserType() + ") ");
         try {
             rateInfo.setText(user.getRating() + " rated " + UserConnection.getTotalRated(user.getUserId()));
         }catch(Exception e){
             System.out.println(e);
+        }
+        updateChecKbox();
+    }
+
+    private void updateChecKbox(){
+        for(String license : user.getLicenses()){
+            if(license.equals("A")){
+                A.setSelected(true);
+            }else if(license.equals("A1")){
+                A1.setSelected(true);
+            }else if(license.equals("A2")){
+                A2.setSelected(true);
+            }else if(license.equals("B")){
+                B.setSelected(true);
+            }else if(license.equals("BE")){
+                BE.setSelected(true);
+            }else if(license.equals("B1")){
+                B1.setSelected(true);
+            }else if(license.equals("C1")){
+                C1.setSelected(true);
+            }else if(license.equals("C1E")){
+                C1E.setSelected(true);
+            }else if(license.equals("CE")){
+                CE.setSelected(true);
+            }else if(license.equals("D")){
+                D.setSelected(true);
+            }else if(license.equals("D1E")){
+                D1.setSelected(true);
+            }else if(license.equals("DE")){
+                DE.setSelected(true);
+            }
         }
     }
 

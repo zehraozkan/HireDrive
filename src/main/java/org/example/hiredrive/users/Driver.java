@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import org.example.hiredrive.Connection.LicencesConnection;
 import org.example.hiredrive.Connection.ReviewConnection;
 import org.example.hiredrive.Connection.UserConnection;
 
@@ -33,6 +34,17 @@ public class Driver extends User {
         userType = "driver";
         this.experience = userId;
         super.userId = userId;
+    }
+    public void addLicense(String license){
+        try{
+            LicencesConnection.addLicense(userId, license);
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+    public ArrayList<String> getLicenses(){
+        return LicencesConnection.getLicensesForDriver(userId);
     }
 
     public String toString(){

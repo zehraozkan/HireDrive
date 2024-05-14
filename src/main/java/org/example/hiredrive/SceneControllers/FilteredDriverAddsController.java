@@ -59,7 +59,7 @@ public class FilteredDriverAddsController extends SuperSceneController{
             Stage main = (Stage) myProfileButton.getScene().getWindow();
 
             main.close();
-            createScene("/org/example/hiredrive/Scenes/Profile Page.fxml");
+            createScene("/org/example/hiredrive/Scenes/ProfilePageCompany.fxml");
 
         }
     }

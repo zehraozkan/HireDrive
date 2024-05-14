@@ -68,7 +68,7 @@ public class RequestListController extends SuperSceneController{
             Stage main = (Stage) myProfileButton.getScene().getWindow();
 
             main.close();
-            createScene("/org/example/hiredrive/Scenes/Profile Page.fxml");
+            createScene("/org/example/hiredrive/Scenes/ProfilePageCompany.fxml");
 
         } 
         else if(event.getSource() == sentRequests) {

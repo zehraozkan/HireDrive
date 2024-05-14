@@ -30,7 +30,7 @@ public class User {
             this.userId = user.userId;
             this.username = user.username;
             ReviewConnection.addReview(this.userId, user.userId, comment, rating);
-            user.updateRating();
+           // user.updateRating();
         }
         else throw new IllegalArgumentException("You cannot rate a user you are not associated with");
     }
@@ -54,13 +54,11 @@ public class User {
         this.rating = rating;
     }
     public double getRating() {
+        this.rating = ReviewConnection.getRating(userId);
         return this.rating;
     }
     public String getPhoneNumber() {
         return phoneNumber;
-    }
-    public void updateRating() {
-        this.rating = ReviewConnection.getRating(userId);
     }
 
     public String toString(){

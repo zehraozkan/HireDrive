@@ -19,7 +19,7 @@ import org.example.hiredrive.Connection.UserConnection;
 import org.example.hiredrive.users.User;
 
 //this is for company
-public class ProfileController extends  SuperSceneController{
+public class ProfileControllerCompany extends  SuperSceneController{
 
     @FXML
     private Hyperlink addLicenseBtn;
@@ -68,8 +68,13 @@ public class ProfileController extends  SuperSceneController{
 
         }else if(event.getSource() == job_btn) {
 
+        } else if (event.getSource() == logOutButton) {
+            user = null;
+            prevScene = null;
+            createScene("/org/example/hiredrive/Scenes/entranceScene");
+            Stage main = (Stage) logOutButton.getScene().getWindow();
+            main.close();
         }
-
     }
     @FXML
     void mouse_clicked(MouseEvent event) {
@@ -80,7 +85,7 @@ public class ProfileController extends  SuperSceneController{
             if (file != null) {
                 Image image = new Image(file.toURI().toString());
                 profilePicCircleBig.setFill(new ImagePattern(image));
-                // Image im = new Image("/org/example/hiredrive/pngs/user.png",false);
+                Image im = new Image("/org/example/hiredrive/pngs/user.png",false);
                 profilePicCircleBig.setFill(new ImagePattern(image));
             }
         }
