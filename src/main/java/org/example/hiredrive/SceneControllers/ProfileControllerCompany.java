@@ -18,6 +18,7 @@ import java.io.File;
 import org.example.hiredrive.Connection.UserConnection;
 import org.example.hiredrive.users.User;
 
+//this is for company
 public class ProfileController extends  SuperSceneController{
 
     @FXML

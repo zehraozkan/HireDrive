@@ -12,8 +12,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<!--TODO burası driver için profil olacak company için ayrı lazım, add licenses diye bir yer olacak, oradan lisansları checkboxla seçecek-->
-
+<!--TODO company'de add licenses diye bir yere gerek yok-->
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.hiredrive.SceneControllers.ProfileController">
    <top>
       <HBox prefHeight="80.0" prefWidth="1280.0" style="-fx-background-color: #2c3e50;" BorderPane.alignment="CENTER">
