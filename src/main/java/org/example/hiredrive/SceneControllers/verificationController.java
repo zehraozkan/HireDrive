@@ -35,7 +35,7 @@ public class verificationController extends SuperSceneController{
             if(codeField.getText().equals(verificationCode + "")) {
                 user = prevScene.getUserData();
                 System.out.println("creted user successfully");
-
+                MailManager.messageReturn("Your account has been created! Welcome to HireDrive.", email);
                 if(user.getUserType().equals("driver")){
                     createScene("/org/example/hiredrive/Scenes/Search Page Driver.fxml", user);
                     Stage main = (Stage) verifyButton.getScene().getWindow();
