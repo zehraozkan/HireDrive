@@ -9,7 +9,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-public class FilteredDriverAddsController {
+public class FilteredDriverAddsController extends SuperSceneController{
 
     @FXML
     private ChoiceBox<?> addOrderSelector;
