@@ -1,9 +1,10 @@
 package org.example.hiredrive.advertisement;
 
+import org.example.hiredrive.users.Driver;
+
 import java.sql.Date;
 import java.util.ArrayList;
 
-import com.mysql.cj.jdbc.Driver;
 
 public class Filter {
 
