@@ -1,5 +1,6 @@
 package org.example.hiredrive.SceneControllers;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -115,6 +116,13 @@ public class DriverSearchController extends SuperSceneController{
     @FXML
     private DatePicker startDateFilter;
 
+    @FXML
+    private ChoiceBox<String> toBox;
+
+    @FXML
+    private ChoiceBox<String> fromBox;
+
+
     private Driver driver;
     private ArrayList<CheckBox> checkedLicenses;
     private CheckBox checkedCargoType;
@@ -225,6 +233,18 @@ public class DriverSearchController extends SuperSceneController{
     public void setData(Object data){
         driver = (Driver) data;
         update();
+    }
+
+
+    public void initialize() {
+        String[] cities = {"Adana", "Ankara", "Antalya", "Bursa", "Denizli", "Diyarbakır", "Erzurum",
+                "Eskişehir", "Gaziantep", "Istanbul", "Izmir", "Kayseri", "Kocaeli", "Konya", "Mersin", "Samsun",
+                "Şanlıurfa", "Tekirdağ", "Trabzon", "Zonguldak"};
+
+
+        toBox.setItems(FXCollections.observableArrayList(cities));
+        fromBox.setItems(FXCollections.observableArrayList(cities));
+
     }
 
     private ArrayList<String> getSelectedLicenseNames(ArrayList<CheckBox> checkedLicenses) {

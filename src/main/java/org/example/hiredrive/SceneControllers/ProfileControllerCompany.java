@@ -102,7 +102,7 @@ public class ProfileControllerCompany extends  SuperSceneController{
     @Override
     public void setData(Object data){
         prevScene = (SuperSceneController) data;
-        user = (Company)prevScene.getUserData();
+        user = (Company) prevScene.getUserData();
         update();
     }
     public void update(){
