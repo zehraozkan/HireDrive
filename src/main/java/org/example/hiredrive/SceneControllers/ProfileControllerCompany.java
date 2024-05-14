@@ -52,6 +52,10 @@ public class ProfileControllerCompany extends  SuperSceneController{
     private Hyperlink requestBtn;
 
     @FXML
+    private Hyperlink chat_btn;
+
+
+    @FXML
     private Label userInfo;
 
     private User user;

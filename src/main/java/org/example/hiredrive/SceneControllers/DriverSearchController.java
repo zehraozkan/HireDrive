@@ -95,12 +95,6 @@ public class DriverSearchController extends SuperSceneController{
     private Button logOutBtn;
 
     @FXML
-    private Spinner<Integer> minPointRating;
-
-    @FXML
-    private Spinner<Integer> maxPointRating;
-
-    @FXML
     private Button myProfileButton;
 
     @FXML
@@ -115,6 +109,8 @@ public class DriverSearchController extends SuperSceneController{
     @FXML
     private TextField searchByNameTextArea;
 
+    @FXML
+    private Slider ratingSlicer;
 
     @FXML
     private DatePicker startDateFilter;
@@ -200,12 +196,12 @@ public class DriverSearchController extends SuperSceneController{
 
         if (vehicleCargo.isSelected()) checkedCargoType.add(vehicleCargo);
 
-        // if()
-        ratingMin = (Integer) minPointRating.getValue();
-        ratingMax = (Integer) maxPointRating.getValue();
+        ratingMin = (int) ratingSlicer.getValue() - 1;
+        ratingMax = (int) ratingSlicer.getValue() + 1;
 
-        //filter.setMinExperienceLevel();
-        //filter.setMaxExperienceLevel();
+        if(ratingMin < 0) ratingMin = 0;
+        if(ratingMax > 5) ratingMax = 5;
+
 
 
         minDate = startDateFilter.getValue();
