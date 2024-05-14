@@ -6,6 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import org.example.hiredrive.advertisement.Filter;
+import org.example.hiredrive.users.Company;
 import org.example.hiredrive.users.Driver;
 import org.example.hiredrive.users.User;
 
@@ -15,6 +16,8 @@ import java.sql.Date;
 
 
 public class DriverSearchController extends SuperSceneController{
+
+    private Driver driver;
 
 
     @FXML
@@ -122,7 +125,6 @@ public class DriverSearchController extends SuperSceneController{
     @FXML
     private DatePicker startDateFilter;
 
-    private Driver driver;
     private ArrayList<CheckBox> checkedLicenses;
     private String checkedCargoType;
     private int ratingMin;
@@ -144,11 +146,17 @@ public class DriverSearchController extends SuperSceneController{
 
         }
         else if (event.getSource() == logOutBtn){
+            driver = null;
+            System.out.println(driver);
             Stage main = (Stage) logOutBtn.getScene().getWindow();
             createScene("/org/example/hiredrive/Scenes/entranceScene.fxml", this);
             main.close();
         }
     }
+    public void setData(Object o){
+        driver = (Driver) o;
+    }
+
 
 
     public void update() {
@@ -156,7 +164,7 @@ public class DriverSearchController extends SuperSceneController{
     }
 
     @Override
-    public User getUserData(){
+    public Driver getUserData(){
         return driver;
     }
 
