@@ -22,7 +22,7 @@ public abstract class SuperSceneController {
             SuperSceneController controller = loader.getController();
             Scene scene = new Scene(root);
 
-            stage.setTitle("bkah blaj");
+            stage.setTitle(path.split("/")[4]);
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {

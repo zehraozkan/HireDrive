@@ -113,7 +113,12 @@ public class CompanySearchController extends SuperSceneController{
             main.close();
         }else if(event.getSource() == searchByNameButton) {
             filter = new Filter();
+            filter.setUserName(searchByNameTextArea.getText());
+            Stage main = (Stage) myProfileButton.getScene().getWindow();
 
+            createFilter();
+            createScene("/org/example/hiredrive/Scenes/Filtered Driver Adds.fxml", this);
+            main.close();
 
         }else if (event.getSource() == myProfileButton) {
             Stage main = (Stage) myProfileButton.getScene().getWindow();
