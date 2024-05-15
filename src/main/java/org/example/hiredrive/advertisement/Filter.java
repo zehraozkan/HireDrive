@@ -51,7 +51,7 @@ public class Filter {
     public ArrayList<Driver> getMatchingDrivers(){
       return (ArrayList<Driver>) UserConnection.getUsersByFilter(minExperienceLevel, maxExperienceLevel, minRate, maxRate, licenses);
     }public ArrayList<Driver> getMatchingDrivers(String name){
-      return (ArrayList<Driver>) UserConnection.getUsersByName(name);
+     return null;
     }
     public ArrayList<Advertisement> getMatchingAds(Date deadline){
         return null;

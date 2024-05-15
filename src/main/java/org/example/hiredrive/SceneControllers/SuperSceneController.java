@@ -43,8 +43,8 @@ public abstract class SuperSceneController {
 
             stage.setTitle("bkah blaj");
             stage.setScene(scene);
-            controller.setData(Data);
             stage.show();
+            controller.setData(Data);
         } catch (Exception e) {
             System.out.println(e);
         }

@@ -78,14 +78,14 @@ public class FilteredDriverAddsController extends SuperSceneController{
         }
     }
 
-    public void initialize() {
+    public void update() {
 
         for (Driver driver : matchingDrivers) {
             try{
 
                 FXMLLoader loader = new FXMLLoader();
 
-                loader.setLocation(getClass().getResource("/DriverAddInduvidiual.fxml"));
+                loader.setLocation(getClass().getResource("/org/example/hiredrive/Scenes/DriverAddInduvidiual.fxml"));
                 HBox profilePage = loader.load();
 
                 driverAddIndividiualController driverAddIndController = loader.getController();
@@ -106,6 +106,7 @@ public class FilteredDriverAddsController extends SuperSceneController{
         company = (Company) prevScene.getUserData();
         filter = prevScene.getFilter();
         matchingDrivers = filter.getMatchingDrivers();
+        update();
     }
 
 }
