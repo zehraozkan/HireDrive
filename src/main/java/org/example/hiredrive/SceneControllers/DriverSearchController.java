@@ -125,7 +125,7 @@ public class DriverSearchController extends SuperSceneController{
 
     private Driver driver;
     private ArrayList<CheckBox> checkedLicenses;
-    private CheckBox checkedCargoType;
+    private String checkedCargoType;
     private int ratingMin;
     private int ratingMax;
     private LocalDate minDate;
@@ -154,15 +154,6 @@ public class DriverSearchController extends SuperSceneController{
         }
     }
 
-
-    public void update() {
-        myProfileButton.setText(driver.getUsername());
-    }
-
-    @Override
-    public User getUserData(){
-        return driver;
-    }
     public void createFilter() {
         filter = new Filter();
         checkedLicenses = new ArrayList<>();
@@ -193,23 +184,23 @@ public class DriverSearchController extends SuperSceneController{
 
         if (DE.isSelected()) checkedLicenses.add(DE);
 
-        if (coldChainCargo.isSelected()) checkedCargoType.equals(coldChainCargo.getText());
+        if (coldChainCargo.isSelected()) checkedCargoType = (coldChainCargo.getText());
 
-        if (dangerousGoodsCargo.isSelected()) checkedCargoType.equals(dangerousGoodsCargo.getText());
+        if (dangerousGoodsCargo.isSelected()) checkedCargoType = (dangerousGoodsCargo.getText());
 
-        if (heavyCargo.isSelected()) checkedCargoType.equals(heavyCargo.getText());
+        if (heavyCargo.isSelected()) checkedCargoType = (heavyCargo.getText());
 
-        if (livestockCargo.isSelected()) checkedCargoType.equals(livestockCargo.getText());
+        if (livestockCargo.isSelected()) checkedCargoType = (livestockCargo.getText());
 
-        if (smallParcelCargo.isSelected()) checkedCargoType.equals(smallParcelCargo.getText());
+        if (smallParcelCargo.isSelected()) checkedCargoType = (smallParcelCargo.getText());
 
-        if (specialHandlingCargo.isSelected()) checkedCargoType.equals(specialHandlingCargo.getText());
+        if (specialHandlingCargo.isSelected()) checkedCargoType  = (specialHandlingCargo.getText());
 
-        if (retailCargo.isSelected()) checkedCargoType.equals(retailCargo.getText());
+        if (retailCargo.isSelected()) checkedCargoType = (retailCargo.getText());
 
-        if (valuableCargo.isSelected()) checkedCargoType.equals(valuableCargo.getText());
+        if (valuableCargo.isSelected()) checkedCargoType = (valuableCargo.getText());
 
-        if (vehicleCargo.isSelected()) checkedCargoType.equals(vehicleCargo.getText());
+        if (vehicleCargo.isSelected()) checkedCargoType = (vehicleCargo.getText());
 
         ratingMin = (int) ratingSlicer.getValue() - 1;
         ratingMax = (int) ratingSlicer.getValue() + 1;
@@ -221,12 +212,12 @@ public class DriverSearchController extends SuperSceneController{
         minDate = startDateFilter.getValue();
         maxDate = endDateFilter.getValue();
 
-        filter.setLicenses(getSelectedLicenseNames(checkedLicenses));
-        filter.setCargoType(checkedCargoType.getText());
+        if(checkedLicenses!= null) filter.setLicenses(getSelectedLicenseNames(checkedLicenses));
+        if(checkedCargoType!= null) filter.setCargoType(checkedCargoType);
         filter.setMinRate(ratingMin);
         filter.setMaxRate(ratingMax);
-        filter.setMinDeadline(Date.valueOf(minDate));
-        filter.setMaxDeadline(Date.valueOf(maxDate));
+        if(minDate!= null) filter.setMinDeadline(Date.valueOf(minDate));
+        if(maxDate!= null) filter.setMaxDeadline(Date.valueOf(maxDate));
     }
 
     @Override
@@ -234,6 +225,18 @@ public class DriverSearchController extends SuperSceneController{
         driver = (Driver) data;
         update();
     }
+
+    public void update() {
+        myProfileButton.setText(driver.getUsername());
+    }
+    public Filter getFilter() {
+        return filter;
+    }
+    @Override
+    public User getUserData(){
+        return driver;
+    }
+
 
 
     public void initialize() {

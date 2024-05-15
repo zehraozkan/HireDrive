@@ -210,7 +210,8 @@ public class AdvertisementConnection {
 
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
             // Construct SQL query based on filter parameters
-            StringBuilder sql = new StringBuilder("SELECT * FROM advertisement WHERE 1=1");
+            StringBuilder sql = new StringBuilder("SELECT a.*, u.rating FROM advertisement a " +
+                    "JOIN users u ON a.owner_id = u.user_id WHERE 1=1");
 
             if (from != null && !from.isEmpty()) {
                 sql.append(" AND from_location = ?");
@@ -222,10 +223,10 @@ public class AdvertisementConnection {
                 sql.append(" AND cargo_type = ?");
             }
             if (minRate > 0) {
-                sql.append(" AND rate >= ?");
+                sql.append(" AND u.rating >= ?");
             }
             if (maxRate > 0) {
-                sql.append(" AND rate <= ?");
+                sql.append(" AND u.rating <= ?");
             }
             if (minDeadline != null) {
                 sql.append(" AND due_date >= ?");
@@ -266,6 +267,72 @@ public class AdvertisementConnection {
                         String addTitle = resultSet.getString("add_title");
                         String addContent = resultSet.getString("add_content");
                         Date dueDate = resultSet.getDate("due_date");
+                        //int requests = resultSet.getInt("requests");
+                        String requiredLicense = resultSet.getString("required_license");
+                        String fromLocation = resultSet.getString("from_location");
+                        String toLocation = resultSet.getString("to_location");
+                        int experience = resultSet.getInt("experience");
+                        double ownerRating = resultSet.getDouble("rating");
+                        Advertisement advertisement = new Advertisement(advertId, ownerId, addTitle, addContent, cargoType, dueDate, getAllRequestsForAdvertisement(advertId), requiredLicense, fromLocation, toLocation, experience);
+                        filteredAdvertisements.add(advertisement);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return filteredAdvertisements;
+    }
+    public static ArrayList<Advertisement> filterAdvertisements(String from, String destination, String cargoType, Date minDeadline, Date maxDeadline) {
+        ArrayList<Advertisement> filteredAdvertisements = new ArrayList<>();
+
+        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+            // Construct SQL query based on filter parameters
+            StringBuilder sql = new StringBuilder("SELECT * FROM advertisement WHERE 1=1");
+
+            if (from != null && !from.isEmpty()) {
+                sql.append(" AND from_location = ?");
+            }
+            if (destination != null && !destination.isEmpty()) {
+                sql.append(" AND to_location = ?");
+            }
+            if (cargoType != null && !cargoType.isEmpty()) {
+                sql.append(" AND cargo_type = ?");
+            }
+            if (minDeadline != null) {
+                sql.append(" AND due_date >= ?");
+            }
+            if (maxDeadline != null) {
+                sql.append(" AND due_date <= ?");
+            }
+
+            try (PreparedStatement statement = connection.prepareStatement(sql.toString())) {
+                int parameterIndex = 1;
+                if (from != null && !from.isEmpty()) {
+                    statement.setString(parameterIndex++, from);
+                }
+                if (destination != null && !destination.isEmpty()) {
+                    statement.setString(parameterIndex++, destination);
+                }
+                if (cargoType != null && !cargoType.isEmpty()) {
+                    statement.setString(parameterIndex++, cargoType);
+                }
+                if (minDeadline != null) {
+                    statement.setDate(parameterIndex++, new java.sql.Date(minDeadline.getTime()));
+                }
+                if (maxDeadline != null) {
+                    statement.setDate(parameterIndex++, new java.sql.Date(maxDeadline.getTime()));
+                }
+
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        // Retrieve advertisement details from the result set
+                        int advertId = resultSet.getInt("advert_id");
+                        int ownerId = resultSet.getInt("owner_id");
+                        String addTitle = resultSet.getString("add_title");
+                        String addContent = resultSet.getString("add_content");
+                        Date dueDate = resultSet.getDate("due_date");
                         int requests = resultSet.getInt("requests");
                         String requiredLicense = resultSet.getString("required_license");
                         String fromLocation = resultSet.getString("from_location");
@@ -284,8 +351,8 @@ public class AdvertisementConnection {
         }
 
         return filteredAdvertisements;
-        }
     }
+}
         
 
 

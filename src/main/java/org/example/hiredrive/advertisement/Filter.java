@@ -31,6 +31,7 @@ public class Filter {
         this.isAvailable = true;
         this.from = "%";
         this.destination = "%";
+        this.cargoType = "%";
         this.minRate = 0;
         this.maxRate = 5;//MAX_VALUE is impossible
         this.minExperienceLevel = 0;//MIN_VALUE is impossible
@@ -42,8 +43,7 @@ public class Filter {
 
     public ArrayList<Advertisement> getMatchingAds(){
         //(String from, String destination, String cargoType, int minRate, int maxRate, Date minDeadline, Date maxDeadline)
-      //return AdvertisementConnection.filterAdvertisements();
-        return null;
+      return AdvertisementConnection.filterAdvertisements(from, destination, cargoType, minDeadline, maxDeadline);
     }
 
     public ArrayList<Driver> getMatchingDrivers(){

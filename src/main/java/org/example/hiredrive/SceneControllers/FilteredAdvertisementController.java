@@ -6,8 +6,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.shape.Circle;
+import org.example.hiredrive.advertisement.Advertisement;
+import org.example.hiredrive.advertisement.Filter;
+import org.example.hiredrive.users.Company;
+import org.example.hiredrive.users.Driver;
 
-public class FilteredDriverController {
+import java.util.ArrayList;
+
+public class FilteredAdvertisementController extends SuperSceneController{
+
+    private Driver driver;
+    private Filter filter;
+    private  SuperSceneController prevScene;
+    private ArrayList<Advertisement> matchingAdds;
 
     @FXML
     private ChoiceBox<?> addOrderSelector;
@@ -34,5 +45,15 @@ public class FilteredDriverController {
     void btn_clicked(ActionEvent event) {
 
     }
+
+    @Override
+    public void setData(Object data){
+        prevScene = (SuperSceneController) data;
+        driver = (Driver) prevScene.getUserData();
+        filter = prevScene.getFilter();
+        matchingAdds = filter.getMatchingAds();
+
+    }
+
 
 }
