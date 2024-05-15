@@ -30,11 +30,11 @@ public class Filter {
   //null constructor, for displayment of every ad
     public Filter(){
         this.isAvailable = true;
-        this.userName = "%";
-        this.from = "%";
-        this.destination = "%";
-        this.cargoType = "%";
-        this.minRate = 0;
+//        this.userName = "%";
+//        this.from = "%";
+//        this.destination = "%";
+//        this.cargoType = "%";
+//        this.minRate = 0;
         this.maxRate = 5;//MAX_VALUE is impossible
         this.minExperienceLevel = 0;//MIN_VALUE is impossible
         this.maxExperienceLevel = 1000;//MAX_VALUE is impossible
@@ -49,7 +49,9 @@ public class Filter {
     }
 
     public ArrayList<Driver> getMatchingDrivers(){
+      if(userName != null) getMatchingDrivers(userName);
       return (ArrayList<Driver>) UserConnection.getUsersByFilter(minExperienceLevel, maxExperienceLevel, minRate, maxRate, licenses);
+
     }public ArrayList<Driver> getMatchingDrivers(String name){
      return null;
     }

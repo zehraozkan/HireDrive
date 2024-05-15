@@ -11,6 +11,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
+import org.example.hiredrive.advertisement.Advertisement;
+import org.example.hiredrive.users.Company;
+import org.example.hiredrive.users.Driver;
 
 
 public class CompanyAddIndividualController extends SuperSceneController{
@@ -86,5 +89,13 @@ public class CompanyAddIndividualController extends SuperSceneController{
             Image im = new Image("/org/example/hiredrive/pngs/5.png",false);
             ratingPng.setImage(im);
         }
-    }  
+    }
+    @Override
+    public void setData(Object data){
+//        Advertisement company = (Advertisement) data;
+//        this.IDText.setText(company.getUserId() + "");
+//        this.nameSurnameText.setText(company.getUsername());
+        //this.experienceOfDriverText.setText("Experience " + driver.getExperience());
+
+    }
 }

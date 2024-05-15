@@ -244,8 +244,6 @@ public class UserConnection {
                 String userPassword = rs.getString("user_password");
                 String k = rs.getString("user_name");
                 String userName = k.split(" ")[0];
-                String userSurname = "";
-                if (k.contains(" ")) userSurname = rs.getString("user_name").split(" ")[1];
                 String dateCreated = rs.getString("date_created");
                 String userMail = rs.getString("user_mail");
                 String user_type = rs.getString("user_type");
@@ -253,9 +251,9 @@ public class UserConnection {
                 int experience = rs.getInt("experience");
 
                 if (user_type.equals("driver")) {
-                    users.add(new Driver(userName, userSurname, userPassword, userMail, userId, phoneNumber, experience));
+                    users.add(new Driver(userName, " ", userPassword, userMail, userId, phoneNumber, experience));
                 } else if (user_type.equals("company")) {
-                    users.add(new Company(userName + userSurname, userPassword, userMail, userId, phoneNumber));
+                    users.add(new Company(userName , userPassword, userMail, userId, phoneNumber));
                 }
 
                 // Append user information to the result string
@@ -547,11 +545,41 @@ public class UserConnection {
         }
         return user;
     }
+    public static ArrayList<User> getUsersByName(String name) throws SQLException {
+        ArrayList<User> users = new ArrayList<>();
+        String query = "SELECT * FROM users WHERE user_name = ?";
+
+        try (
+                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hiredrive", "root", "student_sifre");
+                PreparedStatement statement = connection.prepareStatement(query)
+        ) {
+            statement.setString(1, name);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int userId = resultSet.getInt("user_id");
+
+
+                User user =getUser(userId);
+                users.add(user);
+            }
+
+        }
+        catch (SQLException e) {
+            System.out.println(e);
+        }
+        return users;
+    }
 
     
 
     public static void main(String[] args) {
 
-        System.out.println(getCompanyOfDriver(33));
+        try {
+            System.out.println(getUsersByName("Jane").size());
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 }

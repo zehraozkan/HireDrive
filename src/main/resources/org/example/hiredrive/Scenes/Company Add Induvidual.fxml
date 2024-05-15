@@ -50,7 +50,7 @@
                <graphic>
                   <ImageView fx:id="ratingPng" fitHeight="90.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../resources/org/example/hiredrive/pngs/4.5.png" />
+                        <Image url="@../pngs/4.5.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -76,7 +76,7 @@
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../resources/org/example/hiredrive/pngs/3dot.png" />
+                        <Image url="@../pngs/3dot.png" />
                      </image>
                      <viewport>
                         <Rectangle2D />
