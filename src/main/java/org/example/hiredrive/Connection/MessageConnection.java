@@ -124,8 +124,8 @@ public class MessageConnection {
 
 
 
-        sendMessage(2,3, "sdnfjnsdf");
-        ArrayList<Message> messages = retrieveMessagesBetweenUsers(2, 3);
+        //sendMessage(50,51, "this is a  NEWWWW sample message");
+       ArrayList<Message> messages = retrieveMessagesBetweenUsers(50, 51);
 
         for (Message message : messages) {System.out.println(message.getContent());}
 

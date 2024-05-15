@@ -149,6 +149,9 @@
                <VBox.margin>
                   <Insets bottom="20.0" left="100.0" right="100.0" />
                </VBox.margin>
+               <content>
+                  <VBox fx:id="add_box" />
+               </content>
             </ScrollPane>
          </children>
       </VBox>

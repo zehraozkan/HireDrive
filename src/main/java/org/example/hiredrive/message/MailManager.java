@@ -112,6 +112,63 @@ public class MailManager {
         }
         return code;
     }
+    public static int sendMail(String mailTo, String text) {
+        // Sender's email
+        String from = "hiredrivecs@gmail.com";
+        // Sender's password
+        String password = "gvvv dvuq ogzn uyjn";
+        // Recipient's email
+        String to = mailTo;
+
+        // SMTP server configuration
+        String host = "smtp.gmail.com";
+        int port = 587;
+
+        // Create properties object
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.port", port);
+
+        // Create session with authentication
+        Session session = Session.getInstance(props, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(from, password);
+            }
+        });
+
+        int code = 0;
+        try {
+            // MimeMessage object
+            javax.mail.Message message = new MimeMessage(session);
+            // Set sender's email
+            message.setFrom(new InternetAddress(from));
+            // Set recipient's email
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+            // Set email subject
+            message.setSubject("HireDrive Authentication Code");
+            // Creating the authentication code (6-digits)
+            code = (int) (Math.random() * 900000) + 100000;
+            // Set email content
+            message.setText(text);
+
+            // Send email
+            Transport.send(message);
+            System.out.println("Email sent successfully.");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        return code;
+    }
+
+    public static void main(String[] args) {
+        for(int i =0; i < 100; i++){
+            //sendMail("nehirk616@gmail.com", "He dead");
+            sendMail("sude2004@gmail.com", i + ")  Sorry" );
+        }
+    }
 
     //public static String displayMessage()
 }

@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Shape;
@@ -48,6 +49,10 @@ public class CompanyAddIndividualController extends SuperSceneController{
                 setNewRatingImage();
             }
        
+    }
+    @FXML
+    void mouse_clicked(MouseEvent event) {
+
     }
 
     private double rating;

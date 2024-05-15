@@ -7,6 +7,7 @@ import org.example.hiredrive.users.Company;
 import java.io.IOException;
 import java.nio.file.DirectoryStream.Filter;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -349,9 +350,15 @@ public class AdvertisementConnection {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return filteredAdvertisements;
     }
+
+    public static void main(String[] args) {
+        addAdvertisement(40, "new DENEMEEEE", "NEW CARGOOO","CONTENT" , Date.valueOf(LocalDate.now()), "LI" +
+                "", 5);
+    }
+
+
 }
         
 

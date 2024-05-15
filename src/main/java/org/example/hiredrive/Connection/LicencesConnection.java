@@ -35,6 +35,7 @@ import java.util.Properties;
     }
 
     public static void addLicense(int driverId, String licenseType) throws SQLException {
+
         String sql = "INSERT INTO licenses (driver_id, licence_type) VALUES (?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, driverId);
@@ -68,4 +69,13 @@ import java.util.Properties;
 
         return licenses;
     }
+
+        public static void main(String[] args) {
+            try{
+                addLicense(110, "A2");
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
 }

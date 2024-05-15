@@ -26,8 +26,8 @@ public class RequestConnection {
 
 
     public static void sendJobRequestToAdd(int driver_id, int add_id){
-        String sql = "INSERT INTO jobRequests (driver_id, add_id) VALUES (?, ?)";
-        String sql1 = "UPDATE TABLE advertisement SET request = request + 1 WHERE advert_id = ?";
+        String sql = "INSERT INTO jobRequests (sender_id, add_id) VALUES (?, ?)";
+      //  String sql1 = "UPDATE TABLE advertisement SET request = request + 1 WHERE advert_id = ?";
 
         try (Connection conn = DriverManager.getConnection(url, username, password);
              PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -35,10 +35,10 @@ public class RequestConnection {
 
             pstmt.setInt(1, driver_id);
             pstmt.setInt(2, add_id);
-            pstmt1.setInt(1, add_id);
+            //pstmt1.setInt(1, add_id);
 
             pstmt.executeUpdate();
-            pstmt1.executeUpdate();
+           // pstmt1.executeUpdate();
 
             System.out.println("Request sent successfully.");
         } catch (SQLException e) {
@@ -148,4 +148,9 @@ public class RequestConnection {
             e.printStackTrace();
         }
     }
+
+    public static void main(String[] args) {
+        sendJobRequestToAdd(35, 111);
+    }
+
 }
