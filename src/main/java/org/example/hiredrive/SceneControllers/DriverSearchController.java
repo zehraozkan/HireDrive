@@ -136,14 +136,14 @@ public class DriverSearchController extends SuperSceneController{
     void btn_clicked(ActionEvent event) {
         if (event.getSource()== myProfileButton) {
             Stage main = (Stage) myProfileButton.getScene().getWindow();
-            createScene("/org/example/hiredrive/Scenes/profilePageDriver.fxml", this);
+            createScene("/org/example/hiredrive/Scenes/profilePageDriver.fxml", driver);
             main.close();
 
             vehicleCargo.isSelected();
         }else if(event.getSource()== searchBtn){
             Stage main = (Stage) searchBtn.getScene().getWindow();
             createFilter();
-            createScene("/org/example/hiredrive/Scenes/Filtered Company Adds.fxml", this);
+            createScene("/org/example/hiredrive/Scenes/Filtered Company Adds.fxml", driver);
             main.close();
         }
         else if (event.getSource() == logOutBtn){

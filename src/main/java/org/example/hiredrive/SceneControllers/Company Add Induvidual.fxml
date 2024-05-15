@@ -12,13 +12,13 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1050.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.hiredrive.SceneControllers.companyAddInduvidualController">
    <children>
-      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="90.0">
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="99.0">
          <children>
             <Label fx:id="IDText" text="ID" />
          </children>
       </HBox>
       <Separator orientation="VERTICAL" prefHeight="200.0" />
-      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="350.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="470.0">
          <children>
             <Label fx:id="nameSurnameText" text="Add Topic">
                <padding>
@@ -55,12 +55,6 @@
                   </ImageView>
                </graphic>
             </Button>
-         </children>
-      </HBox>
-      <Separator orientation="VERTICAL" prefHeight="200.0" />
-      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="120.0">
-         <children>
-            <Label fx:id="experienceOfDriverText" alignment="CENTER" prefHeight="22.0" prefWidth="91.0" style="-fx-border-radius: 8; -fx-border-width: 1; -fx-border-color: black;" text="Experience" />
          </children>
       </HBox>
       <Separator orientation="VERTICAL" prefHeight="200.0" />

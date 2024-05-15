@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 import org.example.hiredrive.advertisement.Advertisement;
 import org.example.hiredrive.advertisement.Filter;
 import org.example.hiredrive.users.Company;
@@ -40,10 +41,20 @@ public class FilteredAdvertisementController extends SuperSceneController{
 
     @FXML
     private TextField searchByNameTextArea;
-
     @FXML
     void btn_clicked(ActionEvent event) {
+        if (event.getSource()== myProfileButton) {
+            Stage main = (Stage) myProfileButton.getScene().getWindow();
+            createScene("/org/example/hiredrive/Scenes/profilePageDriver.fxml", driver);
+            main.close();
 
+        }
+        else if (event.getSource() == logOutButton){
+            Stage main = (Stage) myProfileButton.getScene().getWindow();
+            createScene("/org/example/hiredrive/Scenes/entranceScene.fxml");
+            driver = null;
+            main.close();
+        }
     }
 
     @Override
