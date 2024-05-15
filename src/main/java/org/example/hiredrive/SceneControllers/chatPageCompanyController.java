@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -12,11 +11,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-import org.example.hiredrive.Connection.UserConnection;
 import org.example.hiredrive.message.Message;
 import org.example.hiredrive.users.Company;
 import org.example.hiredrive.users.Driver;
-import org.example.hiredrive.users.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -66,8 +63,8 @@ public class chatPageCompanyController  extends  SuperSceneController {
     private Button view_profile_btn;
 
     private ArrayList<Message> messages;
-    private User user;
-    private User otherUser;
+    private Driver user;
+    private ArrayList<Company> companies;
     private SuperSceneController prevScene;
 
     @FXML
@@ -90,40 +87,42 @@ public class chatPageCompanyController  extends  SuperSceneController {
             main.close();
         }
     }
-
+/*
     @Override
     public void setData(Object data){
+        companies = user.
         prevScene = (SuperSceneController) data;
         user = (Company) prevScene.getUserData();
-       // update();
+        update();
     }
 
-//    public void update() {
-//        myProfileButton.setDisable(true);
-//        myProfileButton.setText(user.getUsername());
-//        messages = retrieveMessagesBetweenUsers(user.getUserId(), otherUser.getUserId());
-//        for (Message message : messages) {
-//            try{
-//                FXMLLoader loader = new FXMLLoader();
-//
-//                loader.setLocation(getClass().getResource("/org/example/hiredrive/Scenes/otherChatUser.fxml"));
-//                HBox profilePage = loader.load();
-//
-//                driverAddIndividiualController driverAddIndController = loader.getController();
-//
-//                driverAddIndController.setData(driver);
-//
-//                addShowFrame.getChildren().add(profilePage);
-//
-//            }catch (IOException e){
-//                e.printStackTrace();
-//            }
-//        }*/
-//    }
+   public void update() {
+
+        myProfileButton.setDisable(true);
+        myProfileButton.setText(user.getUsername());
+
+        messages = retrieveMessagesBetweenUsers(user.getUserId(), otherUser.getUserId());
+
+        for (Message message : messages) {
+           try{
+               FXMLLoader loader = new FXMLLoader();
+
+               loader.setLocation(getClass().getResource("/org/example/hiredrive/Scenes/otherChatUser.fxml"));
+               HBox profilePage = loader.load();
+               driverAddIndividiualController driverAddIndController = loader.getController();
+
+               driverAddIndController.setData(driver);
+               addShowFrame.getChildren().add(profilePage);
+
+           }catch (IOException e){
+               e.printStackTrace();
+           }
+
+    }
     @FXML
     void sendButtonAction(ActionEvent event) {
         sendMessage(user.getUserId(), otherUser.getUserId(), messageBox.getText());
-    }
+    }*/
 
     @FXML
     void sendMethod(KeyEvent event) {

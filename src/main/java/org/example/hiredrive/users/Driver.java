@@ -28,7 +28,7 @@ public class Driver extends User {
         setRating(ReviewConnection.getRating(userId));
 
     }
-    //for database
+
     public Driver(String username, String userSurname, String password, String email, int userId, String phoneNo, int experience) {
         super(username,  password, email, phoneNo);
         this.surname = userSurname;
