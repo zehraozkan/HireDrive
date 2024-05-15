@@ -5,6 +5,7 @@ import org.example.hiredrive.advertisement.Request;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class RequestConnection {
@@ -104,6 +105,29 @@ public class RequestConnection {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return requests;
+    }
+    public static ArrayList<Request> getRequestsToDriver(int driverId) {
+        ArrayList<Request> requests = new ArrayList<>();
+        String sql = "SELECT * FROM requests WHERE driver_id = ?";
+
+        try (Connection conn = DriverManager.getConnection(url, username, password);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, driverId);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                int addId = rs.getInt("add_id");
+                String status = rs.getString("status");
+                ;
+
+                Request request = new Request(status, driverId, addId);
+                requests.add(request);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
         return requests;
     }
 
