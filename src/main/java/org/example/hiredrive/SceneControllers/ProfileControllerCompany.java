@@ -72,7 +72,7 @@ public class ProfileControllerCompany extends  SuperSceneController{
             main.close();
 
         }else if(event.getSource() == job_btn) {
-            createScene("/org/example/hiredrive/Scenes/Search Page Company.fxml", user);
+            createScene("/org/example/hiredrive/Scenes/Jobs.fxml", user);
             Stage main = (Stage) job_btn.getScene().getWindow();
             main.close();
 

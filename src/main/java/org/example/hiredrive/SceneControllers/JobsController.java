@@ -42,16 +42,16 @@ public class JobsController extends SuperSceneController{
     void btn_clicked(ActionEvent event) {
         if (event.getSource() == myProfileButton) {
             Stage main = (Stage) myProfileButton.getScene().getWindow();
-            createScene("/org/example/hiredrive/Scenes/ProfilePageCompany.fxml", this);
+            createScene("/org/example/hiredrive/Scenes/ProfilePageCompany.fxml");
             main.close();
         }
         else if(event.getSource() == goMainPageScene) {
             Stage main = (Stage) myProfileButton.getScene().getWindow();
-            createScene("/org/example/hiredrive/Scenes/ProfilePageCompany.fxml", this);
+            createScene("/org/example/hiredrive/Scenes/Search Page Company.fxml");
             main.close();
 
         } else if(event.getSource() == logOutButton) {
-            createScene("/org/example/hiredrive/Scenes/entranceScene.fxml", this);
+            createScene("/org/example/hiredrive/Scenes/entranceScene.fxml");
             Stage main = (Stage) logOutButton.getScene().getWindow();
             main.close();
         }
