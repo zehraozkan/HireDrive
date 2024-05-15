@@ -7,4 +7,8 @@ public class errorFrameController {
     @FXML
     private Label errorText;
 
+    public void setErrorText(String text){
+        errorText.setText(text);
+    }
+
 }
