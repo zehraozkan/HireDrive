@@ -67,19 +67,23 @@ public class ProfileControllerCompany extends  SuperSceneController{
         if(event.getSource() == addLicenseBtn) {
 
         }else if(event.getSource() == goMainPageScene) {
-            createScene("/org/example/hiredrive/Scenes/Search Page Company.fxml", user);
+            createScene("/org/example/hiredrive/Scenes/Search Page Company.fxml", this);
             Stage main = (Stage) goMainPageScene.getScene().getWindow();
             main.close();
 
         }else if(event.getSource() == job_btn) {
-            createScene("/org/example/hiredrive/Scenes/Jobs.fxml", user);
+            createScene("/org/example/hiredrive/Scenes/Jobs.fxml", this);
             Stage main = (Stage) job_btn.getScene().getWindow();
             main.close();
 
         } else if (event.getSource() == logOutButton) {
             user = null;
             prevScene = null;
-            createScene("/org/example/hiredrive/Scenes/entranceScene");
+            createScene("/org/example/hiredrive/Scenes/entranceScene.fxml");
+            Stage main = (Stage) logOutButton.getScene().getWindow();
+            main.close();
+        }else if (event.getSource() == chat_btn) {
+            createScene("/org/example/hiredrive/Scenes/Chat Page Company.fxml", this);
             Stage main = (Stage) logOutButton.getScene().getWindow();
             main.close();
         }
