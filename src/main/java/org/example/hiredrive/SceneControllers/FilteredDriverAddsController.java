@@ -80,29 +80,24 @@ public class FilteredDriverAddsController extends SuperSceneController{
 
     public void initialize() {
 
-        if (matchingDrivers != null && !matchingDrivers.isEmpty()) {
-            addShowFrame.getChildren().clear();
+        for (Driver driver : matchingDrivers) {
+            try{
 
-            for (Driver driver : matchingDrivers) {
-                try{
+                FXMLLoader loader = new FXMLLoader();
 
-                    FXMLLoader loader = new FXMLLoader();
-                    loader.setLocation(getClass().getResource("ScenesDriver Add Induvidiual.fxml"));
-                    HBox profilePage = loader.load();
-                    driverAddIndividiualController driverAddIndController = loader.getController();
-                    driverAddIndController.setData(driver);
-                    addShowFrame.getChildren().add(profilePage);
+                loader.setLocation(getClass().getResource("/DriverAddInduvidiual.fxml"));
+                HBox profilePage = loader.load();
 
-                }catch (IOException e){
-                    e.printStackTrace();
-                }
+                driverAddIndividiualController driverAddIndController = loader.getController();
+
+                driverAddIndController.setData(driver);
+
+                addShowFrame.getChildren().add(profilePage);
+
+            }catch (IOException e){
+                e.printStackTrace();
             }
-        } else {
-            // Eşleşen sürücü yoksa bir mesaj göster
-            Label noDriversLabel = new Label("No matching drivers found.");
-            addShowFrame.getChildren().add(noDriversLabel);
         }
-
     }
 
     @Override
