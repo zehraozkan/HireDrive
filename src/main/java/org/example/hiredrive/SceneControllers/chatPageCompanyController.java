@@ -91,43 +91,7 @@ public class chatPageCompanyController  extends  SuperSceneController {
         }
     }
 
-    @Override
-    public void setData(Object data){
-        messages = retrieveMessagesBetweenUsers(user.getUserId(), otherUser.getUserId());
-        for(Message message : messages) {
-            message.getContent();
-        }
-        prevScene = (SuperSceneController) data;
-        user = (Company) prevScene.getUserData();
-        update();
-    }
-    public void update(){
-
-    }
-
-    public void update() {
-        myProfileButton.setDisable(true);
-        myProfileButton.setText(user.getUsername());
-
-        for (Driver driver : matchingDrivers) {
-            try{
-
-                FXMLLoader loader = new FXMLLoader();
-
-                loader.setLocation(getClass().getResource("/org/example/hiredrive/Scenes/DriverAddInduvidiual.fxml"));
-                HBox profilePage = loader.load();
-
-                driverAddIndividiualController driverAddIndController = loader.getController();
-
-                driverAddIndController.setData(driver);
-
-                addShowFrame.getChildren().add(profilePage);
-
-            }catch (IOException e){
-                e.printStackTrace();
-            }
-        }
-    }
+    
     @FXML
     void sendButtonAction(ActionEvent event) {
         sendMessage(user.getUserId(), otherUser.getUserId(), messageBox.getText());
