@@ -92,9 +92,9 @@ public class CompanyAddIndividualController extends SuperSceneController{
     }
     @Override
     public void setData(Object data){
-//        Advertisement company = (Advertisement) data;
-//        this.IDText.setText(company.getUserId() + "");
-//        this.nameSurnameText.setText(company.getUsername());
+        Advertisement company = (Advertisement) data;
+        this.IDText.setText(company.getAddTitle());
+        this.nameSurnameText.setText(company.getContent());
         //this.experienceOfDriverText.setText("Experience " + driver.getExperience());
 
     }

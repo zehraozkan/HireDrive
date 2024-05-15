@@ -23,7 +23,7 @@ import org.example.hiredrive.users.User;
 public class ProfileControllerCompany extends  SuperSceneController{
 
     @FXML
-    private Hyperlink addLicenseBtn;
+    private Hyperlink chat_btn;
 
     @FXML
     private Button goMainPageScene;
@@ -53,18 +53,13 @@ public class ProfileControllerCompany extends  SuperSceneController{
     private Hyperlink requestBtn;
 
     @FXML
-    private Hyperlink chat_btn;
-
-
-    @FXML
     private Label userInfo;
-
     private User user;
     private SuperSceneController prevScene;
 
     @FXML
     void btn_clicked(ActionEvent event) {
-        if(event.getSource() == addLicenseBtn) {
+        if(event.getSource() == rateInfo) {
 
         }else if(event.getSource() == goMainPageScene) {
             createScene("/org/example/hiredrive/Scenes/Search Page Company.fxml", this);
@@ -102,12 +97,27 @@ public class ProfileControllerCompany extends  SuperSceneController{
             }
         }
     }
+    @FXML
+    void link_clicked(ActionEvent event) {
+        if(event.getSource() == requestBtn) {
+
+        }else if(event.getSource() == goMainPageScene) {
+
+        }else if(event.getSource() == job_btn) {
+            createScene("/org/example/hiredrive/Scenes/Jobs.fxml", this);
+            Stage main = (Stage) job_btn.getScene().getWindow();
+            main.close();
+        }
+    }
 
     @Override
     public void setData(Object data){
         prevScene = (SuperSceneController) data;
         user = (Company) prevScene.getUserData();
         update();
+    }
+    public User getUserData(){
+        return user;
     }
     public void update(){
         myProfileButton.setDisable(true);

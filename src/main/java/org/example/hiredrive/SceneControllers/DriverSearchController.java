@@ -143,7 +143,7 @@ public class DriverSearchController extends SuperSceneController{
         }else if(event.getSource()== searchBtn){
             Stage main = (Stage) searchBtn.getScene().getWindow();
             createFilter();
-            createScene("/org/example/hiredrive/Scenes/Filtered Company Adds.fxml", driver);
+            createScene("/org/example/hiredrive/Scenes/Filtered Company Adds.fxml", this);
             main.close();
         }
         else if (event.getSource() == logOutBtn){

@@ -8,6 +8,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import org.example.hiredrive.users.Company;
@@ -43,6 +44,9 @@ public class JobsController extends SuperSceneController{
     private TextField searchByNameTextArea;
 
     @FXML
+    private VBox job_box;
+
+    @FXML
     private RadioButton unfinishedJobs;
     private SuperSceneController prevScene;
     private Company company;
@@ -71,7 +75,7 @@ public class JobsController extends SuperSceneController{
     @FXML
     void search_name(ActionEvent event) {
 
-    }/*
+    }
     public void update() {
 
         for (Driver driver : matchingDrivers) {
@@ -86,7 +90,7 @@ public class JobsController extends SuperSceneController{
 
                 driverAddIndController.setData(driver);
 
-                addShowFrame.getChildren().add(profilePage);
+                job_box.getChildren().add(profilePage);
 
             }catch (IOException e){
                 e.printStackTrace();
@@ -100,6 +104,6 @@ public class JobsController extends SuperSceneController{
         company = (Company) prevScene.getUserData();
         matchingDrivers = company.getWorksWith();
         update();
-    }*/
+    }
 
 }

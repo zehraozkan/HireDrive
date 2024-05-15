@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import org.example.hiredrive.users.Driver;
 
 public class jobsInduvidiualController extends  SuperSceneController{
 
@@ -31,6 +32,10 @@ public class jobsInduvidiualController extends  SuperSceneController{
         }
     }
 
-    public void
+    public void setData(Driver driver) {
+
+        this.IDText.setText(driver.getUserId() + "");
+        this.nameSurnameText.setText(driver.getUsername());
+    }
 
 }

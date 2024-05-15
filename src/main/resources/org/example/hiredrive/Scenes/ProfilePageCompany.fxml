@@ -82,7 +82,7 @@
                         <Insets bottom="15.0" />
                      </padding>
                   </Hyperlink>
-                  <Hyperlink fx:id="requestBtn" onAction="#btn_clicked" prefWidth="310.0" text="Requests" textFill="#000000fe">
+                  <Hyperlink fx:id="requestBtn" onAction="#link_clicked" prefWidth="310.0" text="Requests" textFill="#000000fe">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -90,7 +90,7 @@
                         <Insets bottom="15.0" />
                      </padding>
                   </Hyperlink>
-                  <Hyperlink fx:id="job_btn" onAction="#btn_clicked" prefWidth="310.0" text="Jobs" textFill="#000000fe">
+                  <Hyperlink fx:id="job_btn" onAction="#link_clicked" prefWidth="310.0" text="Jobs" textFill="#000000fe">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -98,15 +98,7 @@
                         <Insets bottom="15.0" />
                      </padding>
                   </Hyperlink>
-                  <Hyperlink fx:id="chat_btn" onAction="#btn_clicked" prefWidth="310.0" text="Chat" textFill="#000000fe">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets bottom="15.0" />
-                     </padding>
-                  </Hyperlink>
-                  <Hyperlink fx:id="addLicenseBtn" onAction="#btn_clicked" prefWidth="310.0" text="null" textFill="#000000fe" visible="false">
+                  <Hyperlink fx:id="chat_btn" onAction="#link_clicked" prefWidth="310.0" text="Chat" textFill="#000000fe">
                      <font>
                         <Font size="18.0" />
                      </font>

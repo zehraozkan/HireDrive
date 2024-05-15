@@ -61,6 +61,6 @@ public abstract class SuperSceneController {
    // public abstract void sendData();
     public void getErrorPopUp(String error){
             createScene("/org/example/hiredrive/Scenes/errorFrame.fxml");
-            errorFrameController.setErrorText(error);
+        //    errorFrameController.setErrorText(error);
    }
 }
