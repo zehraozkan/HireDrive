@@ -79,10 +79,18 @@ public class SendDeleteRequestController extends SuperSceneController{
 
         } 
         else if(event.getSource() == sendRequestButton){
-            RequestConnection.sendJobRequestToAdd(driver.getUserId(), add.getAdvertisementID());
+            //RequestConnection.sendJobRequestToAdd(driver.getUserId(), add.getAdvertisementID());
+            
+            requestOperationsFrame.setVisible(false);
+            requestSendedFrame.setVisible(true);
+
         }
         else if(event.getSource() == deleteRequestButton){
-            RequestConnection.deleteRequest(driver.getUserId(), add.getAdvertisementID());
+            //RequestConnection.deleteRequest(driver.getUserId(), add.getAdvertisementID());
+
+            requestOperationsFrame.setVisible(false);
+            requestDeletedFrame.setVisible(true);
+
         }
     }
 
