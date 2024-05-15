@@ -32,9 +32,9 @@ public class driverAddIndividiualController {
 
 
     public void setData(Driver driver) {
-        this.IDText.equals(driver.getUserId());
-        this.nameSurnameText.equals(driver.getUsername());
-        this.experienceOfDriverText.equals("Experience " + driver.getExperience());
+        this.IDText.setText(driver.getUserId() + "");
+        this.nameSurnameText.setText(driver.getUsername());
+        this.experienceOfDriverText.setText("Experience " + driver.getExperience());
 
     }
 
