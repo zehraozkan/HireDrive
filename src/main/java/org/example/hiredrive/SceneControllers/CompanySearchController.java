@@ -170,6 +170,7 @@ public class CompanySearchController extends SuperSceneController{
         filter.setMinExperienceLevel(minExperienceLevel);
         filter.setMaxExperienceLevel(maxExperienceLevel);
         filter.setExperienceLevel(expLevel);
+
     }
     @Override
     public void setData(Object data){
