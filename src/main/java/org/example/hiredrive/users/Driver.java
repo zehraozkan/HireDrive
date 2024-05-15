@@ -44,6 +44,11 @@ public class Driver extends User {
             System.out.println(e);
         }
     }
+
+    public int getExperience(){
+        return experience;
+    }
+
     public ArrayList<String> getLicenses(){
         return LicencesConnection.getLicensesForDriver(userId);
     }

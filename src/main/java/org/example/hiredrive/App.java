@@ -23,6 +23,7 @@ public class App extends Application{
             stage.setTitle("bkah blaj");
             stage.setScene(scene);
             stage.show();
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

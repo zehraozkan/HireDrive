@@ -1,10 +1,13 @@
 package org.example.hiredrive.SceneControllers;
 
+import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
@@ -12,6 +15,7 @@ import org.example.hiredrive.advertisement.Filter;
 import org.example.hiredrive.users.Company;
 import org.example.hiredrive.users.Driver;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class FilteredDriverAddsController extends SuperSceneController{
@@ -52,7 +56,7 @@ public class FilteredDriverAddsController extends SuperSceneController{
 
             Stage main = (Stage) goMainPageScene.getScene().getWindow();
 
-            createScene("/org/example/hiredrive/Scenes/Search Page Driver.fxml");
+            createScene("/org/example/hiredrive/Scenes/Search Page Company.fxml");
             main.close();
 
         }
@@ -71,6 +75,28 @@ public class FilteredDriverAddsController extends SuperSceneController{
             main.close();
             createScene("/org/example/hiredrive/Scenes/ProfilePageCompany.fxml");
 
+        }
+    }
+
+    public void initialize() {
+
+        for (Driver driver : matchingDrivers) {
+            try{
+
+                FXMLLoader loader = new FXMLLoader();
+
+                loader.setLocation(getClass().getResource("/DriverAddInduvidiual.fxml"));
+                HBox profilePage = loader.load();
+
+                driverAddIndividiualController driverAddIndController = loader.getController();
+
+                driverAddIndController.setData(driver);
+
+                addShowFrame.getChildren().add(profilePage);
+
+            }catch (IOException e){
+                e.printStackTrace();
+            }
         }
     }
 

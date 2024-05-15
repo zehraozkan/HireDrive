@@ -5,11 +5,15 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
+import org.example.hiredrive.users.Driver;
 
-public class DriverAddIndividualController extends SuperSceneController {
+public class driverAddIndividiualController {
 
     @FXML
-    private HBox IDText;
+    private Label IDText;
+
+    @FXML
+    private HBox getHBox;
 
     @FXML
     private Label creationDateText;
@@ -25,5 +29,13 @@ public class DriverAddIndividualController extends SuperSceneController {
 
     @FXML
     private ImageView ratingPng;
+
+
+    public void setData(Driver driver) {
+        this.IDText.equals(driver.getUserId());
+        this.nameSurnameText.equals(driver.getUsername());
+        this.experienceOfDriverText.equals("Experience " + driver.getExperience());
+
+    }
 
 }

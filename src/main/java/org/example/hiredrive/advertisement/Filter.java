@@ -1,5 +1,6 @@
 package org.example.hiredrive.advertisement;
 
+import org.example.hiredrive.Connection.AdvertisementConnection;
 import org.example.hiredrive.Connection.UserConnection;
 import org.example.hiredrive.users.Driver;
 
@@ -30,6 +31,7 @@ public class Filter {
         this.isAvailable = true;
         this.from = "%";
         this.destination = "%";
+        this.cargoType = "%";
         this.minRate = 0;
         this.maxRate = 5;//MAX_VALUE is impossible
         this.minExperienceLevel = 0;//MIN_VALUE is impossible
@@ -40,11 +42,15 @@ public class Filter {
     }
 
     public ArrayList<Advertisement> getMatchingAds(){
-      return resultantsAds;
+        //(String from, String destination, String cargoType, int minRate, int maxRate, Date minDeadline, Date maxDeadline)
+      return AdvertisementConnection.filterAdvertisements(from, destination, cargoType, minDeadline, maxDeadline);
     }
 
     public ArrayList<Driver> getMatchingDrivers(){
       return (ArrayList<Driver>) UserConnection.getUsersByFilter(minExperienceLevel, maxExperienceLevel, minRate, maxRate, licenses);
+    }
+    public ArrayList<Advertisement> getMatchingAds(Date deadline){
+        return null;
     }
 
     public void setFrom(String from) {
