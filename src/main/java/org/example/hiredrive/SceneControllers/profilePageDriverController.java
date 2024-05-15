@@ -132,6 +132,12 @@ public class profilePageDriverController extends  SuperSceneController{
             Stage main = (Stage) aboutButton.getScene().getWindow();
             main.close();
         }
+        else if(event.getSource() == requestBtn) {
+            createScene("/org/example/hiredrive/Scenes/Request List Page.fxml", user);
+            Stage main = (Stage) requestBtn.getScene().getWindow();
+            main.close();
+        }
+
 
     }
     @FXML
