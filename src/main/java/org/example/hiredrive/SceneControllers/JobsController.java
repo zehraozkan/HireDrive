@@ -71,7 +71,7 @@ public class JobsController extends SuperSceneController{
     @FXML
     void search_name(ActionEvent event) {
 
-    }
+    }/*
     public void update() {
 
         for (Driver driver : matchingDrivers) {
@@ -100,6 +100,6 @@ public class JobsController extends SuperSceneController{
         company = (Company) prevScene.getUserData();
         matchingDrivers = company.getWorksWith();
         update();
-    }
+    }*/
 
 }
