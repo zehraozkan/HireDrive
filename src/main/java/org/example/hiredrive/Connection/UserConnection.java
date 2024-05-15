@@ -1,5 +1,6 @@
 package org.example.hiredrive.Connection;
 
+import org.example.hiredrive.advertisement.Request;
 import org.example.hiredrive.users.Company;
 import org.example.hiredrive.users.Driver;
 import org.example.hiredrive.users.User;
@@ -522,11 +523,10 @@ public class UserConnection {
     }
 
     public static Company getCompanyOfDriver(int driverId) {
-        int companyId = -1; // Default value if no company found
+        int companyId = -1; 
         Company user = null;
 
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
-            // SQL query to retrieve company ID based on driver ID
             String sql = "SELECT * FROM works_with WHERE driver_id = ?";
 
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -569,6 +569,31 @@ public class UserConnection {
             System.out.println(e);
         }
         return users;
+    }
+    public static List<Request> getRequestsFromDriver(int driverId, String status) {
+        List<Request> requests = new ArrayList<>();
+        String sql = "SELECT * FROM requests WHERE driver_id = ? AND status = ?";
+
+        try (Connection conn = DriverManager.getConnection(url, username, password);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, driverId);
+            pstmt.setString(2, status);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                int requestId = rs.getInt("request_id");
+                int companyId = rs.getInt("company_id");
+                String requestStatus = rs.getString("status");
+                Date dateCreated = rs.getDate("date_created");
+
+                Request request = new Request(requestStatus, companyId, driverId);
+                requests.add(request);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        return requests;
     }
 
     
