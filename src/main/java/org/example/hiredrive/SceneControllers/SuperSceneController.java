@@ -59,4 +59,8 @@ public abstract class SuperSceneController {
     public Filter getFilter(){return null;}
 
    // public abstract void sendData();
+    public void getErrorPopUp(String error){
+            createScene("/org/example/hiredrive/Scenes/errorFrame.fxml");
+            errorFrameController.setErrorText(error);
+   }
 }
