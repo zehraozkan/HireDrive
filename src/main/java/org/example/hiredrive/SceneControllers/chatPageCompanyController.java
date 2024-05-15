@@ -6,11 +6,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import org.example.hiredrive.Connection.MessageConnection;
 import org.example.hiredrive.message.Message;
 import org.example.hiredrive.users.Company;
 import org.example.hiredrive.users.Driver;
@@ -63,19 +63,18 @@ public class chatPageCompanyController  extends  SuperSceneController {
     private Button view_profile_btn;
 
     private ArrayList<Message> messages;
-    private Driver user;
-    private ArrayList<Company> companies;
+    private Company company;
     private SuperSceneController prevScene;
 
     @FXML
     void btn_clicked(ActionEvent event) {
 
         if(event.getSource() == main_btn) {
-            createScene("/org/example/hiredrive/Scenes/Search Page Driver.fxml", user);
+            createScene("/org/example/hiredrive/Scenes/Search Page Driver.fxml", company);
             Stage main = (Stage) main_btn.getScene().getWindow();
             main.close();
         }else if (event.getSource() == logOutButton) {
-            user = null;
+            company = null;
             prevScene = null;
             createScene("/org/example/hiredrive/Scenes/entranceScene");
             Stage main = (Stage) logOutButton.getScene().getWindow();
@@ -83,46 +82,48 @@ public class chatPageCompanyController  extends  SuperSceneController {
 
         }else if (event.getSource() == myProfileButton) {
             Stage main = (Stage) myProfileButton.getScene().getWindow();
-            createScene("/org/example/hiredrive/Scenes/ProfilePageCompany.fxml", user);
+            createScene("/org/example/hiredrive/Scenes/ProfilePageCompany.fxml", company);
             main.close();
         }
     }
-/*
+
     @Override
     public void setData(Object data){
-        companies = user.
-        prevScene = (SuperSceneController) data;
-        user = (Company) prevScene.getUserData();
-        update();
+         company = (Company) data;
+         update();
     }
 
    public void update() {
 
         myProfileButton.setDisable(true);
-        myProfileButton.setText(user.getUsername());
+        myProfileButton.setText(company.getUsername());
 
-        messages = retrieveMessagesBetweenUsers(user.getUserId(), otherUser.getUserId());
+        messages = MessageConnection.getMessagesForUser(company.getUserId());
 
         for (Message message : messages) {
-           try{
-               FXMLLoader loader = new FXMLLoader();
+            try{
 
-               loader.setLocation(getClass().getResource("/org/example/hiredrive/Scenes/otherChatUser.fxml"));
-               HBox profilePage = loader.load();
-               driverAddIndividiualController driverAddIndController = loader.getController();
+                FXMLLoader loader = new FXMLLoader();
 
-               driverAddIndController.setData(driver);
-               addShowFrame.getChildren().add(profilePage);
+                loader.setLocation(getClass().getResource("/org/example/hiredrive/Scenes/DriverAddInduvidiual.fxml"));
+                HBox profilePage = loader.load();
 
-           }catch (IOException e){
-               e.printStackTrace();
-           }
+                driverAddIndividiualController driverAddIndController = loader.getController();
+
+                driverAddIndController.setData(driver);
+
+                addShowFrame.getChildren().add(profilePage);
+
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }
 
     }
     @FXML
     void sendButtonAction(ActionEvent event) {
-        sendMessage(user.getUserId(), otherUser.getUserId(), messageBox.getText());
-    }*/
+        sendMessage(company.getUserId(), otherUser.getUserId(), messageBox.getText());
+    }
 
     @FXML
     void sendMethod(KeyEvent event) {

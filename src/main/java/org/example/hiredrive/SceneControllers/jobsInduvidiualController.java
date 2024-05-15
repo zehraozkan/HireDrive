@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
-public class jobsInduvidiualController {
+public class jobsInduvidiualController extends  SuperSceneController{
 
     @FXML
     private Label IDText;
@@ -26,7 +26,11 @@ public class jobsInduvidiualController {
 
     @FXML
     void btn_clicked(ActionEvent event) {
-
+        if(event.getSource() == chatButton) {
+            createScene("");
+        }
     }
+
+    public void
 
 }
