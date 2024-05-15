@@ -90,6 +90,7 @@ public class CompanySearchController extends SuperSceneController{
     private int maxExperienceLevel;
     private int expLevel;
     private Filter filter;
+    private Filter nameFilter;
 
 
     @FXML
@@ -111,6 +112,8 @@ public class CompanySearchController extends SuperSceneController{
             createScene("/org/example/hiredrive/Scenes/Filtered Driver Adds.fxml", this);
             main.close();
         }else if(event.getSource() == searchByNameButton) {
+            filter = new Filter();
+
 
         }else if (event.getSource() == myProfileButton) {
             Stage main = (Stage) myProfileButton.getScene().getWindow();

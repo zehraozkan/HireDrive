@@ -24,11 +24,13 @@ public class Filter {
     private boolean isAvailable;
     private ArrayList<Advertisement> resultantsAds;
     private ArrayList<Driver> resultantsDrivers;
+    private String userName;
 
 
   //null constructor, for displayment of every ad
     public Filter(){
         this.isAvailable = true;
+        this.userName = "%";
         this.from = "%";
         this.destination = "%";
         this.cargoType = "%";
@@ -48,6 +50,8 @@ public class Filter {
 
     public ArrayList<Driver> getMatchingDrivers(){
       return (ArrayList<Driver>) UserConnection.getUsersByFilter(minExperienceLevel, maxExperienceLevel, minRate, maxRate, licenses);
+    }public ArrayList<Driver> getMatchingDrivers(String name){
+      return (ArrayList<Driver>) UserConnection.getUsersByName(name);
     }
     public ArrayList<Advertisement> getMatchingAds(Date deadline){
         return null;
@@ -108,6 +112,9 @@ public class Filter {
     public void setResultantsDrivers(ArrayList<Driver> resultantsDrivers) {
       this.resultantsDrivers = resultantsDrivers;
   }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public int setExperienceLevel(int expLevel) {
       return expLevel;
