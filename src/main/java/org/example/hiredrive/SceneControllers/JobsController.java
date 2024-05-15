@@ -2,12 +2,19 @@ package org.example.hiredrive.SceneControllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import org.example.hiredrive.users.Company;
+import org.example.hiredrive.users.Driver;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class JobsController extends SuperSceneController{
 
@@ -37,6 +44,10 @@ public class JobsController extends SuperSceneController{
 
     @FXML
     private RadioButton unfinishedJobs;
+    private SuperSceneController prevScene;
+    private Company company;
+    private ArrayList<Driver> matchingDrivers;
+
 
     @FXML
     void btn_clicked(ActionEvent event) {
@@ -60,6 +71,35 @@ public class JobsController extends SuperSceneController{
     @FXML
     void search_name(ActionEvent event) {
 
+    }
+    public void update() {
+
+        for (Driver driver : matchingDrivers) {
+            try{
+
+                FXMLLoader loader = new FXMLLoader();
+
+                loader.setLocation(getClass().getResource("/org/example/hiredrive/Scenes/DriverAddInduvidiual.fxml"));
+                HBox profilePage = loader.load();
+
+                driverAddIndividiualController driverAddIndController = loader.getController();
+
+                driverAddIndController.setData(driver);
+
+                addShowFrame.getChildren().add(profilePage);
+
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void setData(Object data) {
+        prevScene = (SuperSceneController) data;
+        company = (Company) prevScene.getUserData();
+        matchingDrivers = company.getWorksWith();
+        update();
     }
 
 }
