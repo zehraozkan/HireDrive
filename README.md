@@ -21,15 +21,14 @@ Overall we have paid extra attention into making our application easy to underst
 
 
 
-The project used maven as an build automation tool, and the foolowinig dependencies. 
+The project used maven as an build automation tool, and the following dependencies
 
-<dependencies>
         <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
+          
         </dependency>
-
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
