@@ -62,7 +62,7 @@ public class ProfileControllerCompany extends  SuperSceneController{
         if(event.getSource() == rateInfo) {
 
         }else if(event.getSource() == goMainPageScene) {
-            createScene("/org/example/hiredrive/Scenes/Search Page Company.fxml", this);
+            createScene("/org/example/hiredrive/Scenes/Search Page Company.fxml", user);
             Stage main = (Stage) goMainPageScene.getScene().getWindow();
             main.close();
 
@@ -123,10 +123,49 @@ public class ProfileControllerCompany extends  SuperSceneController{
         myProfileButton.setDisable(true);
         myProfileButton.setText(user.getUsername());
         userInfo.setText(user.getUsername() + " (" + user.getUserType() + ") ");
+        setNewRatingImage(user.getRating());
         try {
             rateInfo.setText(user.getRating() + " rated " + UserConnection.getTotalRated(user.getUserId()));
         }catch(Exception e){
             System.out.println(e);
+        }
+    }
+    private void setNewRatingImage(double rating) {
+        if(rating <= 1){
+            Image im = new Image(getClass().getResourceAsStream("/org/example/hiredrive/pngs/1.png"));
+            ratingPng.setImage(im);
+        }
+        else if(rating <= 1.5){
+            Image im = new Image(getClass().getResourceAsStream("/org/example/hiredrive/pngs/1.5.png"));
+            ratingPng.setImage(im);
+        }
+        else if(rating <= 2){
+            Image im = new Image(getClass().getResourceAsStream("/org/example/hiredrive/pngs/2.png"));
+            ratingPng.setImage(im);
+        }
+        else if(rating <= 2.5){
+            Image im = new Image(getClass().getResourceAsStream("/org/example/hiredrive/pngs/2.5.png"));
+            ratingPng.setImage(im);
+        }
+        else if(rating <= 3){
+            Image im = new Image(getClass().getResourceAsStream("/org/example/hiredrive/pngs/3.png"));
+            ratingPng.setImage(im);
+        }
+        else if(rating <= 3.5){
+            Image im = new Image(getClass().getResourceAsStream("/org/example/hiredrive/pngs/3.5.png"));
+            ratingPng.setImage(im);
+        }
+        else if(rating <= 4){
+            Image im = new Image(getClass().getResourceAsStream("/org/example/hiredrive/pngs/4.png"));
+            ratingPng.setImage(im);
+        }
+        else if(rating <= 4.5){
+            Image im = new Image(getClass().getResourceAsStream("/org/example/hiredrive/pngs/4.5.png"));
+            ratingPng.setImage(im);
+        }
+        else if(rating <= 5){
+            Image im = new Image(getClass().getResourceAsStream("/org/example/hiredrive/pngs/5.png"));
+            ratingPng.setImage(im);
         }
     }
 

@@ -41,7 +41,7 @@ public abstract class SuperSceneController {
 
             Scene scene = new Scene(root);
 
-            stage.setTitle("bkah blaj");
+            stage.setTitle(path.split("/")[path.split("/").length-1].replace(".fxml", ""));
             stage.setScene(scene);
             stage.show();
             controller.setData(Data);
@@ -49,6 +49,7 @@ public abstract class SuperSceneController {
             System.out.println(e);
         }
     }
+
     public void hide(Scene sceneToHide) {
         // Code to hide the scene
         sceneToHide.getWindow().hide(); // Example of hiding the scene

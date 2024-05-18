@@ -179,7 +179,6 @@ public class CompanySearchController extends SuperSceneController{
     }
     @Override
     public void setData(Object data){
-
         company = (Company) data;
         update();
     }

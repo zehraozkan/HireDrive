@@ -56,7 +56,7 @@ public class FilteredDriverAddsController extends SuperSceneController{
 
             Stage main = (Stage) goMainPageScene.getScene().getWindow();
 
-            createScene("/org/example/hiredrive/Scenes/Search Page Company.fxml");
+            createScene("/org/example/hiredrive/Scenes/Search Page Company.fxml", company);
             main.close();
 
         }
@@ -73,7 +73,7 @@ public class FilteredDriverAddsController extends SuperSceneController{
             Stage main = (Stage) myProfileButton.getScene().getWindow();
 
             main.close();
-            createScene("/org/example/hiredrive/Scenes/ProfilePageCompany.fxml");
+            createScene("/org/example/hiredrive/Scenes/ProfilePageCompany.fxml", company);
 
         }
     }
@@ -105,6 +105,7 @@ public class FilteredDriverAddsController extends SuperSceneController{
         prevScene = (SuperSceneController) data;
         company = (Company) prevScene.getUserData();
         filter = prevScene.getFilter();
+        myProfileButton.setText(company.getUsername());
         matchingDrivers = filter.getMatchingDrivers();
         update();
     }

@@ -64,6 +64,11 @@ public class FilteredAdvertisementController extends SuperSceneController{
             driver = null;
             main.close();
         }
+        else if (event.getSource() == goMainPageScene) {
+            Stage main = (Stage) myProfileButton.getScene().getWindow();
+            createScene("/org/example/hiredrive/Scenes/Search Page Driver.fxml", driver);
+            main.close();
+        }
     }
 
     @Override
@@ -71,6 +76,7 @@ public class FilteredAdvertisementController extends SuperSceneController{
         prevScene = (SuperSceneController) data;
         driver = (Driver) prevScene.getUserData();
         filter = prevScene.getFilter();
+        myProfileButton.setText(driver.getUsername());
         matchingAdds = filter.getMatchingAds();
         update();
 

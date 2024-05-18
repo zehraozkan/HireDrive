@@ -20,7 +20,7 @@ public class App extends Application{
             root = FXMLLoader.load(getClass().getResource("/org/example/hiredrive/Scenes/entranceScene.fxml"));
             Scene scene = new Scene(root);
 
-            stage.setTitle("bkah blaj");
+            stage.setTitle("entrance scene");
             stage.setScene(scene);
             stage.show();
 

@@ -45,9 +45,7 @@ public class CompanyAddIndividualController extends SuperSceneController{
 
     @FXML
     void btn_clicked(ActionEvent event) {
-            if(event.getSource() == rating_btn){
-                setNewRatingImage();
-            }
+
        
     }
     @FXML
@@ -57,41 +55,41 @@ public class CompanyAddIndividualController extends SuperSceneController{
 
     private double rating;
 
-    private void setNewRatingImage() {
-        if(rating == 1){
-            Image im = new Image("/org/example/hiredrive/pngs/1.png",false);
+    private void setNewRatingImage(double rating) {
+        if(rating <= 1){
+            Image im = new Image(getClass().getResourceAsStream("/org/example/hiredrive/pngs/1.png"));
             ratingPng.setImage(im);
         }
-        else if(rating == 1.5){
-            Image im = new Image("/org/example/hiredrive/pngs/1.5.png",false);
+        else if(rating <= 1.5){
+            Image im = new Image(getClass().getResourceAsStream("/org/example/hiredrive/pngs/1.5.png"));
             ratingPng.setImage(im);
         }
-        else if(rating == 2){
-            Image im = new Image("/org/example/hiredrive/pngs/2.png",false);
+        else if(rating <= 2){
+            Image im = new Image(getClass().getResourceAsStream("/org/example/hiredrive/pngs/2.png"));
             ratingPng.setImage(im);
         }
-        else if(rating == 2.5){
-            Image im = new Image("/org/example/hiredrive/pngs/2.5.png",false);
+        else if(rating <= 2.5){
+            Image im = new Image(getClass().getResourceAsStream("/org/example/hiredrive/pngs/2.5.png"));
             ratingPng.setImage(im);
         }
-        else if(rating == 3){
-            Image im = new Image("/org/example/hiredrive/pngs/3.png",false);
+        else if(rating <= 3){
+            Image im = new Image(getClass().getResourceAsStream("/org/example/hiredrive/pngs/3.png"));
             ratingPng.setImage(im);
         }
-        else if(rating == 3.5){
-            Image im = new Image("/org/example/hiredrive/pngs/3.png",false);
+        else if(rating <= 3.5){
+            Image im = new Image(getClass().getResourceAsStream("/org/example/hiredrive/pngs/3.5.png"));
             ratingPng.setImage(im);
         }
-        else if(rating == 4){
-            Image im = new Image("/org/example/hiredrive/pngs/4.png",false);
+        else if(rating <= 4){
+            Image im = new Image(getClass().getResourceAsStream("/org/example/hiredrive/pngs/4.png"));
             ratingPng.setImage(im);
         }
-        else if(rating == 4.5){
-            Image im = new Image("/org/example/hiredrive/pngs/4.5.png",false);
+        else if(rating <= 4.5){
+            Image im = new Image(getClass().getResourceAsStream("/org/example/hiredrive/pngs/4.5.png"));
             ratingPng.setImage(im);
         }
-        else if(rating == 5){
-            Image im = new Image("/org/example/hiredrive/pngs/5.png",false);
+        else if(rating <= 5){
+            Image im = new Image(getClass().getResourceAsStream("/org/example/hiredrive/pngs/5.png"));
             ratingPng.setImage(im);
         }
     }
@@ -100,7 +98,10 @@ public class CompanyAddIndividualController extends SuperSceneController{
         Advertisement company = (Advertisement) data;
         this.IDText.setText(company.getAddTitle());
         this.nameSurnameText.setText(company.getContent());
+
+        this.rating = company.getOwner().getRating();
         //this.experienceOfDriverText.setText("Experience " + driver.getExperience());
+        setNewRatingImage(rating);
 
     }
 }

@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.hiredrive.message.MailManager;
@@ -27,6 +28,9 @@ public class verificationController extends SuperSceneController{
 
     @FXML
     private TextField codeField;
+
+    @FXML
+    private Label mailText;
 
     @FXML
     void btn_clicked(ActionEvent event) {
@@ -66,7 +70,7 @@ public class verificationController extends SuperSceneController{
         }
         this.email = prevScene.getMail();
         verificationCode = MailManager.sendVerificationMail(email);
-        System.out.println(verificationCode);
+        this.mailText.setText(email);
 
     }
 }
